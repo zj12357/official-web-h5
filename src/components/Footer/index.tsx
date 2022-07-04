@@ -1,13 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, HTMLAttributes } from 'react';
 import { useTranslation } from 'react-i18next';
 import { QRCodeCanvas } from 'qrcode.react';
+import classnames from 'classnames';
 
-type FooterProps = {};
+interface FooterProps extends HTMLAttributes<HTMLElement> {}
 
-const Footer: FC<FooterProps> = (props) => {
+const Footer: FC<FooterProps> = ({ className }: FooterProps) => {
     const { t } = useTranslation();
     return (
-        <footer className="w-full bg-[#202020] p-[20px]">
+        <footer
+            className={classnames('w-full bg-[#202020] p-[20px]', className)}
+        >
             <div className="flex  justify-between items-center border-b border-solid border-[#404040] py-[20px]">
                 <img
                     src={

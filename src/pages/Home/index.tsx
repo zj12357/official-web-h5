@@ -2,6 +2,8 @@ import React, { FC, useEffect } from 'react';
 import Swiper from 'swiper';
 import { HomeCourse } from './HomeCourse';
 import { HomeActivity } from './HomeActivity';
+import { HomeDynamic } from './HomeDynamic';
+import Footer from '@/components/Footer';
 
 type HomeProps = {};
 
@@ -11,14 +13,13 @@ const Home: FC<HomeProps> = (props) => {
             direction: 'vertical',
             mousewheel: true,
             speed: 800,
-            slidesPerView: 'auto',
         });
-        let startScroll: number, touchStart: number, touchCurrent;
+        var startScroll: number, touchStart: number, touchCurrent;
         homeSwiper.slides.on(
             'touchstart',
             function (e: any) {
                 // @ts-ignore
-                startScroll = this.scrollTop;
+                startScroll = Math.floor(this.scrollTop); // 针对android获取到小数进行向下取整
                 touchStart = e.targetTouches[0].pageY;
             },
             true,
@@ -27,18 +28,18 @@ const Home: FC<HomeProps> = (props) => {
             'touchmove',
             function (e: any) {
                 touchCurrent = e.targetTouches[0].pageY;
-                let touchesDiff = touchCurrent - touchStart;
+                const touchesDiff = touchCurrent - touchStart;
                 // @ts-ignore
-                let slide = this;
-                let onlyScrolling =
-                    slide.scrollHeight > slide.offsetHeight &&
-                    ((touchesDiff < 0 && startScroll === 0) ||
+                const slide = this;
+                const onlyScrolling =
+                    slide.scrollHeight > slide.offsetHeight && //allow only when slide is scrollable
+                    ((touchesDiff < 0 && startScroll === 0) || //start from top edge to scroll bottom
                         (touchesDiff > 0 &&
                             startScroll ===
-                                slide.scrollHeight - slide.offsetHeight) ||
+                                slide.scrollHeight - slide.offsetHeight) || //start from bottom edge to scroll top
                         (startScroll > 0 &&
                             startScroll <
-                                slide.scrollHeight - slide.offsetHeight));
+                                slide.scrollHeight - slide.offsetHeight)); //start from the middle
                 if (onlyScrolling) {
                     e.stopPropagation();
                 }
@@ -56,11 +57,17 @@ const Home: FC<HomeProps> = (props) => {
                 }}
             >
                 <div className="swiper-wrapper w-full h-full">
-                    <div className="swiper-slide w-full h-full">
+                    <div className="swiper-slide w-full h-full overflow-auto">
                         <HomeCourse></HomeCourse>
                     </div>
-                    <div className="swiper-slide w-full h-full overflow-y-scroll">
+                    <div className="swiper-slide w-full h-full overflow-auto">
                         <HomeActivity></HomeActivity>
+                    </div>
+                    <div className="swiper-slide w-full h-full overflow-auto">
+                        <HomeDynamic></HomeDynamic>
+                    </div>
+                    <div className="swiper-slide w-full h-full overflow-auto">
+                        <Footer className={'h-full'}></Footer>
                     </div>
                 </div>
             </div>

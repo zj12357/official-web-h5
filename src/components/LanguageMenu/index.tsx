@@ -42,7 +42,7 @@ export const LanguageMenu = () => {
                     className="w-full h-full fixed top-[70px] bottom-0 left-0 right-0 z-[99] "
                     onClick={handleClose}
                 >
-                    <div className="bg-black bg-opacity-50 w-full  absolute top-0 bottom-0 right-0 left-0 z-[9] flex justify-center">
+                    <div className="bg-black bg-opacity-50 w-full  absolute top-0 bottom-0 right-0 left-0 z-[9] flex justify-end">
                         <div className="w-[140px] h-[120px] bg-[#202020] py-[20px]">
                             {menuList.map((item) => (
                                 <div
