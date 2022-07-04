@@ -34,7 +34,7 @@ const DefaultLayout: FC<DefaultLayoutProps> = (props) => {
                 <meta name="description" content={xdescription} />
             </Helmet>
             {props.route.showHeader && <Header></Header>}
-            <main>{children}</main>
+            <main className="pt-[70px]">{children}</main>
             {props.route.showFooter && <Footer></Footer>}
         </Fragment>
     );

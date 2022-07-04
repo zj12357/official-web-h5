@@ -8,7 +8,13 @@
     "home-shopping-cart": "娱乐购物",
     "home-gold": "赢樂投",
     "home-recruit": "人才招聘",
+
     "header-lang-menu-cn": "中文",
     "header-lang-menu-en": "英文",
-    "header-lang-menu-ko": "韩文"
+    "header-lang-menu-ko": "韩文",
+
+    "footer-contact-personnel": "人事",
+    "footer-contact-vip": "贵宾",
+    "footer-qr-register": "扫码注册",
+    "footer-copyright": "© 2022 盈樂贵宾会  版權所有"
 }

@@ -55,11 +55,11 @@ export const LanguageMenu = () => {
                                     {currentIndex === item.activeIndex && (
                                         <img
                                             src={
-                                                require('@/assets/images/icons/lang-menu-active-icon.svg')
+                                                require('@/assets/images/header/lang-menu-active-icon.svg')
                                                     .default
                                             }
                                             alt=""
-                                            className="absolute top-[50%] left-[20px]  translate-y-[-50%] z-[9]"
+                                            className="absolute top-[50%] left-[20px]  translate-y-[-50%] z-[9] w-[15px]"
                                         />
                                     )}
 

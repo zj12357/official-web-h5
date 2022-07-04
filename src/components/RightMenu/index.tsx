@@ -13,49 +13,52 @@ export const RightMenu = () => {
         {
             name: t('home-page'),
             path: '/home',
-            icon: require('@/assets/images/icons/tab-home-icon.svg').default,
+            icon: require('@/assets/images/header/tab-home-icon.svg').default,
         },
         {
             name: t('home-dynamic'),
             path: '/home',
-            icon: require('@/assets/images/icons/tab-dynamic-icon.svg').default,
+            icon: require('@/assets/images/header/tab-dynamic-icon.svg')
+                .default,
         },
         {
             name: t('home-supreme'),
             path: '/home',
-            icon: require('@/assets/images/icons/tab-supreme-icon.svg').default,
+            icon: require('@/assets/images/header/tab-supreme-icon.svg')
+                .default,
         },
         {
             name: t('home-member'),
             path: '/home',
-            icon: require('@/assets/images/icons/tab-member-icon.svg').default,
+            icon: require('@/assets/images/header/tab-member-icon.svg').default,
         },
         {
             name: t('home-coffee'),
             path: '/home',
-            icon: require('@/assets/images/icons/tab-coffee-icon.svg').default,
+            icon: require('@/assets/images/header/tab-coffee-icon.svg').default,
         },
         {
             name: t('home-travel-bag'),
             path: '/home',
-            icon: require('@/assets/images/icons/tab-travel-bag-icon.svg')
+            icon: require('@/assets/images/header/tab-travel-bag-icon.svg')
                 .default,
         },
         {
             name: t('home-shopping-cart'),
             path: '/home',
-            icon: require('@/assets/images/icons/tab-shopping-cart-icon.svg')
+            icon: require('@/assets/images/header/tab-shopping-cart-icon.svg')
                 .default,
         },
         {
             name: t('home-gold'),
             path: '/home',
-            icon: require('@/assets/images/icons/tab-gold-icon.svg').default,
+            icon: require('@/assets/images/header/tab-gold-icon.svg').default,
         },
         {
             name: t('home-recruit'),
             path: '/home',
-            icon: require('@/assets/images/icons/tab-recruit-icon.svg').default,
+            icon: require('@/assets/images/header/tab-recruit-icon.svg')
+                .default,
         },
     ];
 
@@ -71,7 +74,7 @@ export const RightMenu = () => {
                         <div className="w-[280px] h-[70px] bg-[#202020] flex justify-end items-center">
                             <img
                                 src={
-                                    require('@/assets/images/icons/tab-close-icon.svg')
+                                    require('@/assets/images/header/tab-close-icon.svg')
                                         .default
                                 }
                                 alt=""
