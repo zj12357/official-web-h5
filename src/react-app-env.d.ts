@@ -74,4 +74,4 @@ declare module '*.less' {
     export default classes;
 }
 
-declare module 'swiper/js/swiper.js';
+declare module 'swiper';
