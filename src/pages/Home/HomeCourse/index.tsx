@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
 import Swiper from 'swiper';
-import 'swiper/css/swiper.min.css';
 
 export const HomeCourse = () => {
     const { t } = useTranslation();
@@ -64,6 +63,10 @@ export const HomeCourse = () => {
         const course = new Swiper('#home-course', {
             mousewheel: true,
             speed: 800,
+            navigation: {
+                nextEl: '.course-next',
+                prevEl: '.course-prev',
+            },
             on: {
                 slideChangeTransitionEnd: function () {
                     // @ts-ignore
@@ -80,7 +83,10 @@ export const HomeCourse = () => {
                 height: 'calc(100vh - 16.9vw)',
             }}
         >
-            <div className="swiper-container w-full h-full" id="home-course">
+            <div
+                className="swiper-container w-full h-full relative"
+                id="home-course"
+            >
                 <div className="swiper-wrapper w-full h-full">
                     {courseList.map((item, index) => (
                         <div
@@ -110,7 +116,7 @@ export const HomeCourse = () => {
                                     className={classnames(
                                         'text-[32px] text-white my-[5px] ',
                                         {
-                                            'wow animate__animated animate__fadeInUp animate__delay-500ms':
+                                            'wow animate__animated animate__fadeInUp animate__delay-400ms':
                                                 currentIndex ===
                                                 item.currentIndex,
                                         },
@@ -122,7 +128,7 @@ export const HomeCourse = () => {
                                     className={classnames(
                                         'text-[32px] text-white my-[5px] ',
                                         {
-                                            'wow animate__animated animate__fadeInUp animate__delay-1s':
+                                            'wow animate__animated animate__fadeInUp animate__delay-800ms':
                                                 currentIndex ===
                                                 item.currentIndex,
                                         },
@@ -133,6 +139,26 @@ export const HomeCourse = () => {
                             </div>
                         </div>
                     ))}
+                </div>
+                <div className="course-prev absolute bottom-[100px] left-[20px] z-[9]">
+                    <img
+                        src={
+                            require('@/assets/images/icon/swiper-prev-icon.svg')
+                                .default
+                        }
+                        alt=""
+                        className="w-[40px]"
+                    />
+                </div>
+                <div className="course-next absolute bottom-[100px] left-[120px] z-[9]">
+                    <img
+                        src={
+                            require('@/assets/images/icon/swiper-next-icon.svg')
+                                .default
+                        }
+                        alt=""
+                        className="w-[40px]"
+                    />
                 </div>
             </div>
         </div>
