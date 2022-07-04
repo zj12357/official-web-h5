@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { message } from 'antd';
 import { isMobile } from 'licia';
 import protoRoot from '@/proto/proto';
 import protobuf from 'protobufjs';
@@ -59,16 +58,16 @@ service.interceptors.response.use(
         // You can change this part for your own usage.
         const res = response.data;
         if (res.code !== 200) {
-            message.error(res.msg || '请求错误');
+            // message.error(res.msg || '请求错误');
             if (
                 res.code === 50008 ||
                 res.code === 50012 ||
                 res.code === 50014
             ) {
-                message.info('你已被登出，请重新登录').then(() => {
-                    localStorage.clear();
-                    window.location.reload();
-                });
+                // message.info('你已被登出，请重新登录').then(() => {
+                //     localStorage.clear();
+                //     window.location.reload();
+                // });
             }
             // return Promise.reject(new Error(res.msg || "Error"));
         } else {
@@ -80,7 +79,7 @@ service.interceptors.response.use(
         }
     },
     (error) => {
-        message.error(error.message);
+        // message.error(error.message);
         return Promise.reject(error);
     },
 );

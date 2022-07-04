@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import '@/common/localization';
 import './assets/css/base.css';
 import './assets/scss/global.scss';
 import './assets/css/tailwind.css';

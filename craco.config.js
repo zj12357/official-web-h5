@@ -25,7 +25,7 @@ module.exports = {
                 // px转vw
                 pxtovw({
                     unitToConvert: 'px', // 需要转换的单位，默认为"px"
-                    viewportWidth: 375, // 视窗的宽度，对应h5设计稿的宽度，一般是375
+                    viewportWidth: 414, // 视窗的宽度，对应h5设计稿的宽度，一般是375
                     // viewportHeight: 667,// 视窗的高度，对应的是我们设计稿的高度
                     unitPrecision: 3, // 单位转换后保留的精度
                     propList: [
