@@ -3,7 +3,11 @@ import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
 import Swiper from 'swiper';
 
-export const HomeCourse = () => {
+interface HomeCourseType {
+    courseIndex: number;
+}
+
+export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
     const { t } = useTranslation();
     const courseList = [
         {
@@ -60,21 +64,23 @@ export const HomeCourse = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-        const course = new Swiper('#home-course', {
-            mousewheel: true,
-            speed: 800,
-            navigation: {
-                nextEl: '.course-next',
-                prevEl: '.course-prev',
-            },
-            on: {
-                slideChangeTransitionEnd: function () {
-                    // @ts-ignore
-                    setCurrentIndex(this.activeIndex);
+        if (courseIndex === 0) {
+            const course = new Swiper('#home-course', {
+                mousewheel: true,
+                speed: 800,
+                navigation: {
+                    nextEl: '.course-next',
+                    prevEl: '.course-prev',
                 },
-            },
-        });
-    }, []);
+                on: {
+                    slideChangeTransitionEnd: function () {
+                        // @ts-ignore
+                        setCurrentIndex(this.activeIndex);
+                    },
+                },
+            });
+        }
+    }, [courseIndex]);
 
     return (
         <div

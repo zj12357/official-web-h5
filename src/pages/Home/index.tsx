@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Swiper from 'swiper';
 import { HomeCourse } from './HomeCourse';
 import { HomeActivity } from './HomeActivity';
@@ -8,11 +8,18 @@ import Footer from '@/components/Footer';
 type HomeProps = {};
 
 const Home: FC<HomeProps> = (props) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
     useEffect(() => {
         const homeSwiper = new Swiper('#home-page-swiper', {
             direction: 'vertical',
             mousewheel: true,
             speed: 800,
+            on: {
+                slideChangeTransitionEnd: function () {
+                    // @ts-ignore
+                    setCurrentIndex(this.activeIndex);
+                },
+            },
         });
         var startScroll: number, touchStart: number, touchCurrent;
         homeSwiper.slides.on(
@@ -58,7 +65,7 @@ const Home: FC<HomeProps> = (props) => {
             >
                 <div className="swiper-wrapper w-full h-full">
                     <div className="swiper-slide w-full h-full overflow-auto">
-                        <HomeCourse></HomeCourse>
+                        <HomeCourse courseIndex={currentIndex}></HomeCourse>
                     </div>
                     <div className="swiper-slide w-full h-full overflow-auto">
                         <HomeActivity></HomeActivity>

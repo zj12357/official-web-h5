@@ -7,32 +7,43 @@ import {
 } from '@/store/common/commonSlice';
 
 export const LanguageMenu = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    console.log(i18n.language, 1111);
     const dispatch = useDispatch();
-    const [currentIndex, setCurrentIndex] = useState(1);
 
     const menuOpen = useSelector(selectLangMenuOpen);
     const menuList = [
         {
             name: t('header-lang-menu-cn'),
-            activeIndex: 1,
+            activeIndex: 0,
+            lang: 'cn',
         },
         {
             name: t('header-lang-menu-en'),
-            activeIndex: 2,
+            activeIndex: 1,
+            lang: 'en',
         },
         {
             name: t('header-lang-menu-ko'),
-            activeIndex: 3,
+            activeIndex: 2,
+            lang: 'ko',
         },
     ];
+    const [currentIndex, setCurrentIndex] = useState(
+        menuList.findIndex((item) => item.lang === i18n.language ?? 'en'),
+    );
 
-    const handleChangeIndex = (index: number) => {
+    const handleChangeIndex = (index: number, lang: string) => {
         setCurrentIndex(index);
+        changeLanguage(lang);
     };
 
     const handleClose = () => {
         dispatch(setLangMenuOpen(false));
+    };
+
+    const changeLanguage = (lang: string) => {
+        i18n.changeLanguage(lang);
     };
 
     return (
@@ -48,7 +59,10 @@ export const LanguageMenu = () => {
                                 <div
                                     className="w-full h-[30px] pl-[50px] pr-[10px] flex items-center relative"
                                     onClick={() =>
-                                        handleChangeIndex(item.activeIndex)
+                                        handleChangeIndex(
+                                            item.activeIndex,
+                                            item.lang,
+                                        )
                                     }
                                     key={item.activeIndex}
                                 >
