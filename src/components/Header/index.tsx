@@ -5,8 +5,6 @@
  * @date: Do not edit
  */
 import React, { FC } from 'react';
-import { useSelector } from 'react-redux';
-import { selectScrollTop } from '@/store/common/commonSlice';
 
 type HeaderProps = {};
 

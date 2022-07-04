@@ -1,4 +1,4 @@
-# typescript + react + @reduxjs/toolkit + react-router-dom + react-redux + antd
+# typescript + react + @reduxjs/toolkit + react-router-dom + react-redux + tailwindcss
 
 ## 1. yarn
 
