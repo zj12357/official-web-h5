@@ -10,6 +10,7 @@ import { Redirect } from 'react-router-dom';
 import mateInfo from '@/common/mateInfo';
 
 const Home = React.lazy(() => import('../pages/Home'));
+const LatestNews = React.lazy(() => import('../pages/LatestNews'));
 
 const NotFound = React.lazy(() => import('../pages/NotFound'));
 
@@ -25,7 +26,6 @@ const routes: MixRouteConfig[] = [
     {
         path: '/',
         exact: true,
-        requiresAuth: false,
         showHeader: true,
         showFooter: false,
         component: () => <Redirect to="/home"></Redirect>,
@@ -35,7 +35,6 @@ const routes: MixRouteConfig[] = [
         path: '/home',
         exact: true,
         component: Home,
-        requiresAuth: false,
         title: mateInfo.home.title,
         description: mateInfo.home.description,
         showHeader: true,
@@ -43,11 +42,20 @@ const routes: MixRouteConfig[] = [
     },
 
     {
+        path: '/latestNews',
+        exact: true,
+        component: LatestNews,
+        title: mateInfo.home.title,
+        description: mateInfo.home.description,
+        showHeader: true,
+        showFooter: true,
+    },
+
+    {
         path: '*',
         exact: true,
-        requiresAuth: false,
         component: NotFound,
-        showHeader: false,
+        showHeader: true,
         showFooter: false,
     },
 ];

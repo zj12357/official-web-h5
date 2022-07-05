@@ -18,7 +18,7 @@ export const RightMenu = () => {
         },
         {
             name: t('home-dynamic'),
-            path: '/home',
+            path: '/latestNews',
             icon: require('@/assets/images/header/tab-dynamic-icon.svg')
                 .default,
         },
@@ -67,6 +67,11 @@ export const RightMenu = () => {
         dispatch(setNavMenuOpen(false));
     };
 
+    const toPage = (path: string) => {
+        history.push(path);
+        handleClose();
+    };
+
     return (
         <>
             <div
@@ -108,6 +113,7 @@ export const RightMenu = () => {
                                         menuOpen,
                                 },
                             )}
+                            onClick={() => toPage(item.path)}
                         >
                             <img
                                 src={item.icon}
