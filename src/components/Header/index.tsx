@@ -5,9 +5,13 @@
  * @date: Do not edit
  */
 import React, { FC } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { setNavMenuOpen, setLangMenuOpen } from '@/store/common/commonSlice';
+import {
+    setNavMenuOpen,
+    setLangMenuOpen,
+    selectLangMenuOpen,
+} from '@/store/common/commonSlice';
 import { RightMenu } from '../RightMenu';
 import { LanguageMenu } from '../LanguageMenu';
 
@@ -16,19 +20,22 @@ type HeaderProps = {};
 const Header: FC<HeaderProps> = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const menuOpen = useSelector(selectLangMenuOpen);
     const handleNavOpen = () => {
         dispatch(setNavMenuOpen(true));
+        dispatch(setLangMenuOpen(false));
     };
     const handleLangOpen = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
         e.stopPropagation();
-        dispatch(setLangMenuOpen(true));
+        dispatch(setLangMenuOpen(!menuOpen));
+        dispatch(setNavMenuOpen(false));
     };
     const toHome = () => {
         history.push('/');
     };
     return (
         <header
-            className="fixed top-0 left-0 right-0 z-[99]"
+            className="fixed top-0 left-0 right-0 z-[999]"
             onClick={() => {
                 dispatch(setLangMenuOpen(false));
             }}

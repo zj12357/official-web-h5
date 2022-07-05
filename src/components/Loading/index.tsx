@@ -12,7 +12,7 @@ interface Props {}
 const Loading: FC<Props> = (props) => {
     return (
         <div className="m-loading">
-            <MoonLoader size={30} color="#f8413d" loading></MoonLoader>
+            <MoonLoader size={30} color="#FFD78E" loading></MoonLoader>
         </div>
     );
 };
