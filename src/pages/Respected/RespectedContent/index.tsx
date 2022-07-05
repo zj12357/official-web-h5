@@ -233,7 +233,7 @@ export const RespectedContent: FC<RespectedContentProps> = (props) => {
                     <div className="flex  justify-between flex-wrap mt-[20px] wow animate__animated animate__fadeInUp animate__delay-500ms">
                         {item.games.map((game, gIndex) => (
                             <Fragment key={gIndex}>
-                                <div className="flex flex-col justify-start items-center mb-[20px] w-[25%]">
+                                <div className="flex flex-col justify-center items-center mb-[20px] w-[25%]">
                                     <img
                                         src={game.gameIcon}
                                         alt=""

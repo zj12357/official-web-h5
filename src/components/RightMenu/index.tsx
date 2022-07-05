@@ -35,7 +35,7 @@ export const RightMenu = () => {
         },
         {
             name: t('home-coffee'),
-            path: '/home',
+            path: '/hotelCatering',
             icon: require('@/assets/images/header/tab-coffee-icon.svg').default,
         },
         {
