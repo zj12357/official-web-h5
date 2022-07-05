@@ -10,7 +10,11 @@ const NotFound: FC<Props> = () => {
         <div
             className="w-full  bg-[#423F3A] flex flex-col justify-center items-center"
             style={{
-                height: 'calc(100vh - 16.9vw)',
+                height: `calc(${
+                    window.innerHeight ||
+                    document.body.clientHeight ||
+                    document.documentElement.offsetHeight
+                }px - 16.9vw)`,
             }}
         >
             <img

@@ -34,7 +34,7 @@ export const HomeActivity = () => {
             <h1 className="text-[24px] text-[#FFD78E] py-[20px] not-last-child-border">
                 {t('home-activity-title')}
             </h1>
-            <div className="w-full pb-[50px]">
+            <div className="w-full pb-[100px]">
                 {activityList.map((item) => (
                     <img
                         src={item.image}

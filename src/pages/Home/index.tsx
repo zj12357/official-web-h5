@@ -60,7 +60,11 @@ const Home: FC<HomeProps> = (props) => {
                 className="swiper-container w-full bg-[#181818]"
                 id="home-page-swiper"
                 style={{
-                    height: 'calc(100vh - 16.9vw)',
+                    height: `calc(${
+                        window.innerHeight ||
+                        document.body.clientHeight ||
+                        document.documentElement.offsetHeight
+                    }px - 16.9vw)`,
                 }}
             >
                 <div className="swiper-wrapper w-full h-full">

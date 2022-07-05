@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
 import Swiper from 'swiper';
+import { Pointlayput } from './PointLayput';
 
 interface HomeCourseType {
     courseIndex: number;
@@ -64,6 +65,7 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
+        const dom = document.getElementById('home-course-slide-0');
         if (courseIndex === 0) {
             const course = new Swiper('#home-course', {
                 mousewheel: true,
@@ -76,9 +78,14 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
                     slideChangeTransitionEnd: function () {
                         // @ts-ignore
                         setCurrentIndex(this.activeIndex);
+                        dom?.setAttribute('style', 'display:none');
                     },
                 },
             });
+
+            dom?.setAttribute('style', 'display:block');
+        } else {
+            dom?.setAttribute('style', 'display:none');
         }
     }, [courseIndex]);
 
@@ -86,7 +93,11 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
         <div
             className="w-full"
             style={{
-                height: 'calc(100vh - 16.9vw)',
+                height: `calc(${
+                    window.innerHeight ||
+                    document.body.clientHeight ||
+                    document.documentElement.offsetHeight
+                }px - 16.9vw - 26.57vw)`,
             }}
         >
             <div
@@ -96,7 +107,7 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
                 <div className="swiper-wrapper w-full h-full">
                     {courseList.map((item, index) => (
                         <div
-                            className="swiper-slide w-full h-full bg-cover bg-no-repeat bg-top pl-[20px] pt-[250px]"
+                            className="swiper-slide w-full h-full bg-cover bg-no-repeat bg-top pl-[20px] pt-[120px]"
                             style={{ backgroundImage: `url(${item.image})` }}
                             key={item.currentIndex}
                         >
@@ -105,6 +116,7 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
                                     '!block':
                                         currentIndex === item.currentIndex,
                                 })}
+                                id={`home-course-slide-${currentIndex}`}
                             >
                                 <h6
                                     className={classnames(
@@ -164,6 +176,40 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
                         }
                         alt=""
                         className="w-[40px]"
+                    />
+                </div>
+            </div>
+            <div className="w-full h-[110px] bg-[#38342E] relative">
+                <div className="absolute left-0 top-[-40px] w-full z-[9]">
+                    <img
+                        src={
+                            require('@/assets/images/home/cover-top.png')
+                                .default
+                        }
+                        alt=""
+                        className="w-full"
+                    />
+                </div>
+                <div className="absolute left-0 top-0 z-10 bg-[#000] w-full h-full bg-opacity-50 overflow-hidden">
+                    <Pointlayput currentIndex={currentIndex}></Pointlayput>
+                </div>
+                <div className="absolute left-0 bottom-0 w-full z-[9]">
+                    <img
+                        src={
+                            require('@/assets/images/home/cover-bottom.png')
+                                .default
+                        }
+                        alt=""
+                        className="w-full"
+                    />
+                </div>
+                <div className="animate-down-slide absolute left-[50%] translate-x-[-50%] bottom-0 z-[11]">
+                    <img
+                        src={
+                            require('@/assets/images/icon/down-icon.svg')
+                                .default
+                        }
+                        alt=""
                     />
                 </div>
             </div>
