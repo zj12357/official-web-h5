@@ -12,6 +12,7 @@ import mateInfo from '@/common/mateInfo';
 const Home = React.lazy(() => import('../pages/Home'));
 const LatestNews = React.lazy(() => import('../pages/LatestNews'));
 const Respected = React.lazy(() => import('../pages/Respected'));
+const Member = React.lazy(() => import('../pages/Member'));
 
 const NotFound = React.lazy(() => import('../pages/NotFound'));
 
@@ -56,6 +57,15 @@ const routes: MixRouteConfig[] = [
         path: '/respected',
         exact: true,
         component: Respected,
+        title: mateInfo.home.title,
+        description: mateInfo.home.description,
+        showHeader: true,
+        showFooter: true,
+    },
+    {
+        path: '/member',
+        exact: true,
+        component: Member,
         title: mateInfo.home.title,
         description: mateInfo.home.description,
         showHeader: true,

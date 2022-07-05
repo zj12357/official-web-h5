@@ -30,7 +30,7 @@ export const RightMenu = () => {
         },
         {
             name: t('home-member'),
-            path: '/home',
+            path: '/member',
             icon: require('@/assets/images/header/tab-member-icon.svg').default,
         },
         {

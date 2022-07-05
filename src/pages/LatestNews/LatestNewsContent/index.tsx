@@ -111,8 +111,11 @@ export const LatestNewsContent: FC<LatestNewsContentProps> = (props) => {
     return (
         <div className="w-full p-[20px] bg-[#181818]">
             {contentList.map((item, index) => (
-                <div className="w-full" key={index}>
-                    <div className="w-full flex justify-between items-center my-[20px] wow animate__animated animate__fadeInUp animate__delay-200ms">
+                <div
+                    className="w-full py-[20px] border-b border-solid border-[#404040]"
+                    key={index}
+                >
+                    <div className="w-full flex justify-between mt-[10px] mb-[20px] items-center wow animate__animated animate__fadeInUp animate__delay-200ms">
                         <div className="text-[#FFD78E] text-[20px]">
                             {item.title}
                         </div>
@@ -124,14 +127,14 @@ export const LatestNewsContent: FC<LatestNewsContentProps> = (props) => {
                         {item.content}
                     </p>
                     <div
-                        className="swiper-container my-[30px] wow animate__animated animate__fadeInUp animate__delay-400ms"
+                        className="swiper-container my-[10px] wow animate__animated animate__fadeInUp animate__delay-400ms"
                         id={'latest-news-dynamic' + index}
                     >
                         <div className="swiper-wrapper w-full">
                             {item.swiper.map((item, sIndex) => (
                                 <div
                                     key={sIndex}
-                                    className="swiper-slide !w-[320px] my-[20px]"
+                                    className="swiper-slide !w-[320px] mb-[20px]"
                                 >
                                     <div className="w-[300px] h-[180px]">
                                         <img
