@@ -46,15 +46,15 @@ export const RightMenu = () => {
         },
         {
             name: t('home-shopping-cart'),
-            path: '/home',
+            path: '/shopping',
             icon: require('@/assets/images/header/tab-shopping-cart-icon.svg')
                 .default,
         },
-        {
-            name: t('home-gold'),
-            path: '/home',
-            icon: require('@/assets/images/header/tab-gold-icon.svg').default,
-        },
+        // {
+        //     name: t('home-gold'),
+        //     path: '/home',
+        //     icon: require('@/assets/images/header/tab-gold-icon.svg').default,
+        // },
         {
             name: t('home-recruit'),
             path: '/home',
