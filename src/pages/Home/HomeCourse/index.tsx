@@ -63,31 +63,36 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
+    const dom =
+        document.getElementById('home-course')?.children[0].children[0]
+            .children[0];
 
     useEffect(() => {
-        const dom = document.getElementById('home-course-slide-0');
+        const course = new Swiper('#home-course', {
+            mousewheel: true,
+            speed: 800,
+            navigation: {
+                nextEl: '.course-next',
+                prevEl: '.course-prev',
+            },
+            on: {
+                slideChangeTransitionEnd: function () {
+                    // @ts-ignore
+                    setCurrentIndex(this.activeIndex);
+                },
+            },
+        });
+    }, []);
+    useEffect(() => {
         if (courseIndex === 0) {
-            const course = new Swiper('#home-course', {
-                mousewheel: true,
-                speed: 800,
-                navigation: {
-                    nextEl: '.course-next',
-                    prevEl: '.course-prev',
-                },
-                on: {
-                    slideChangeTransitionEnd: function () {
-                        // @ts-ignore
-                        setCurrentIndex(this.activeIndex);
-                        dom?.setAttribute('style', 'display:none');
-                    },
-                },
-            });
-
             dom?.setAttribute('style', 'display:block');
         } else {
             dom?.setAttribute('style', 'display:none');
         }
-    }, [courseIndex]);
+        if (currentIndex !== 0) {
+            dom?.setAttribute('style', 'display:none');
+        }
+    }, [courseIndex, currentIndex]);
 
     return (
         <div
@@ -116,7 +121,6 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
                                     '!block':
                                         currentIndex === item.currentIndex,
                                 })}
-                                id={`home-course-slide-${currentIndex}`}
                             >
                                 <h6
                                     className={classnames(
