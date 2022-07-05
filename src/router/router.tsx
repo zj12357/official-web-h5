@@ -14,6 +14,7 @@ const LatestNews = React.lazy(() => import('../pages/LatestNews'));
 const Respected = React.lazy(() => import('../pages/Respected'));
 const Member = React.lazy(() => import('../pages/Member'));
 const HotelCatering = React.lazy(() => import('../pages/HotelCatering'));
+const Travel = React.lazy(() => import('../pages/Travel'));
 
 const NotFound = React.lazy(() => import('../pages/NotFound'));
 
@@ -76,6 +77,15 @@ const routes: MixRouteConfig[] = [
         path: '/hotelCatering',
         exact: true,
         component: HotelCatering,
+        title: mateInfo.home.title,
+        description: mateInfo.home.description,
+        showHeader: true,
+        showFooter: true,
+    },
+    {
+        path: '/travel',
+        exact: true,
+        component: Travel,
         title: mateInfo.home.title,
         description: mateInfo.home.description,
         showHeader: true,

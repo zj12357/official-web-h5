@@ -40,7 +40,7 @@ export const RightMenu = () => {
         },
         {
             name: t('home-travel-bag'),
-            path: '/home',
+            path: '/travel',
             icon: require('@/assets/images/header/tab-travel-bag-icon.svg')
                 .default,
         },
