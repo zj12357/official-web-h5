@@ -24,7 +24,7 @@ export const RightMenu = () => {
         },
         {
             name: t('home-supreme'),
-            path: '/home',
+            path: '/respected',
             icon: require('@/assets/images/header/tab-supreme-icon.svg')
                 .default,
         },

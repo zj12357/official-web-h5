@@ -112,7 +112,7 @@ export const LatestNewsContent: FC<LatestNewsContentProps> = (props) => {
         <div className="w-full p-[20px] bg-[#181818]">
             {contentList.map((item, index) => (
                 <div className="w-full" key={index}>
-                    <div className="w-full flex justify-between items-center my-[20px]">
+                    <div className="w-full flex justify-between items-center my-[20px] wow animate__animated animate__fadeInUp animate__delay-200ms">
                         <div className="text-[#FFD78E] text-[20px]">
                             {item.title}
                         </div>
@@ -120,9 +120,11 @@ export const LatestNewsContent: FC<LatestNewsContentProps> = (props) => {
                             {item.time}
                         </div>
                     </div>
-                    <p className="text-[12px] text-[#BFA983]">{item.content}</p>
+                    <p className="text-[12px] text-[#BFA983] wow animate__animated animate__fadeInUp animate__delay-300ms">
+                        {item.content}
+                    </p>
                     <div
-                        className="swiper-container my-[30px]"
+                        className="swiper-container my-[30px] wow animate__animated animate__fadeInUp animate__delay-400ms"
                         id={'latest-news-dynamic' + index}
                     >
                         <div className="swiper-wrapper w-full">

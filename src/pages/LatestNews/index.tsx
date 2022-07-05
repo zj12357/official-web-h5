@@ -8,7 +8,7 @@ type LatestNewsProps = {};
 const LatestNews = () => {
     const { t } = useTranslation();
     return (
-        <div className="">
+        <div>
             <TopBanner
                 title={t('top-banner-title-latest-news')}
                 backgroundImage={
