@@ -112,7 +112,7 @@ export const LatestNewsContent: FC<LatestNewsContentProps> = (props) => {
         <div className="w-full p-[20px] bg-[#181818]">
             {contentList.map((item, index) => (
                 <div
-                    className="w-full py-[20px] border-b border-solid border-[#404040]"
+                    className="w-full py-[20px] not-last-child-border"
                     key={index}
                 >
                     <div className="w-full flex justify-between mt-[10px] mb-[20px] items-center wow animate__animated animate__fadeInUp animate__delay-200ms">

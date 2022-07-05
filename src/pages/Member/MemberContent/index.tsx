@@ -29,7 +29,7 @@ export const MemberContent: FC<MemberContentProps> = (props) => {
         <div className="w-full p-[20px] bg-[#181818]">
             {contentList.map((item, index) => (
                 <div
-                    className="w-full border-b border-solid border-[#404040] py-[20px] "
+                    className="w-full not-last-child-border py-[20px] "
                     key={index}
                 >
                     <h2 className="text-[#FFD78E] text-[20px] mt-[10px]  mb-[20px] wow animate__animated animate__fadeInUp animate__delay-200ms">

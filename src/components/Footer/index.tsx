@@ -11,7 +11,7 @@ const Footer: FC<FooterProps> = ({ className }: FooterProps) => {
         <footer
             className={classnames('w-full bg-[#202020] p-[20px]', className)}
         >
-            <div className="flex  justify-between items-center border-b border-solid border-[#404040] py-[20px]">
+            <div className="flex  justify-between items-center not-last-child-border py-[20px]">
                 <img
                     src={
                         require('@/assets/images/footer/footer-cod.svg').default
@@ -44,7 +44,7 @@ const Footer: FC<FooterProps> = ({ className }: FooterProps) => {
                     className="h-[40px]"
                 />
             </div>
-            <div className="flex  justify-center items-center border-b border-solid border-[#404040] py-[20px]">
+            <div className="flex  justify-center items-center not-last-child-border py-[20px]">
                 <img
                     src={
                         require('@/assets/images/footer/footer-pagcor.svg')

@@ -203,7 +203,7 @@ export const RespectedContent: FC<RespectedContentProps> = (props) => {
         <div className="w-full p-[20px] bg-[#181818]">
             {contentList.map((item, index) => (
                 <div
-                    className="w-full border-b border-solid border-[#404040] pt-[20px] pb-[10px]"
+                    className="w-full not-last-child-border pt-[20px] pb-[10px]"
                     key={index}
                 >
                     <div className="flex items-center wow animate__animated animate__fadeInUp animate__fadeInUp animate__delay-200ms">

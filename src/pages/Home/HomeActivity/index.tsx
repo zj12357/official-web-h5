@@ -31,7 +31,7 @@ export const HomeActivity = () => {
     ];
     return (
         <div className="w-full p-[20px] h-full">
-            <h1 className="text-[24px] text-[#FFD78E] py-[20px] border-b border-solid border-[#404040]">
+            <h1 className="text-[24px] text-[#FFD78E] py-[20px] not-last-child-border">
                 {t('home-activity-title')}
             </h1>
             <div className="w-full pb-[50px]">

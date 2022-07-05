@@ -48,7 +48,7 @@ export const HomeDynamic = () => {
     }, []);
     return (
         <div className="w-full h-full p-[20px]">
-            <div className="w-full flex justify-between items-center border-b border-solid border-[#404040] py-[20px]">
+            <div className="w-full flex justify-between items-center not-last-child-border py-[20px]">
                 <div className="text-[#FFD78E] text-[24px]">
                     {t('home-dynamic-title')}
                 </div>

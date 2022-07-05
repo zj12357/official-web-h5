@@ -16,6 +16,7 @@ const Member = React.lazy(() => import('../pages/Member'));
 const HotelCatering = React.lazy(() => import('../pages/HotelCatering'));
 const Travel = React.lazy(() => import('../pages/Travel'));
 const Shopping = React.lazy(() => import('../pages/Shopping'));
+const Recruitment = React.lazy(() => import('../pages/Recruitment'));
 
 const NotFound = React.lazy(() => import('../pages/NotFound'));
 
@@ -96,6 +97,15 @@ const routes: MixRouteConfig[] = [
         path: '/shopping',
         exact: true,
         component: Shopping,
+        title: mateInfo.home.title,
+        description: mateInfo.home.description,
+        showHeader: true,
+        showFooter: true,
+    },
+    {
+        path: '/recruitment',
+        exact: true,
+        component: Recruitment,
         title: mateInfo.home.title,
         description: mateInfo.home.description,
         showHeader: true,

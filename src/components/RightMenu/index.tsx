@@ -57,7 +57,7 @@ export const RightMenu = () => {
         // },
         {
             name: t('home-recruit'),
-            path: '/home',
+            path: '/recruitment',
             icon: require('@/assets/images/header/tab-recruit-icon.svg')
                 .default,
         },
@@ -107,7 +107,7 @@ export const RightMenu = () => {
                         <div
                             key={index}
                             className={classnames(
-                                'flex items-center w-[240px] border-b border-[#404040 border-solid py-[17px]',
+                                'flex items-center w-[240px]  not-last-child-border py-[17px]',
                                 {
                                     'animate__animated animate__fadeInRight':
                                         menuOpen,

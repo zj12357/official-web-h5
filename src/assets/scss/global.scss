@@ -1,10 +1,24 @@
 html,
 body {
+    min-height: 100vh;
+
+    /* mobile viewport bug fix */
+    min-height: -webkit-fill-available;
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: constant(safe-area-inset-bottom); /* 兼容 iOS < 11.2 */
+    padding-bottom: env(safe-area-inset-bottom); /* 兼容 iOS >= 11.2 */
     background: #423f3a;
 }
 
 #nprogress .bar {
     background: $primary-color !important; //自定义Nprogress颜色
+}
+
+.not-last-child-border {
+    &:not(:last-child) {
+        border-bottom: 1px solid #404040;
+    }
 }
 
 .animate__delay-100ms {
