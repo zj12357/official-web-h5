@@ -207,7 +207,7 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
                         className="w-full"
                     />
                 </div>
-                <div className="animate-down-slide absolute left-[50%] translate-x-[-50%] bottom-0 z-[11]">
+                <div className="animate-down-slide absolute left-[50%] translate-x-[-50%] bottom-[5px] z-[11]">
                     <img
                         src={
                             require('@/assets/images/icon/down-icon.svg')
