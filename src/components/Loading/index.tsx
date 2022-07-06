@@ -5,14 +5,19 @@
  * @date: Do not edit
  */
 import React, { FC, memo } from 'react';
-import MoonLoader from 'react-spinners/MoonLoader';
+import BarLoader from 'react-spinners/BarLoader';
 import './index.scoped.scss';
 interface Props {}
 
 const Loading: FC<Props> = (props) => {
     return (
         <div className="m-loading">
-            <MoonLoader size={30} color="#FFD78E" loading></MoonLoader>
+            <img
+                src={require('@/assets/images/icon/bg-logo-icon.svg').default}
+                alt=""
+                className="w-[64px] mb-[20px]"
+            />
+            <BarLoader width={100} color="#FFD78E" loading></BarLoader>
         </div>
     );
 };
