@@ -63,9 +63,18 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [courseSwiper, setCourseSwiper] = useState(null);
     const dom =
         document.getElementById('home-course')?.children[0].children[0]
             .children[0];
+
+    const changeSlide = (index: number) => {
+        if (courseSwiper) {
+            // @ts-ignore
+            courseSwiper.slideTo(index, 1000, false);
+            setCurrentIndex(index);
+        }
+    };
 
     useEffect(() => {
         const course = new Swiper('#home-course', {
@@ -82,6 +91,7 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
                 },
             },
         });
+        setCourseSwiper(course);
     }, []);
     useEffect(() => {
         if (courseIndex === 0) {
@@ -195,7 +205,10 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
                     />
                 </div>
                 <div className="absolute left-0 top-0 z-10 bg-[#000] w-full h-full bg-opacity-50 overflow-hidden">
-                    <Pointlayput currentIndex={currentIndex}></Pointlayput>
+                    <Pointlayput
+                        currentIndex={currentIndex}
+                        changeSlide={changeSlide}
+                    ></Pointlayput>
                 </div>
                 <div className="absolute left-0 bottom-0 w-full z-[9]">
                     <img

@@ -13,10 +13,12 @@ import point07a from '@/assets/images/icon/point-active-07-icon.svg';
 
 type PointlayputProps = {
     currentIndex: number;
+    changeSlide: (index: number) => void;
 };
 
 export const Pointlayput: FC<PointlayputProps> = ({
     currentIndex,
+    changeSlide,
 }: PointlayputProps) => {
     const { t } = useTranslation();
     return (
@@ -46,6 +48,7 @@ export const Pointlayput: FC<PointlayputProps> = ({
                         },
                     )}
                     alt=""
+                    onClick={() => changeSlide(0)}
                 />
             </div>
             <div className="w-[39px] h-[1px] bg-white absolute top-[42px] left-[70px] z-[-1] transform rotate-[50deg] origin-left"></div>
@@ -68,12 +71,15 @@ export const Pointlayput: FC<PointlayputProps> = ({
                 <img
                     src={point01}
                     className={classNames(
-                        'absolute top-[60px] left-[83px] z-[9]',
+                        'absolute top-[60px] left-[83px] z-[9] ',
                         {
                             hidden: currentIndex === 1,
+                            'animate__animated animate__flash animate__delay-200ms':
+                                currentIndex === 0,
                         },
                     )}
                     alt=""
+                    onClick={() => changeSlide(1)}
                 />
             </div>
             <div className="w-[52px] h-[1px] bg-white absolute top-[74px] left-[95px] z-[-1] transform rotate-[-10deg] origin-left"></div>
@@ -96,12 +102,15 @@ export const Pointlayput: FC<PointlayputProps> = ({
                 <img
                     src={point01}
                     className={classNames(
-                        'absolute top-[53px] left-[130px] z-[9]',
+                        'absolute top-[53px] left-[130px] z-[9] ',
                         {
                             hidden: currentIndex === 2,
+                            'animate__animated animate__flash animate__delay-200ms':
+                                currentIndex === 0,
                         },
                     )}
                     alt=""
+                    onClick={() => changeSlide(2)}
                 />
             </div>
             <div className="w-[43px] h-[1px] bg-white absolute top-[65px] left-[145px] z-[-1] transform rotate-[-58deg] origin-left"></div>
@@ -124,12 +133,15 @@ export const Pointlayput: FC<PointlayputProps> = ({
                 <img
                     src={point01}
                     className={classNames(
-                        'absolute top-[16px] left-[154px] z-[9]',
+                        'absolute top-[16px] left-[154px] z-[9] ',
                         {
                             hidden: currentIndex === 3,
+                            'animate__animated animate__flash animate__delay-200ms':
+                                currentIndex === 0,
                         },
                     )}
                     alt=""
+                    onClick={() => changeSlide(3)}
                 />
             </div>
             <div className="w-[40px] h-[1px] bg-white absolute top-[29px] left-[167px] z-[-1] transform rotate-[-20deg] origin-left"></div>
@@ -152,12 +164,15 @@ export const Pointlayput: FC<PointlayputProps> = ({
                 <img
                     src={point01}
                     className={classNames(
-                        'absolute top-[2px] left-[192px] z-[9]',
+                        'absolute top-[2px] left-[192px] z-[9] ',
                         {
                             hidden: currentIndex === 4,
+                            'animate__animated animate__flash animate__delay-200ms':
+                                currentIndex === 0,
                         },
                     )}
                     alt=""
+                    onClick={() => changeSlide(4)}
                 />
             </div>
             <div className="w-[40px] h-[1px] bg-white absolute top-[15px] left-[206px] z-[-1] transform rotate-[20deg] origin-left"></div>
@@ -180,12 +195,15 @@ export const Pointlayput: FC<PointlayputProps> = ({
                 <img
                     src={point01}
                     className={classNames(
-                        'absolute top-[16px] left-[232px] z-[9]',
+                        'absolute top-[16px] left-[232px] z-[9] ',
                         {
                             hidden: currentIndex === 5,
+                            'animate__animated animate__flash animate__delay-200ms':
+                                currentIndex === 0,
                         },
                     )}
                     alt=""
+                    onClick={() => changeSlide(5)}
                 />
             </div>
             <div className="w-[47px] h-[1px] bg-white absolute top-[29px] left-[244px] z-[-1] transform rotate-[-10deg] origin-left"></div>
@@ -209,12 +227,15 @@ export const Pointlayput: FC<PointlayputProps> = ({
                 <img
                     src={point02}
                     className={classNames(
-                        'absolute top-[6px] left-[276px] z-[9]',
+                        'absolute top-[6px] left-[276px] z-[9] ',
                         {
                             hidden: currentIndex === 6,
+                            'animate__animated animate__flash animate__delay-200ms':
+                                currentIndex === 0,
                         },
                     )}
                     alt=""
+                    onClick={() => changeSlide(6)}
                 />
             </div>
         </div>
