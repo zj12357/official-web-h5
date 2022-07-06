@@ -40,7 +40,6 @@ export const HomeDynamic = () => {
             freeMode: true,
             scrollbar: {
                 el: '.swiper-scrollbar',
-                hide: true,
             },
         });
         dynamic.scrollbar.$dragEl.css('background', '#BFA983');
