@@ -34,7 +34,7 @@ export const LanguageMenu = () => {
         },
     ];
     const [currentIndex, setCurrentIndex] = useState(
-        menuList.findIndex((item) => item.lang === i18n.language ?? 'en'),
+        menuList.findIndex((item) => item.lang === (i18n.language ?? 'cn')),
     );
 
     const handleChangeIndex = (
