@@ -7,11 +7,7 @@ import Swiper from 'swiper';
 import { Pointlayput } from './PointLayput';
 import { homeCourseList, selectCourseList } from '@/store/home/homeSlice';
 
-interface HomeCourseType {
-    courseIndex: number;
-}
-
-export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
+export const HomeCourse = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const getCourseList = useSelector(selectCourseList);
@@ -69,15 +65,26 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [courseSwiper, setCourseSwiper] = useState(null);
-    const dom =
-        document.getElementById('home-course')?.children[0].children[0]
-            .children[0];
+    const [showDownIncon, setShowDownIncon] = useState(true);
 
     const changeSlide = (index: number) => {
         if (courseSwiper) {
             // @ts-ignore
             courseSwiper.slideTo(index, 1000, false);
             setCurrentIndex(index);
+        }
+    };
+
+    const handleShowDownIcon = () => {
+        const scrollTop =
+            document.documentElement.scrollTop ||
+            window.pageYOffset ||
+            document.body.scrollTop;
+
+        if (scrollTop > 30) {
+            setShowDownIncon(false);
+        } else {
+            setShowDownIncon(true);
         }
     };
 
@@ -89,6 +96,10 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
                 nextEl: '.course-next',
                 prevEl: '.course-prev',
             },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true,
+            },
             on: {
                 slideChangeTransitionEnd: function () {
                     // @ts-ignore
@@ -98,19 +109,14 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
         });
         setCourseSwiper(course);
     }, []);
-    useEffect(() => {
-        if (courseIndex === 0) {
-            dom?.setAttribute('style', 'display:block');
-        } else {
-            dom?.setAttribute('style', 'display:none');
-        }
-        if (currentIndex !== 0) {
-            dom?.setAttribute('style', 'display:none');
-        }
-    }, [courseIndex, currentIndex]);
 
     useEffect(() => {
         dispatch(homeCourseList());
+    }, []);
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            handleShowDownIcon();
+        });
     }, []);
 
     return (
@@ -229,15 +235,17 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
                         className="w-full"
                     />
                 </div>
-                <div className="animate-down-slide absolute left-[50%] translate-x-[-50%] bottom-[5px] z-[11]">
-                    <img
-                        src={
-                            require('@/assets/images/icon/down-icon.svg')
-                                .default
-                        }
-                        alt=""
-                    />
-                </div>
+                {showDownIncon && (
+                    <div className="animate-down-slide absolute left-[50%] translate-x-[-50%] bottom-[5px] z-[11]">
+                        <img
+                            src={
+                                require('@/assets/images/icon/down-icon.svg')
+                                    .default
+                            }
+                            alt=""
+                        />
+                    </div>
+                )}
             </div>
         </div>
     );

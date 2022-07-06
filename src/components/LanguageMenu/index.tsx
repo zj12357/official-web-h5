@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     selectLangMenuOpen,
     setLangMenuOpen,
-    setTimeLocale,
 } from '@/store/common/commonSlice';
 import classnames from 'classnames';
 import { changeTimeLocale } from '@/common/timeLocale';
@@ -58,7 +57,6 @@ export const LanguageMenu = () => {
 
     const handleTimeLocale = (timeLocale: string) => {
         changeTimeLocale(timeLocale);
-        dispatch(setTimeLocale(timeLocale));
     };
 
     return (

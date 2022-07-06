@@ -5,10 +5,6 @@ import 'dayjs/locale/ko';
 import localeData from 'dayjs/plugin/localeData';
 dayjs.extend(localeData);
 
-export const changeTimeLocale = (lang: string) => {
-    dayjs.locale(lang);
-};
-
 const local: {
     [key: string]: string;
 } = {
@@ -18,3 +14,7 @@ const local: {
 };
 
 dayjs.locale(local[localStorage.getItem('i18nextLng') ?? 'cn']);
+
+export const changeTimeLocale = (lang: string) => {
+    dayjs.locale(lang);
+};

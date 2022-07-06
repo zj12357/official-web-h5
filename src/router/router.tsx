@@ -40,7 +40,7 @@ const routes: MixRouteConfig[] = [
         path: '/',
         exact: true,
         showHeader: true,
-        showFooter: false,
+        showFooter: true,
         component: () => <Redirect to="/home"></Redirect>,
     },
 
@@ -51,7 +51,7 @@ const routes: MixRouteConfig[] = [
         title: mateInfo.home.title,
         description: mateInfo.home.description,
         showHeader: true,
-        showFooter: false,
+        showFooter: true,
     },
 
     {
