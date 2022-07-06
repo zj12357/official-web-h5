@@ -28,7 +28,10 @@ const IntroductionImage: FC<IntroductionImageProps> = ({ imageList }) => {
     }, []);
     return (
         <div className="w-full not-last-child-border py-[20px]">
-            <div className="swiper-container mt-[30px]" id="detail-swiper">
+            <div
+                className="swiper-container mt-[30px] wow animate__animated animate__fadeInUp animate__delay-200ms"
+                id="detail-swiper"
+            >
                 <div className="swiper-wrapper w-full pb-[20px]">
                     {imageList.map((item, index) => (
                         <div key={index} className="swiper-slide !w-[320px]">
@@ -45,7 +48,7 @@ const IntroductionImage: FC<IntroductionImageProps> = ({ imageList }) => {
                                 </p>
                             )}
                             {item.content && (
-                                <p className="mb-[10px] text-[#FFD78E] text-[12px]">
+                                <p className="mb-[10px] text-[#BFA983] text-[12px]">
                                     {item.content}
                                 </p>
                             )}
