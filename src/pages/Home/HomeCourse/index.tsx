@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
+import dayjs from 'dayjs';
 import Swiper from 'swiper';
 import { Pointlayput } from './PointLayput';
 import { homeCourseList, selectCourseList } from '@/store/home/homeSlice';

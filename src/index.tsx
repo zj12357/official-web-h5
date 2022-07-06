@@ -9,6 +9,7 @@ import './assets/scss/global.scss';
 import './assets/css/tailwind.css';
 import 'animate.css';
 import 'swiper/css/swiper.min.css';
+import '@/common/timeLocale';
 
 ReactDOM.render(
     // <React.StrictMode> //react中使用antd警告,是因为 react中的严格模式

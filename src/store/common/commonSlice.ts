@@ -12,6 +12,7 @@ const initialState: CommonState = {
     scrollTop: 0,
     navMenuOpen: false,
     langMenuOpen: false,
+    timeLocale: 'zh-cn',
 };
 
 export const commonSlice = createSlice({
@@ -34,15 +35,19 @@ export const commonSlice = createSlice({
         ) => {
             state.langMenuOpen = action.payload;
         },
+        setTimeLocale: (state: CommonState, action: PayloadAction<string>) => {
+            state.timeLocale = action.payload;
+        },
     },
 });
 
-export const { setScrollTop, setNavMenuOpen, setLangMenuOpen } =
+export const { setScrollTop, setNavMenuOpen, setLangMenuOpen, setTimeLocale } =
     commonSlice.actions;
 
 export const selectScrollTop = (state: RootState) => state.common.scrollTop;
 export const selectNavMenuOpen = (state: RootState) => state.common.navMenuOpen;
 export const selectLangMenuOpen = (state: RootState) =>
     state.common.langMenuOpen;
+export const selectTimeLocale = (state: RootState) => state.common.timeLocale;
 
 export default commonSlice.reducer;

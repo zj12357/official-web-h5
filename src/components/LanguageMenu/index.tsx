@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     selectLangMenuOpen,
     setLangMenuOpen,
+    setTimeLocale,
 } from '@/store/common/commonSlice';
 import classnames from 'classnames';
+import { changeTimeLocale } from '@/common/timeLocale';
 
 export const LanguageMenu = () => {
     const { t, i18n } = useTranslation();
@@ -17,25 +19,33 @@ export const LanguageMenu = () => {
             name: t('header-lang-menu-cn'),
             activeIndex: 0,
             lang: 'cn',
+            timeLocale: 'zh-cn',
         },
         {
             name: t('header-lang-menu-en'),
             activeIndex: 1,
             lang: 'en',
+            timeLocale: 'en',
         },
         {
             name: t('header-lang-menu-ko'),
             activeIndex: 2,
             lang: 'ko',
+            timeLocale: 'ko',
         },
     ];
     const [currentIndex, setCurrentIndex] = useState(
         menuList.findIndex((item) => item.lang === i18n.language ?? 'en'),
     );
 
-    const handleChangeIndex = (index: number, lang: string) => {
+    const handleChangeIndex = (
+        index: number,
+        lang: string,
+        timeLocale: string,
+    ) => {
         setCurrentIndex(index);
         changeLanguage(lang);
+        handleTimeLocale(timeLocale);
     };
 
     const handleClose = () => {
@@ -44,6 +54,11 @@ export const LanguageMenu = () => {
 
     const changeLanguage = (lang: string) => {
         i18n.changeLanguage(lang);
+    };
+
+    const handleTimeLocale = (timeLocale: string) => {
+        changeTimeLocale(timeLocale);
+        dispatch(setTimeLocale(timeLocale));
     };
 
     return (
@@ -70,7 +85,11 @@ export const LanguageMenu = () => {
                         <div
                             className="w-full h-[30px] pl-[50px] pr-[10px] flex items-center relative"
                             onClick={() =>
-                                handleChangeIndex(item.activeIndex, item.lang)
+                                handleChangeIndex(
+                                    item.activeIndex,
+                                    item.lang,
+                                    item.timeLocale,
+                                )
                             }
                             key={item.activeIndex}
                         >
