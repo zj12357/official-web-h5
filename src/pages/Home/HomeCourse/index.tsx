@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
+import { useSelector, useDispatch } from 'react-redux';
 import Swiper from 'swiper';
 import { Pointlayput } from './PointLayput';
+import { homeCourseList, selectCourseList } from '@/store/home/homeSlice';
 
 interface HomeCourseType {
     courseIndex: number;
@@ -10,6 +12,8 @@ interface HomeCourseType {
 
 export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
     const { t } = useTranslation();
+    const dispatch = useDispatch();
+    const getCourseList = useSelector(selectCourseList);
     const courseList = [
         {
             currentIndex: 0,
@@ -103,6 +107,10 @@ export const HomeCourse = ({ courseIndex }: HomeCourseType) => {
             dom?.setAttribute('style', 'display:none');
         }
     }, [courseIndex, currentIndex]);
+
+    useEffect(() => {
+        dispatch(homeCourseList());
+    }, []);
 
     return (
         <div

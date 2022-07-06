@@ -1,29 +1,20 @@
 import axios from 'axios';
-import { isMobile } from 'licia';
 import NProgress from 'nprogress';
+import qs from 'qs';
 import 'nprogress/nprogress.css';
 
 NProgress.configure({ showSpinner: false });
 
-const equipment = isMobile() ? 1 : 2;
-const UserToken = localStorage.getItem('token') || '';
-
-const service = axios.create({
-    baseURL: '/', // url = base url + request url
-    timeout: 5000,
-    // withCredentials: true // send cookies when cross-domain requests
-});
+axios.defaults.headers.post['Content-Type'] =
+    'application/x-www-form-urlencoded;charset=UTF-8';
+axios.defaults.timeout = 20000;
 
 // Request interceptors
-service.interceptors.request.use(
+axios.interceptors.request.use(
     (config) => {
         NProgress.start();
         // Add X-Access-Token header to every request, you can add other custom headers here
-        if (UserToken) {
-            config.headers['X-Access-Token'] = UserToken;
-        }
-        // 设置公共参数
-        // config.params = { device: equipment };
+
         return config;
     },
     (error) => {
@@ -32,31 +23,15 @@ service.interceptors.request.use(
 );
 
 // Response interceptors
-service.interceptors.response.use(
+axios.interceptors.response.use(
     (response) => {
         NProgress.done();
         // Some example codes here:
-        // code == 20000: success
-        // code == 50001: invalid access token
-        // code == 50002: already login in other place
-        // code == 50003: access token expired
-        // code == 50004: invalid user (user not exist)
-        // code == 50005: username or password is incorrect
-        // You can change this part for your own usage.
+
         const res = response.data;
-        if (res.code !== 200) {
-            // message.error(res.msg || '请求错误');
-            if (
-                res.code === 50008 ||
-                res.code === 50012 ||
-                res.code === 50014
-            ) {
-                // message.info('你已被登出，请重新登录').then(() => {
-                //     localStorage.clear();
-                //     window.location.reload();
-                // });
-            }
-            // return Promise.reject(new Error(res.msg || "Error"));
+        if (res.code !== 10000) {
+            console.error(res.msg);
+            return Promise.reject(new Error(res.msg || 'Error'));
         } else {
             return response.data;
         }
@@ -67,4 +42,39 @@ service.interceptors.response.use(
     },
 );
 
-export default service;
+/**
+ * get方法，对应get请求
+ * @param {String} url [请求的url地址]
+ * @param {Object} params [请求时携带的参数]
+ */
+export function get<T>(url: string, params: any = {}): Promise<T> {
+    return new Promise((resolve, reject) => {
+        axios
+            .get(url, {
+                params,
+            })
+            .then((res) => {
+                resolve(res.data);
+            })
+            .catch((err) => {
+                reject(err.data);
+            });
+    });
+}
+/**
+ * post方法，对应post请求
+ * @param {String} url [请求的url地址]
+ * @param {Object} params [请求时携带的参数]
+ */
+export function post<T>(url: string, params: any = {}): Promise<T> {
+    return new Promise((resolve, reject) => {
+        axios
+            .post(url, qs.stringify(params))
+            .then((res) => {
+                resolve(res.data);
+            })
+            .catch((err) => {
+                reject(err.data);
+            });
+    });
+}

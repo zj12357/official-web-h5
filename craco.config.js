@@ -97,7 +97,7 @@ module.exports = {
         hot: true,
         overlay: true,
         proxy: {
-            '/excuse': {
+            '/h5': {
                 target: REACT_APP_API_URL,
                 changeOrigin: true,
                 logLevel: 'debug',

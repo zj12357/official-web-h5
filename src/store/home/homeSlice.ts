@@ -6,19 +6,17 @@
  */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../';
-import { getConfig } from '@/api/home';
+import { getCourseList } from '@/api/home';
 import { HomeState } from './types';
+import { ListParamsType } from '@/types/api/home';
 
 const initialState: HomeState = {
-    data: [],
-    status: 'loading',
+    courseList: [],
 };
 
-export const homeAsync = createAsyncThunk('home/fetchHome', async () => {
-    const response = await getConfig();
-    if (response.code === 200) {
-        return response.data;
-    }
+export const homeCourseList = createAsyncThunk('home/fetchCourse', async () => {
+    const response = await getCourseList();
+    return response.data;
 });
 
 export const homeSlice = createSlice({
@@ -30,20 +28,18 @@ export const homeSlice = createSlice({
     //extraReducers 处理接口状态，一般是列表加载，loading状态获取，加载成功，加载失败
     extraReducers: (builder) => {
         builder
-            .addCase(homeAsync.pending, (state) => {
-                state.status = 'loading';
+            .addCase(homeCourseList.pending, (state) => {
+                state.courseList = [];
             })
-            .addCase(homeAsync.fulfilled, (state, action) => {
-                state.status = 'success';
-                state.data = action.payload || [];
+            .addCase(homeCourseList.fulfilled, (state, action) => {
+                state.courseList = action.payload?.list ?? [];
             })
-            .addCase(homeAsync.rejected, (state, action) => {
-                state.status = 'failed';
-                state.data = [];
+            .addCase(homeCourseList.rejected, (state, action) => {
+                state.courseList = [];
             });
     },
 });
 
-export const selectHome = (state: RootState) => state.home.data;
+export const selectCourseList = (state: RootState) => state.home.courseList;
 
 export default homeSlice.reducer;
