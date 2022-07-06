@@ -75,7 +75,7 @@ export const ShoppingContent: FC<ShoppingContentProps> = (props) => {
         },
     ];
     const toDetail = (id: number) => {
-        history.push(`/hotelCateringDetail/${id}`);
+        history.push(`/shoppingDetail/${id}`);
     };
     return (
         <div className="w-full p-[20px] bg-[#181818]">

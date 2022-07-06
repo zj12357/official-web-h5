@@ -76,7 +76,7 @@ export const TravelContent: FC<TravelContentProps> = (props) => {
     ];
 
     const toDetail = (id: number) => {
-        history.push(`/hotelCateringDetail/${id}`);
+        history.push(`/travelDetail/${id}`);
     };
     return (
         <div className="w-full p-[20px] bg-[#181818]">

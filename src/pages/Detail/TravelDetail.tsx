@@ -10,7 +10,7 @@ const TravelDetail: FC<TravelDetailProps> = (props) => {
     const { t } = useTranslation();
     return (
         <div className="w-full p-[20px] bg-[#181818]">
-            <NavBar title={t('detail-title-hotel-catering')}></NavBar>
+            <NavBar title={t('detail-title-travel')}></NavBar>
             <IntroductionText
                 title="NOBU酒店"
                 stars={3}
