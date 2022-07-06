@@ -16,6 +16,10 @@ interface Props extends MixRouteConfig {}
 
 const FancyRoute: FC<Props> = (props) => {
     useEffect(() => {
+        Promise.resolve().then(() => {
+            window.scrollTo(0, 0);
+        });
+
         NProgress.done();
         return (): any => NProgress.start();
     }, []);

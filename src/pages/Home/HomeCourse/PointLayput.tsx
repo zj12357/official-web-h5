@@ -30,12 +30,12 @@ export const Pointlayput: FC<PointlayputProps> = ({
                             currentIndex === 0,
                     })}
                 >
-                    <span className="text-[#FFD78E] text-[12px] absolute top-[10px] left-[40px] z-[9]">
+                    <span className="text-[#FFD78E] text-[12px] absolute top-[14px] left-[40px] z-[9]">
                         2021.09
                     </span>
                     <img
                         src={point01a}
-                        className="absolute top-[20px] left-[50px] z-[11]"
+                        className="absolute top-[24px] left-[50px] z-[11]"
                         alt=""
                     />
                 </div>
@@ -51,7 +51,7 @@ export const Pointlayput: FC<PointlayputProps> = ({
                     onClick={() => changeSlide(0)}
                 />
             </div>
-            <div className="w-[39px] h-[1px] bg-white absolute top-[42px] left-[70px] z-[-1] transform rotate-[50deg] origin-left"></div>
+            <div className="w-[42px] h-[1px] bg-white absolute top-[42px] left-[70px] z-[-1] transform rotate-[50deg] origin-left"></div>
             <div>
                 <div
                     className={classNames('hidden', {
@@ -82,7 +82,7 @@ export const Pointlayput: FC<PointlayputProps> = ({
                     onClick={() => changeSlide(1)}
                 />
             </div>
-            <div className="w-[52px] h-[1px] bg-white absolute top-[74px] left-[95px] z-[-1] transform rotate-[-10deg] origin-left"></div>
+            <div className="w-[50px] h-[1px] bg-white absolute top-[74px] left-[97px] z-[-1] transform rotate-[-10deg] origin-left"></div>
             <div>
                 <div
                     className={classNames('hidden', {

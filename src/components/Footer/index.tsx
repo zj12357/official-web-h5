@@ -88,7 +88,7 @@ const Footer: FC<FooterProps> = ({ className }: FooterProps) => {
                 <div className="flex flex-col justify-start items-center pt-[30px]">
                     <img
                         src={
-                            require('@/assets/images/icon/phone-icon.svg')
+                            require('@/assets/images/icon/email-icon.svg')
                                 .default
                         }
                         alt=""

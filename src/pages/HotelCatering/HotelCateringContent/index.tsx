@@ -1,8 +1,10 @@
 import React, { FC, Fragment } from 'react';
+import { useHistory } from 'react-router-dom';
 
 type HotelCateringContentProps = {};
 
 export const HotelCateringContent: FC<HotelCateringContentProps> = (props) => {
+    const history = useHistory();
     const tabList = [
         {
             image: require('@/assets/images/test/hotel-catering-title-icon.svg')
@@ -82,6 +84,10 @@ export const HotelCateringContent: FC<HotelCateringContentProps> = (props) => {
             name: 'NOBU 酒店',
         },
     ];
+
+    const toDetail = (id: number) => {
+        history.push(`/hotelCateringDetail/${id}`);
+    };
     return (
         <div className="w-full p-[20px] bg-[#181818]">
             <div className="w-full pt-[10px]">
@@ -110,6 +116,7 @@ export const HotelCateringContent: FC<HotelCateringContentProps> = (props) => {
                         <div
                             key={index}
                             className="mb-[30px] wow animate__animated animate__fadeInUp animate__delay-300ms"
+                            onClick={() => toDetail(1)}
                         >
                             <div className="w-[184px] h-[180px] mb-[10px]">
                                 <img

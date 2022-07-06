@@ -17,6 +17,9 @@ const HotelCatering = React.lazy(() => import('../pages/HotelCatering'));
 const Travel = React.lazy(() => import('../pages/Travel'));
 const Shopping = React.lazy(() => import('../pages/Shopping'));
 const Recruitment = React.lazy(() => import('../pages/Recruitment'));
+const HotelCateringDetail = React.lazy(
+    () => import('../pages/Detail/HotelCateringDetail'),
+);
 
 const NotFound = React.lazy(() => import('../pages/NotFound'));
 
@@ -109,6 +112,15 @@ const routes: MixRouteConfig[] = [
         title: mateInfo.home.title,
         description: mateInfo.home.description,
         showHeader: true,
+        showFooter: true,
+    },
+    {
+        path: '/hotelCateringDetail/:id',
+        exact: true,
+        component: HotelCateringDetail,
+        title: mateInfo.home.title,
+        description: mateInfo.home.description,
+        showHeader: false,
         showFooter: true,
     },
 
