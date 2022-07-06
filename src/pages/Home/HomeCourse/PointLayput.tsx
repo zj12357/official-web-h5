@@ -183,7 +183,7 @@ export const Pointlayput: FC<PointlayputProps> = ({
                             currentIndex === 5,
                     })}
                 >
-                    <span className="text-[#FFD78E] text-[12px] absolute top-[0px] left-[223px] z-[9]">
+                    <span className="text-[#FFD78E] text-[12px] absolute top-[0px] left-[217px] z-[9]">
                         2022.07-08
                     </span>
                     <img

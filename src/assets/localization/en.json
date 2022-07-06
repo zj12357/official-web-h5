@@ -1,3 +1,61 @@
 {
-    "home-page": "首页"
+    "common-not-found": "暂无此页面",
+
+    "home-page": "首页",
+    "home-dynamic": "最新动态",
+    "home-supreme": "尊尚服务",
+    "home-member": "会员福利",
+    "home-coffee": "酒店餐饮",
+    "home-travel-bag": "旅游出行",
+    "home-shopping-cart": "娱乐购物",
+    "home-gold": "赢樂投",
+    "home-recruit": "人才招聘",
+
+    "header-lang-menu-cn": "中文",
+    "header-lang-menu-en": "英文",
+    "header-lang-menu-ko": "韩文",
+
+    "footer-contact-personnel": "人事",
+    "footer-contact-vip": "贵宾",
+    "footer-qr-register": "扫码注册",
+    "footer-copyright": "© 2022 盈樂贵宾会  版權所有",
+
+    "home-course-title-01-time": "2021年09月",
+    "home-course-title-01-content1": "发展雏形",
+    "home-course-title-01-content2": " 计划开设贵宾厅",
+    "home-course-title-02-time": "2021年10月",
+    "home-course-title-02-content1": "正式确认成立",
+    "home-course-title-02-content2": " 盈樂贵宾厅",
+    "home-course-title-03-time": "2021年11月",
+    "home-course-title-03-content1": "新濠天地",
+    "home-course-title-03-content2": "盈樂贵宾厅第一家成立",
+    "home-course-title-04-time": "2022年03月",
+    "home-course-title-04-content1": "冈田会所",
+    "home-course-title-04-content2": "盈樂贵宾厅第二家成立",
+    "home-course-title-05-time": "2022年05月",
+    "home-course-title-05-content1": "克拉克HANN",
+    "home-course-title-05-content2": "盈樂贵宾厅第三家成立",
+    "home-course-title-06-time": "2022年07月-08月",
+    "home-course-title-06-content1": "云顶世界",
+    "home-course-title-06-content2": "盈樂贵宾厅即将成立",
+    "home-course-title-07-content1": "不忘初心",
+    "home-course-title-07-content2": "砥砺前行",
+
+    "home-activity-title": "盈樂活动",
+    "home-dynamic-title": "最新动态",
+    "home-dynamic-more": "更多",
+
+    "top-banner-title-latest-news": "最新动态",
+    "top-banner-title-respected": "尊尚服务",
+    "top-banner-title-member": "会员礼遇",
+    "top-banner-title-hotel-catering": "酒店餐饮",
+    "top-banner-title-travel": "旅游出行",
+    "top-banner-title-shopping": "娱乐购物",
+    "top-banner-title-recruitment": "人才招聘",
+
+    "recruitment-publicity-title-01": "盈樂是广阔的平台，是坚强的后盾在这里你我皆可梦想成真",
+    "recruitment-publicity-title-02": "凝聚我们的力量，创造盈樂的辉煌做全行业的榜样",
+    "recruitment-publicity-title-03": "以专业且卓越的服务吸引客户以优秀的口碑和商誉赢得市场",
+    "recruitment-position-title": "虚位以待",
+    "recruitment-position-detail-title": "详情>"
 }
