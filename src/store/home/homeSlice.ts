@@ -44,7 +44,7 @@ export const homeSlice = createSlice({
                 state.courseList = (action.payload?.list.slice(0, 7) ?? []).map(
                     (item) => {
                         item.start_content =
-                            item.start_content[getLanguage()].split('|') ?? [];
+                            item.start_content[getLanguage()]?.split('|') ?? [];
                         return { ...item };
                     },
                 );

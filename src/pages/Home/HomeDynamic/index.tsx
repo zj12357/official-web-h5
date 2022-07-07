@@ -35,6 +35,8 @@ export const HomeDynamic = () => {
     useEffect(() => {
         const dynamic = new Swiper('#home-dynamic', {
             mousewheel: true,
+            observer: true,
+            observeParents: true,
             speed: 800,
             slidesPerView: 'auto',
             freeMode: true,

@@ -15,6 +15,8 @@ const IntroductionImage: FC<IntroductionImageProps> = ({ imageList }) => {
     useEffect(() => {
         const dynamic = new Swiper('#detail-swiper', {
             mousewheel: true,
+            observer: true,
+            observeParents: true,
             speed: 800,
             slidesPerView: 'auto',
             freeMode: true,

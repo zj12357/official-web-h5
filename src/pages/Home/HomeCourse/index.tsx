@@ -12,6 +12,7 @@ export const HomeCourse = () => {
     const dispatch = useDispatch();
     const courseList = useSelector(selectCourseList);
     const [defaultTime, setDefaultTime] = useState<string | number>(0);
+    const [defaultIcon, setDefaultIcon] = useState('');
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [courseSwiper, setCourseSwiper] = useState(null);
@@ -79,6 +80,7 @@ export const HomeCourse = () => {
     useEffect(() => {
         if (courseList.length) {
             setDefaultTime(courseList[0]?.start_time);
+            setDefaultIcon(courseList[0]?.star_icon);
         }
     }, [courseList]);
 
@@ -189,7 +191,8 @@ export const HomeCourse = () => {
                         <Pointlayput
                             currentIndex={currentIndex}
                             changeSlide={changeSlide}
-                            curentTime={dayjs(defaultTime).format('YYYY.MM')}
+                            currentTime={dayjs(defaultTime).format('YYYY.MM')}
+                            currentIcon={defaultIcon}
                         ></Pointlayput>
                     )}
                 </div>

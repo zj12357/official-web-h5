@@ -95,6 +95,8 @@ export const LatestNewsContent: FC<LatestNewsContentProps> = (props) => {
         contentList.forEach((_, index) => {
             const dynamic = new Swiper(`#latest-news-dynamic${index}`, {
                 mousewheel: true,
+                observer: true,
+                observeParents: true,
                 speed: 800,
                 slidesPerView: 'auto',
                 freeMode: true,
