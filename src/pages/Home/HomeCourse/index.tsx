@@ -135,7 +135,7 @@ export const HomeCourse = () => {
                 id="home-course"
             >
                 <div className="swiper-wrapper w-full h-full">
-                    {courseList.map((item, index) => (
+                    {courseList.map((item) => (
                         <div
                             className="swiper-slide w-full h-full bg-cover bg-no-repeat bg-top pl-[20px] pt-[120px]"
                             style={{ backgroundImage: `url(${item.image})` }}

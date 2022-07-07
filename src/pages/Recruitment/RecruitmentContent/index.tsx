@@ -61,8 +61,11 @@ export const RecruitmentContent: FC<RecruitmentContentProps> = (props) => {
                         {t('recruitment-position-title')}
                     </h2>
                     <div className="w-full wow animate__animated animate__fadeInUp animate__fadeInUp animate__delay-400ms">
-                        {positionList.map((item) => (
-                            <div className="not-last-child-border pt-[30px] pb-[20px]">
+                        {positionList.map((item, index) => (
+                            <div
+                                className="not-last-child-border pt-[30px] pb-[20px]"
+                                key={index}
+                            >
                                 <div className="flex justify-between items-center mb-[5px]">
                                     <h5 className="text-[#FFD78E] text-[16px]">
                                         {item.name}
