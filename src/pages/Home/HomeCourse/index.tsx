@@ -81,7 +81,7 @@ export const HomeCourse = () => {
             window.pageYOffset ||
             document.body.scrollTop;
 
-        if (scrollTop > 30) {
+        if (scrollTop > 20) {
             setShowDownIncon(false);
         } else {
             setShowDownIncon(true);
@@ -91,7 +91,7 @@ export const HomeCourse = () => {
     useEffect(() => {
         const course = new Swiper('#home-course', {
             mousewheel: true,
-            speed: 800,
+            speed: 1000,
             navigation: {
                 nextEl: '.course-next',
                 prevEl: '.course-prev',
