@@ -64,8 +64,8 @@ const Footer: FC<FooterProps> = ({ className }: FooterProps) => {
                 </div>
             </div>
             <div className="w-full px-[20px] pb-[70px]">
-                <div className="flex justify-between items-center">
-                    <div className="flex flex-col justify-start items-start pt-[30px] h-[114px]">
+                <div className="flex justify-between items-start">
+                    <div className="flex flex-col justify-start items-start pt-[30px] min-h-[114px] w-[167px]">
                         <div className="flex items-center pb-[6px] border-b  w-[167px] border-[#404040]   border-solid">
                             <img
                                 src={
@@ -93,7 +93,7 @@ const Footer: FC<FooterProps> = ({ className }: FooterProps) => {
                             <span>한국인</span>
                         </p>
                     </div>
-                    <div className="flex flex-col justify-start items-start  pt-[30px] h-[114px]">
+                    <div className="flex flex-col justify-start items-start  pt-[30px] min-h-[114px] w-[167px]">
                         <div className="flex items-center pb-[6px] border-b  w-[167px] border-[#404040]   border-solid">
                             <img
                                 src={
@@ -122,8 +122,8 @@ const Footer: FC<FooterProps> = ({ className }: FooterProps) => {
                         </p>
                     </div>
                 </div>
-                <div className="flex justify-between items-center">
-                    <div className="flex flex-col justify-start items-start pt-[30px] h-[114px]">
+                <div className="flex justify-between items-start">
+                    <div className="flex flex-col justify-start items-start pt-[30px] min-h-[114px] w-[167px]">
                         <div className="flex items-center pb-[6px] border-b  w-[167px] border-[#404040]   border-solid">
                             <img
                                 src={
@@ -151,7 +151,7 @@ const Footer: FC<FooterProps> = ({ className }: FooterProps) => {
                             <span>{t('footer-contact-market')}</span>
                         </p>
                     </div>
-                    <div className="flex flex-col justify-start items-start  pt-[30px] h-[114px]">
+                    <div className="flex flex-col justify-start items-start  pt-[30px] min-h-[114px] w-[167px]">
                         <div className="flex items-center pb-[6px] border-b  w-[167px] border-[#404040]   border-solid">
                             <img
                                 src={

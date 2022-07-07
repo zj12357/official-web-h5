@@ -53,7 +53,9 @@ export const LanguageMenu = () => {
 
     const changeLanguage = (lang: string) => {
         i18n.changeLanguage(lang);
-        window.location.reload();
+        Promise.resolve().then(() => {
+            window.location.reload();
+        });
     };
 
     const handleTimeLocale = (timeLocale: string) => {
