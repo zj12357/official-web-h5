@@ -6,7 +6,8 @@
  */
 
 const mateInfo = {
-    home: {
+    //不同页面的title和description
+    common: {
         title: 'OKBET - 盈樂贵宾会官方网站',
         description: 'OKBET - 盈樂贵宾会官方网站',
     },
