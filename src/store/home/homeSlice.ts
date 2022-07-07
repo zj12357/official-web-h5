@@ -8,7 +8,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../';
 import { getCourseList } from '@/api/home';
 import { HomeState } from './types';
-import { ListParamsType } from '@/types/api/home';
+import { getLanguage } from '@/common/localization';
 
 const initialState: HomeState = {
     courseList: [],
@@ -16,6 +16,7 @@ const initialState: HomeState = {
 
 export const homeCourseList = createAsyncThunk('home/fetchCourse', async () => {
     const response = await getCourseList();
+    console.log('home/fetchCourse', response.data);
     return response.data;
 });
 
@@ -32,7 +33,13 @@ export const homeSlice = createSlice({
                 state.courseList = [];
             })
             .addCase(homeCourseList.fulfilled, (state, action) => {
-                state.courseList = action.payload?.list ?? [];
+                state.courseList = (action.payload?.list.slice(0, 7) ?? []).map(
+                    (item) => {
+                        item.start_content =
+                            item.start_content[getLanguage()].split('|');
+                        return { ...item };
+                    },
+                );
             })
             .addCase(homeCourseList.rejected, (state, action) => {
                 state.courseList = [];

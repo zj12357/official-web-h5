@@ -62,3 +62,7 @@ i18n.use(detector)
     });
 
 export default i18n;
+
+export const getLanguage = () => {
+    return localStorage.getItem('i18nextLng') ?? 'cn';
+};

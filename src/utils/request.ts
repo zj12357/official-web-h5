@@ -54,11 +54,11 @@ export function get<T>(url: string, params: any = {}): Promise<T> {
             .get(url, {
                 params,
             })
-            .then((res) => {
-                resolve(res.data);
+            .then((res: any) => {
+                resolve(res);
             })
             .catch((err) => {
-                reject(err.data);
+                reject(err);
             });
     });
 }
@@ -71,11 +71,11 @@ export function post<T>(url: string, params: any = {}): Promise<T> {
     return new Promise((resolve, reject) => {
         axios
             .post(url, qs.stringify(params))
-            .then((res) => {
-                resolve(res.data);
+            .then((res: any) => {
+                return resolve(res);
             })
             .catch((err) => {
-                reject(err.data);
+                reject(err);
             });
     });
 }

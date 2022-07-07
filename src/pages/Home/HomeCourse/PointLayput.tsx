@@ -14,11 +14,13 @@ import point07a from '@/assets/images/icon/point-active-07-icon.svg';
 type PointlayputProps = {
     currentIndex: number;
     changeSlide: (index: number) => void;
+    curentTime: string;
 };
 
 export const Pointlayput: FC<PointlayputProps> = ({
     currentIndex,
     changeSlide,
+    curentTime,
 }: PointlayputProps) => {
     const { t } = useTranslation();
     return (
@@ -31,7 +33,7 @@ export const Pointlayput: FC<PointlayputProps> = ({
                     })}
                 >
                     <span className="text-[#FFD78E] text-[12px] absolute top-[14px] left-[40px] z-[9]">
-                        2021.09
+                        {curentTime}
                     </span>
                     <img
                         src={point01a}
@@ -60,7 +62,7 @@ export const Pointlayput: FC<PointlayputProps> = ({
                     })}
                 >
                     <span className="text-[#FFD78E] text-[12px] absolute top-[80px] left-[74px] z-[9]">
-                        2021.10
+                        {curentTime}
                     </span>
                     <img
                         src={point02a}
@@ -91,7 +93,7 @@ export const Pointlayput: FC<PointlayputProps> = ({
                     })}
                 >
                     <span className="text-[#FFD78E] text-[12px] absolute top-[70px] left-[120px] z-[9]">
-                        2022.03
+                        {curentTime}
                     </span>
                     <img
                         src={point03a}
@@ -122,7 +124,7 @@ export const Pointlayput: FC<PointlayputProps> = ({
                     })}
                 >
                     <span className="text-[#FFD78E] text-[12px] absolute top-[6px] left-[140px] z-[9]">
-                        2021.11
+                        {curentTime}
                     </span>
                     <img
                         src={point04a}
@@ -153,7 +155,7 @@ export const Pointlayput: FC<PointlayputProps> = ({
                     })}
                 >
                     <span className="text-[#FFD78E] text-[12px] absolute top-[-9px] left-[180px] z-[9]">
-                        2022.05
+                        {curentTime}
                     </span>
                     <img
                         src={point05a}
@@ -184,7 +186,7 @@ export const Pointlayput: FC<PointlayputProps> = ({
                     })}
                 >
                     <span className="text-[#FFD78E] text-[12px] absolute top-[0px] left-[217px] z-[9]">
-                        2022.07-08
+                        {curentTime}
                     </span>
                     <img
                         src={point06a}

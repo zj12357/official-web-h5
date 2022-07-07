@@ -10,58 +10,8 @@ import { homeCourseList, selectCourseList } from '@/store/home/homeSlice';
 export const HomeCourse = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
-    const getCourseList = useSelector(selectCourseList);
-    const courseList = [
-        {
-            currentIndex: 0,
-            title1: t('home-course-title-01-time'),
-            title2: t('home-course-title-01-content1'),
-            title3: t('home-course-title-01-content2'),
-            image: require('@/assets/images/home/home-course-01.png').default,
-        },
-        {
-            currentIndex: 1,
-            title1: t('home-course-title-02-time'),
-            title2: t('home-course-title-02-content1'),
-            title3: t('home-course-title-02-content2'),
-            image: require('@/assets/images/home/home-course-02.png').default,
-        },
-        {
-            currentIndex: 2,
-            title1: t('home-course-title-03-time'),
-            title2: t('home-course-title-03-content1'),
-            title3: t('home-course-title-03-content2'),
-            image: require('@/assets/images/home/home-course-03.png').default,
-        },
-        {
-            currentIndex: 3,
-            title1: t('home-course-title-04-time'),
-            title2: t('home-course-title-04-content1'),
-            title3: t('home-course-title-04-content2'),
-            image: require('@/assets/images/home/home-course-04.png').default,
-        },
-        {
-            currentIndex: 4,
-            title1: t('home-course-title-05-time'),
-            title2: t('home-course-title-05-content1'),
-            title3: t('home-course-title-05-content2'),
-            image: require('@/assets/images/home/home-course-05.png').default,
-        },
-        {
-            currentIndex: 5,
-            title1: t('home-course-title-06-time'),
-            title2: t('home-course-title-06-content1'),
-            title3: t('home-course-title-06-content2'),
-            image: require('@/assets/images/home/home-course-06.png').default,
-        },
-        {
-            currentIndex: 6,
-            title1: '',
-            title2: t('home-course-title-07-content1'),
-            title3: t('home-course-title-07-content2'),
-            image: require('@/assets/images/home/home-course-07.png').default,
-        },
-    ];
+    const courseList = useSelector(selectCourseList);
+    const [defaultTime, setDefaultTime] = useState<string | number>(0);
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [courseSwiper, setCourseSwiper] = useState(null);
@@ -91,6 +41,8 @@ export const HomeCourse = () => {
     useEffect(() => {
         const course = new Swiper('#home-course', {
             mousewheel: true,
+            observer: true,
+            observeParents: true,
             speed: 1000,
             navigation: {
                 nextEl: '.course-next',
@@ -124,6 +76,16 @@ export const HomeCourse = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (courseList.length) {
+            setDefaultTime(courseList[0]?.start_time);
+        }
+    }, [courseList]);
+
+    useEffect(() => {
+        setDefaultTime(courseList[currentIndex]?.start_time);
+    }, [currentIndex]);
+
     return (
         <div
             className="w-full"
@@ -140,16 +102,17 @@ export const HomeCourse = () => {
                 id="home-course"
             >
                 <div className="swiper-wrapper w-full h-full">
-                    {courseList.map((item) => (
+                    {courseList?.map((item, index) => (
                         <div
                             className="swiper-slide w-full h-full bg-cover bg-no-repeat bg-top pl-[20px] pt-[120px]"
-                            style={{ backgroundImage: `url(${item.image})` }}
-                            key={item.currentIndex}
+                            style={{
+                                backgroundImage: `url(${item.start_image})`,
+                            }}
+                            key={item.course_id}
                         >
                             <div
                                 className={classnames('hidden', {
-                                    '!block':
-                                        currentIndex === item.currentIndex,
+                                    '!block': currentIndex === index,
                                 })}
                             >
                                 <h6
@@ -157,36 +120,33 @@ export const HomeCourse = () => {
                                         'text-[20px] text-white my-[5px] ',
                                         {
                                             'wow animate__animated animate__fadeInUp':
-                                                currentIndex ===
-                                                item.currentIndex,
+                                                currentIndex === index,
                                         },
                                     )}
                                 >
-                                    {item.title1}
+                                    {dayjs(item.start_time).format('YYYY.MM')}
                                 </h6>
                                 <h2
                                     className={classnames(
                                         'text-[32px] text-white my-[5px] ',
                                         {
                                             'wow animate__animated animate__fadeInUp animate__delay-400ms':
-                                                currentIndex ===
-                                                item.currentIndex,
+                                                currentIndex === index,
                                         },
                                     )}
                                 >
-                                    {item.title2}
+                                    {item.start_content[0] ?? ''}
                                 </h2>
                                 <h2
                                     className={classnames(
                                         'text-[32px] text-white my-[5px] ',
                                         {
                                             'wow animate__animated animate__fadeInUp animate__delay-800ms':
-                                                currentIndex ===
-                                                item.currentIndex,
+                                                currentIndex === index,
                                         },
                                     )}
                                 >
-                                    {item.title3}
+                                    {item.start_content[1] ?? ''}
                                 </h2>
                             </div>
                         </div>
@@ -225,10 +185,13 @@ export const HomeCourse = () => {
                     />
                 </div>
                 <div className="absolute left-0 top-0 z-10 bg-[#000] w-full h-full bg-opacity-50 overflow-hidden">
-                    <Pointlayput
-                        currentIndex={currentIndex}
-                        changeSlide={changeSlide}
-                    ></Pointlayput>
+                    {courseList.length && (
+                        <Pointlayput
+                            currentIndex={currentIndex}
+                            changeSlide={changeSlide}
+                            curentTime={dayjs(defaultTime).format('YYYY.MM')}
+                        ></Pointlayput>
+                    )}
                 </div>
                 <div className="absolute left-0 bottom-0 w-full z-[9]">
                     <img
