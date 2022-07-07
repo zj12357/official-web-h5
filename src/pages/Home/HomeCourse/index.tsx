@@ -114,9 +114,14 @@ export const HomeCourse = () => {
         dispatch(homeCourseList());
     }, []);
     useEffect(() => {
+        let cancel = false;
         window.addEventListener('scroll', () => {
+            if (cancel) return;
             handleShowDownIcon();
         });
+        return () => {
+            cancel = true;
+        };
     }, []);
 
     return (
