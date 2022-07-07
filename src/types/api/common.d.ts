@@ -23,3 +23,8 @@ export interface ResponseData<T = any> {
      */
     msg: string;
 }
+
+interface CommonList<T = any> {
+    list: T[];
+    total: number;
+}

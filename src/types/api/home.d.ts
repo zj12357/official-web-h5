@@ -4,7 +4,7 @@
  * @autor: Full
  * @date: Do not edit
  */
-
+import { CommonList } from '@/types/api/common';
 export interface CourseListItem {
     course_id: string;
     start_index: number;
@@ -15,11 +15,21 @@ export interface CourseListItem {
     created_at: number;
     updated_at: number;
 }
-export interface CourseListType {
-    total: number;
-    list: CourseListItem[];
-}
+export type CourseListType = CommonList<CourseListItem>;
 
-export interface startcontentType {
-    [key: string]: string;
+export interface PromoListItem {
+    brief: any;
+    content: any;
+    content_image_h5: any;
+    content_image_pc: any;
+    cover_image_h5: any;
+    cover_image_pc: any;
+    created_at: number;
+    index: number;
+    promo_end: number;
+    promo_id: string;
+    promo_start: number;
+    title: any;
+    updated_at: number;
 }
+export type PromoListType = CommonList<PromoListItem>;

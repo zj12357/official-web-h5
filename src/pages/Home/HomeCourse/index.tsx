@@ -108,7 +108,7 @@ export const HomeCourse = () => {
                             style={{
                                 backgroundImage: `url(${item.start_image})`,
                             }}
-                            key={item.course_id}
+                            key={index}
                         >
                             <div
                                 className={classnames('hidden', {
@@ -135,7 +135,7 @@ export const HomeCourse = () => {
                                         },
                                     )}
                                 >
-                                    {item.start_content[0] ?? ''}
+                                    {item.start_content?.[0] ?? ''}
                                 </h2>
                                 <h2
                                     className={classnames(
@@ -146,7 +146,7 @@ export const HomeCourse = () => {
                                         },
                                     )}
                                 >
-                                    {item.start_content[1] ?? ''}
+                                    {item.start_content?.[1] ?? ''}
                                 </h2>
                             </div>
                         </div>
