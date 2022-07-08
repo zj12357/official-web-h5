@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -71,6 +71,13 @@ export const RightMenu = () => {
         history.push(path);
         handleClose();
     };
+    useEffect(() => {
+        if (menuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }, [menuOpen]);
 
     return (
         <>
@@ -102,29 +109,40 @@ export const RightMenu = () => {
                         onClick={handleClose}
                     />
                 </div>
-                <nav className="w-[280px] bg-[#202020] min-h-full flex flex-col items-end ">
-                    {menuList.map((item, index) => (
-                        <div
-                            key={index}
-                            className={classnames(
-                                'flex items-center w-[240px]  not-last-child-border py-[17px]',
-                                {
-                                    'animate__animated animate__fadeInRight':
-                                        menuOpen,
-                                },
-                            )}
-                            onClick={() => toPage(item.path)}
-                        >
-                            <img
-                                src={item.icon}
-                                alt=""
-                                className="mr-[20px] w-[24px]"
-                            />
-                            <span className="text-[#BFA983] text-[14px]">
-                                {item.name}
-                            </span>
-                        </div>
-                    ))}
+                <nav className="w-[280px] bg-[#202020] min-h-full flex flex-col items-end">
+                    <div
+                        className="overflow-y-auto"
+                        style={{
+                            height: `calc(${
+                                window.innerHeight ||
+                                document.body.clientHeight ||
+                                document.documentElement.offsetHeight
+                            }px - 16.9vw)`,
+                        }}
+                    >
+                        {menuList.map((item, index) => (
+                            <div
+                                key={index}
+                                className={classnames(
+                                    'flex items-center w-[240px]  not-last-child-border py-[17px]',
+                                    {
+                                        'animate__animated animate__fadeInRight':
+                                            menuOpen,
+                                    },
+                                )}
+                                onClick={() => toPage(item.path)}
+                            >
+                                <img
+                                    src={item.icon}
+                                    alt=""
+                                    className="mr-[20px] w-[24px]"
+                                />
+                                <span className="text-[#BFA983] text-[14px]">
+                                    {item.name}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
                 </nav>
             </div>
         </>

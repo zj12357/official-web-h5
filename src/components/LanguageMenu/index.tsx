@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -61,6 +61,13 @@ export const LanguageMenu = () => {
     const handleTimeLocale = (timeLocale: string) => {
         changeTimeLocale(timeLocale);
     };
+    useEffect(() => {
+        if (menuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }, [menuOpen]);
 
     return (
         <>
