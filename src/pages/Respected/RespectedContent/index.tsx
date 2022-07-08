@@ -1,8 +1,12 @@
 import React, { FC, Fragment } from 'react';
+import { useSelector } from 'react-redux';
+import { selectHallList } from '@/store/respected/respectedSlice';
 
 type RespectedContentProps = {};
 
 export const RespectedContent: FC<RespectedContentProps> = (props) => {
+    const hallList = useSelector(selectHallList);
+
     const contentList = [
         {
             icon: require('@/assets/images/test/respected-title-icon.svg')
