@@ -214,6 +214,7 @@ export const HomeCourse = () => {
                                     .default
                             }
                             alt=""
+                            className="w-[16px]"
                         />
                     </div>
                 )}

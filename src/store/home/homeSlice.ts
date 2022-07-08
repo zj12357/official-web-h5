@@ -6,13 +6,14 @@
  */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../';
-import { getCourseList, getPromoList } from '@/api/home';
-import { HomeState } from './types';
+import { getCourseList, getPromoList, getNewsInfo } from '@/api/home';
+import { HomeState, StoreNewsInfo } from './types';
 import { getLanguage } from '@/common/localization';
 
 const initialState: HomeState = {
     courseList: [],
     promoList: [],
+    newsInfo: {} as StoreNewsInfo,
 };
 
 export const storeCourseList = createAsyncThunk(
@@ -29,6 +30,14 @@ export const storePromoList = createAsyncThunk('home/fetchPromo', async () => {
     console.log('home/fetchPromo', response.data);
     return response.data;
 });
+export const storeNewsInfo = createAsyncThunk(
+    'home/fetchNeswInfo',
+    async () => {
+        const response = await getNewsInfo();
+        console.log('home/fetchNeswInfo', response.data);
+        return response.data;
+    },
+);
 
 export const homeSlice = createSlice({
     name: 'home',
@@ -75,11 +84,32 @@ export const homeSlice = createSlice({
             })
             .addCase(storePromoList.rejected, (state, action) => {
                 state.promoList = [];
+            })
+            //fetchNeswInfo
+            .addCase(storeNewsInfo.pending, (state) => {
+                state.newsInfo = {} as StoreNewsInfo;
+            })
+            .addCase(storeNewsInfo.fulfilled, (state, action) => {
+                const newInfo = {
+                    title: action.payload.title[getLanguage()],
+                    imageList: [
+                        {
+                            url: '',
+                            time: '',
+                            content: '',
+                        },
+                    ],
+                };
+                state.newsInfo = newInfo ?? ({} as StoreNewsInfo);
+            })
+            .addCase(storeNewsInfo.rejected, (state, action) => {
+                state.newsInfo = {} as StoreNewsInfo;
             });
     },
 });
 
 export const selectCourseList = (state: RootState) => state.home.courseList;
 export const selectPromoList = (state: RootState) => state.home.promoList;
+export const selectNewsInfo = (state: RootState) => state.home.newsInfo;
 
 export default homeSlice.reducer;

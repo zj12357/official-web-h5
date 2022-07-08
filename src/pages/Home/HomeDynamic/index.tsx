@@ -2,10 +2,14 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import Swiper from 'swiper';
+import { useSelector, useDispatch } from 'react-redux';
+import { storeNewsInfo, selectNewsInfo } from '@/store/home/homeSlice';
 
 export const HomeDynamic = () => {
     const { t } = useTranslation();
     const history = useHistory();
+    const dispatch = useDispatch();
+    const newInfo = useSelector(selectNewsInfo);
     const dynamicList = [
         {
             currentIndex: 0,
@@ -46,6 +50,9 @@ export const HomeDynamic = () => {
         });
         dynamic.scrollbar.$dragEl.css('background', '#BFA983');
         dynamic.scrollbar.$el.css('height', '3px');
+    }, []);
+    useEffect(() => {
+        dispatch(storeNewsInfo());
     }, []);
     return (
         <div className="w-full h-full p-[20px]">
