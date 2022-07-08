@@ -46,9 +46,15 @@ export const homeSlice = createSlice({
             .addCase(storeCourseList.fulfilled, (state, action) => {
                 state.courseList = (action.payload?.list.slice(0, 7) ?? []).map(
                     (item) => {
-                        item.start_content =
-                            item.start_content[getLanguage()]?.split('|') ?? [];
-                        return { ...item };
+                        const newItem = {
+                            time: item.start_time ?? '',
+                            titleList:
+                                item.start_content[getLanguage()]?.split('|') ??
+                                [],
+                            bgImage: item.start_image ?? '',
+                            icon: item.star_icon ?? '',
+                        };
+                        return newItem;
                     },
                 );
             })
@@ -61,9 +67,10 @@ export const homeSlice = createSlice({
             })
             .addCase(storePromoList.fulfilled, (state, action) => {
                 state.promoList = (action.payload?.list ?? []).map((item) => {
-                    item.cover_image_h5 =
-                        item.cover_image_h5[getLanguage()] ?? '';
-                    return { ...item };
+                    const newItem = {
+                        coverImage: item.cover_image_h5[getLanguage()] ?? '',
+                    };
+                    return newItem;
                 });
             })
             .addCase(storePromoList.rejected, (state, action) => {

@@ -79,13 +79,13 @@ export const HomeCourse = () => {
 
     useEffect(() => {
         if (courseList.length) {
-            setDefaultTime(courseList[0]?.start_time);
-            setDefaultIcon(courseList[0]?.star_icon);
+            setDefaultTime(courseList[0]?.time);
+            setDefaultIcon(courseList[0]?.icon);
         }
     }, [courseList]);
 
     useEffect(() => {
-        setDefaultTime(courseList[currentIndex]?.start_time);
+        setDefaultTime(courseList[currentIndex]?.time);
     }, [currentIndex]);
 
     return (
@@ -108,7 +108,7 @@ export const HomeCourse = () => {
                         <div
                             className="swiper-slide w-full h-full bg-cover bg-no-repeat bg-top pl-[20px] pt-[120px]"
                             style={{
-                                backgroundImage: `url(${item.start_image})`,
+                                backgroundImage: `url(${item.bgImage})`,
                             }}
                             key={index}
                         >
@@ -126,7 +126,7 @@ export const HomeCourse = () => {
                                         },
                                     )}
                                 >
-                                    {dayjs(item.start_time).format('YYYY.MM')}
+                                    {dayjs(item.time).format('YYYY.MM')}
                                 </h6>
                                 <h2
                                     className={classnames(
@@ -137,7 +137,7 @@ export const HomeCourse = () => {
                                         },
                                     )}
                                 >
-                                    {item.start_content?.[0] ?? ''}
+                                    {item.titleList?.[0] ?? ''}
                                 </h2>
                                 <h2
                                     className={classnames(
@@ -148,7 +148,7 @@ export const HomeCourse = () => {
                                         },
                                     )}
                                 >
-                                    {item.start_content?.[1] ?? ''}
+                                    {item.titleList?.[1] ?? ''}
                                 </h2>
                             </div>
                         </div>

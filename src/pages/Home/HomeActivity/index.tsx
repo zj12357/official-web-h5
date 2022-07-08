@@ -18,7 +18,7 @@ export const HomeActivity = () => {
             <div className="w-full">
                 {activityList?.map((item, index) => (
                     <img
-                        src={item.content_image_h5}
+                        src={item.coverImage}
                         className="w-full mt-[20px]"
                         key={index}
                     />
