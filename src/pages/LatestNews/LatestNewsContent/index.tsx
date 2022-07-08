@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react';
 import Swiper from 'swiper';
 import { useSelector } from 'react-redux';
 import { selectNewsList } from '@/store/latestNews/latestNewsSlice';
+import ImageLazy from '@/components/ImageLazy';
 
 type LatestNewsContentProps = {};
 
@@ -55,13 +56,12 @@ export const LatestNewsContent: FC<LatestNewsContentProps> = (props) => {
                                         key={iIndex}
                                         className="swiper-slide !w-[320px] mb-[20px]"
                                     >
-                                        <div className="w-[300px] h-[180px]">
-                                            <img
-                                                src={item.url}
-                                                alt=""
-                                                className="image-object-fit"
-                                            />
-                                        </div>
+                                        <ImageLazy
+                                            boxClassName="w-[300px] h-[180px]"
+                                            src={item.url}
+                                            alt=""
+                                            imageClassName="image-object-fit rounded-[8px]"
+                                        />
                                     </div>
                                 ))}
                             </div>

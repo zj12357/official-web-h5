@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import { storePromoList, selectPromoList } from '@/store/home/homeSlice';
+import ImageLazy from '@/components/ImageLazy';
 
 export const HomeActivity = () => {
     const { t } = useTranslation();
@@ -17,10 +18,11 @@ export const HomeActivity = () => {
             </h1>
             <div className="w-full">
                 {activityList?.map((item, index) => (
-                    <img
+                    <ImageLazy
                         src={item.coverImage}
-                        className="w-full mt-[20px]"
+                        imageClassName="rounded-[8px] image-object-fit"
                         key={index}
+                        boxClassName="w-[374px] h-[100px] mt-[20px]"
                     />
                 ))}
             </div>

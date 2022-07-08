@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import NavBar from '@/components/NavBar';
 import IntroductionText from './Common/IntroductionText';
 import IntroductionImage from './Common/IntroductionImage';
+import IntroductionSingleImageText from './Common/IntroductionSingleImageText';
 
 type HotelCateringDetailProps = {};
 
@@ -41,6 +42,17 @@ const HotelCateringDetail: FC<HotelCateringDetailProps> = (props) => {
                     },
                 ]}
             ></IntroductionText>
+            <IntroductionSingleImageText
+                imageTextLsit={[
+                    {
+                        image: require('@/assets/images/test/detail-01.png')
+                            .default,
+                        title: '豪华房 37平米',
+                        description:
+                            'Nobu 豪华客房享有壮丽的景色，融合了优雅、现代的日式内饰的豪华氛围。它提供了一个安静的休憩之所，舒适和放松是最优先考虑的。',
+                    },
+                ]}
+            ></IntroductionSingleImageText>
             <IntroductionImage
                 imageList={[
                     {

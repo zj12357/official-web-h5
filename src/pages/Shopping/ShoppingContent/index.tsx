@@ -2,6 +2,7 @@ import React, { FC, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectShoppingList } from '@/store/shopping/shoppingSlice';
+import ImageLazy from '@/components/ImageLazy';
 
 type ShoppingContentProps = {};
 
@@ -111,11 +112,12 @@ export const ShoppingContent: FC<ShoppingContentProps> = (props) => {
                             className="mb-[30px] wow animate__animated animate__fadeInUp animate__delay-300ms"
                             onClick={() => toDetail(1)}
                         >
-                            <div className="w-[184px] h-[180px] mb-[10px]">
-                                <img
+                            <div className="mb-[10px]">
+                                <ImageLazy
+                                    boxClassName="w-[184px] h-[180px]"
                                     src={item.image}
                                     alt=""
-                                    className="image-object-fit"
+                                    imageClassName="image-object-fit rounded-[8px]"
                                 />
                             </div>
                             <span className="text-[#FFD78E] text-[12px]">

@@ -40,7 +40,7 @@ const IntroductionImage: FC<IntroductionImageProps> = ({ imageList }) => {
                                 <img
                                     src={item.url}
                                     alt=""
-                                    className="image-object-fit"
+                                    className="image-object-fit rounded-[8px]"
                                 />
                             </div>
                             {item.title && (

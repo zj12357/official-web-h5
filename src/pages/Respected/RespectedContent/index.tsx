@@ -1,6 +1,7 @@
 import React, { FC, Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import { selectHallList } from '@/store/respected/respectedSlice';
+import ImageLazy from '@/components/ImageLazy';
 
 type RespectedContentProps = {};
 
@@ -25,11 +26,12 @@ export const RespectedContent: FC<RespectedContentProps> = (props) => {
                                 {item.title}
                             </span>
                         </div>
-                        <div className="w-[374px] h-[180px] my-[20px] wow animate__animated animate__fadeInUp animate__delay-300ms">
-                            <img
+                        <div className="my-[20px] wow animate__animated animate__fadeInUp animate__delay-300ms">
+                            <ImageLazy
                                 src={item.coverImage}
+                                boxClassName="w-[374px] h-[180px]"
                                 alt=""
-                                className="image-object-fit"
+                                imageClassName="image-object-fit rounded-[8px]"
                             />
                         </div>
 

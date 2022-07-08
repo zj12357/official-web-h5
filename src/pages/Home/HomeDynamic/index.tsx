@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Swiper from 'swiper';
 import { useSelector, useDispatch } from 'react-redux';
 import { storeNewsInfo, selectNewsInfo } from '@/store/home/homeSlice';
+import ImageLazy from '@/components/ImageLazy';
 
 export const HomeDynamic = () => {
     const { t } = useTranslation();
@@ -75,11 +76,12 @@ export const HomeDynamic = () => {
                             key={item.currentIndex}
                             className="swiper-slide !w-[270px]"
                         >
-                            <div className="w-[220px] h-[250px]">
-                                <img
+                            <div className="">
+                                <ImageLazy
                                     src={item.image}
                                     alt=""
-                                    className="image-object-fit"
+                                    boxClassName="w-[220px] h-[250px]"
+                                    imageClassName="rounded-[8px] image-object-fit"
                                 />
                             </div>
                             <p className="my-[20px] text-[#BFA983] text-[14px]">
