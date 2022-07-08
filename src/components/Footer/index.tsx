@@ -175,7 +175,7 @@ const Footer: FC<FooterProps> = ({ className }: FooterProps) => {
                 </div>
                 <div className="w-full flex flex-col  items-center mt-[30px]">
                     <QRCodeCanvas
-                        value="https://reactjs.org/"
+                        value={window.location.href}
                         size={94}
                         bgColor={'#FFD78E'}
                         includeMargin={true}
