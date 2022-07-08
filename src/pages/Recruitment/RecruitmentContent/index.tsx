@@ -1,10 +1,16 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectRecruitmentList } from '@/store/recruitment/recruitmentSlice';
 
 type RecruitmentContentProps = {};
 
 export const RecruitmentContent: FC<RecruitmentContentProps> = (props) => {
     const { t } = useTranslation();
+    const history = useHistory();
+
+    const recruitmentList = useSelector(selectRecruitmentList);
     const publicityList = [
         {
             icon: require('@/assets/images/icon/shield-icon.svg').default,
@@ -40,6 +46,9 @@ export const RecruitmentContent: FC<RecruitmentContentProps> = (props) => {
             time: '8小时工作制',
         },
     ];
+    const toDetail = (id: number) => {
+        history.push(`/recruitmentDetail/${id}`);
+    };
     return (
         <div className="w-full p-[20px] bg-[#181818]">
             <div className="w-full pt-[10px]">
@@ -65,6 +74,7 @@ export const RecruitmentContent: FC<RecruitmentContentProps> = (props) => {
                             <div
                                 className="not-last-child-border pt-[30px] pb-[20px]"
                                 key={index}
+                                onClick={() => toDetail(1)}
                             >
                                 <div className="flex justify-between items-center mb-[5px]">
                                     <h5 className="text-[#FFD78E] text-[16px]">

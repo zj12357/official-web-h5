@@ -24,6 +24,9 @@ const TravelDetail = React.lazy(() => import('../pages/Detail/TravelDetail'));
 const ShoppingDetail = React.lazy(
     () => import('../pages/Detail/ShoppingDetail'),
 );
+const RecruitmentDetail = React.lazy(
+    () => import('../pages/Detail/RecruitmentDetail'),
+);
 
 const NotFound = React.lazy(() => import('../pages/NotFound'));
 
@@ -140,6 +143,15 @@ const routes: MixRouteConfig[] = [
         path: '/shoppingDetail/:id',
         exact: true,
         component: ShoppingDetail,
+        title: mateInfo.common.title,
+        description: mateInfo.common.description,
+        showHeader: false,
+        showFooter: true,
+    },
+    {
+        path: '/recruitmentDetail/:id',
+        exact: true,
+        component: RecruitmentDetail,
         title: mateInfo.common.title,
         description: mateInfo.common.description,
         showHeader: false,
