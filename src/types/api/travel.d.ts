@@ -1,6 +1,6 @@
 import { CommonList, LanguageItemType } from '@/types/api/common';
 
-export interface MemberListItem {
+export interface TravelListItem {
     brief: LanguageItemType;
     content: LanguageItemType;
     content_image_h5: string;
@@ -14,4 +14,4 @@ export interface MemberListItem {
     updated_at: number;
 }
 
-export type MemberListType = CommonList<MemberListItem>;
+export type TravelListType = CommonList<TravelListItem>;

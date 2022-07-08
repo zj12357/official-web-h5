@@ -1,5 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { storeTraveList } from '@/store/travel/travelSlice';
 import { TopBanner } from '@/components/TopBanner';
 import { TravelContent } from './TravelContent';
 
@@ -7,6 +9,12 @@ type TravelProps = {};
 
 const Travel: FC<TravelProps> = (props) => {
     const { t } = useTranslation();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(storeTraveList());
+    }, []);
+
     return (
         <div>
             <TopBanner

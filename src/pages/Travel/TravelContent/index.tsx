@@ -1,9 +1,12 @@
 import React, { FC, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectTravelList } from '@/store/travel/travelSlice';
 
 type TravelContentProps = {};
 
 export const TravelContent: FC<TravelContentProps> = (props) => {
+    const travelList = useSelector(selectTravelList);
     const history = useHistory();
     const tabList = [
         {
@@ -78,6 +81,7 @@ export const TravelContent: FC<TravelContentProps> = (props) => {
     const toDetail = (id: number) => {
         history.push(`/travelDetail/${id}`);
     };
+
     return (
         <div className="w-full p-[20px] bg-[#181818]">
             <div className="w-full pt-[10px]">

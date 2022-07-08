@@ -1,6 +1,6 @@
 import { post } from '@/utils/request';
 import { ResponseData } from '@/types/api/common';
-import { NewsListType } from '@/types/api/latestNews';
+import { MemberListType } from '@/types/api/member';
 
 export const getCourtesyList = () =>
-    post<ResponseData<NewsListType>>('/h5/courtesy/list');
+    post<ResponseData<MemberListType>>('/h5/courtesy/list');
