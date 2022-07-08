@@ -4,8 +4,18 @@
  * @autor: Full
  * @date: Do not edit
  */
-import { HallListItem } from '@/types/api/respected';
-
+export interface GameItem {
+    gameIcon: string;
+    gameName: string;
+}
+export interface StoreHallListItem {
+    icon: string;
+    title: string;
+    coverImage: string;
+    phone: string;
+    address: string;
+    games: GameItem[];
+}
 export interface RespectedState {
-    hallList: HallListItem[];
+    hallList: StoreHallListItem[];
 }

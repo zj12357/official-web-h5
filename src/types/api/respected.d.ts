@@ -1,18 +1,15 @@
-import { CommonList } from '@/types/api/common';
+import { CommonList, LanguageItemType } from '@/types/api/common';
 
 export interface HallListItem {
-    brief: any;
-    content: any;
-    content_image_h5: any;
-    content_image_pc: any;
-    cover_image_h5: any;
-    cover_image_pc: any;
-    created_at: number;
+    TempDescription: string;
+    address: string;
+    content_images_h5: string;
+    cover_images_h5: string;
+    description: any[];
+    hall_id: string;
+    hall_name: LanguageItemType;
+    icon: string;
     index: number;
-    promo_end: number;
-    promo_id: string;
-    promo_start: number;
-    title: any;
-    updated_at: number;
+    tel: string;
 }
 export type HallListType = CommonList<HallListItem>;

@@ -8,7 +8,7 @@ export interface ImageListItem {
     url: string;
 }
 
-export interface storeNewsListItem {
+export interface StoreNewsListItem {
     title: string;
     content: string;
     time: string;
@@ -16,5 +16,5 @@ export interface storeNewsListItem {
 }
 
 export interface RespectedState {
-    newsList: storeNewsListItem[];
+    newsList: StoreNewsListItem[];
 }

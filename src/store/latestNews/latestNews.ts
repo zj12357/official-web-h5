@@ -36,15 +36,16 @@ export const newsSlice = createSlice({
             .addCase(storeNewsList.fulfilled, (state, action) => {
                 state.newsList = (action.payload?.list ?? []).map((item) => {
                     const newItem = {
-                        title: item.title[getLanguage()],
-                        content: item.content[getLanguage()],
-                        time: '1657265114501',
-                        imageList: [
-                            {
-                                url: require('@/assets/images/test/latest-news-banner-01.png')
-                                    .default,
-                            },
-                        ],
+                        title: item.title[getLanguage()] ?? '',
+                        content: item.content[getLanguage()] ?? '',
+                        time: '1657265114501' ?? '',
+                        imageList:
+                            [
+                                {
+                                    url: require('@/assets/images/test/latest-news-banner-01.png')
+                                        .default,
+                                },
+                            ] ?? [],
                     };
 
                     return newItem;

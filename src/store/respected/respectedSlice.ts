@@ -37,7 +37,24 @@ export const respectedSlice = createSlice({
                 state.hallList = [];
             })
             .addCase(stroeHallList.fulfilled, (state, action) => {
-                state.hallList = action.payload?.list;
+                state.hallList = (action.payload?.list ?? []).map((item) => {
+                    const newItem = {
+                        icon: item.icon ?? '',
+                        title: item.hall_name[getLanguage()] ?? '',
+                        coverImage: item.cover_images_h5 ?? '',
+                        phone: item.tel ?? '',
+                        address: item.address ?? '',
+                        games: [
+                            {
+                                gameIcon:
+                                    require('@/assets/images/test/respected-game-icon.svg')
+                                        .default,
+                                gameName: '多币种百家乐',
+                            },
+                        ],
+                    };
+                    return newItem;
+                });
             })
             .addCase(stroeHallList.rejected, (state, action) => {
                 state.hallList = [];
