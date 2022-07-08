@@ -15,6 +15,6 @@ export interface StoreNewsListItem {
     imageList: ImageListItem[];
 }
 
-export interface RespectedState {
+export interface LatestNewsState {
     newsList: StoreNewsListItem[];
 }

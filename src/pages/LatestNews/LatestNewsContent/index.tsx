@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import Swiper from 'swiper';
 import { useSelector } from 'react-redux';
-import { selectNewsList } from '@/store/latestNews/latestNews';
+import { selectNewsList } from '@/store/latestNews/latestNewsSlice';
 
 type LatestNewsContentProps = {};
 

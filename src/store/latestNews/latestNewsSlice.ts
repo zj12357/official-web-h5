@@ -7,14 +7,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '..';
 import { getNewsList } from '@/api/latestNews';
-import { RespectedState } from './types';
+import { LatestNewsState } from './types';
 import { getLanguage } from '@/common/localization';
 
-const initialState: RespectedState = {
+const initialState: LatestNewsState = {
     newsList: [],
 };
 
-export const storeNewsList = createAsyncThunk('news/fetchHall', async () => {
+export const storeNewsList = createAsyncThunk('news/fetchNews', async () => {
     const response = await getNewsList();
     console.log('news/fetchNews', response.data);
     return response.data;

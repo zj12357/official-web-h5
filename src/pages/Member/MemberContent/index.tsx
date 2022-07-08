@@ -1,30 +1,12 @@
 import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { selectMemberList } from '@/store/member/memberSlice';
 
 type MemberContentProps = {};
 
 export const MemberContent: FC<MemberContentProps> = (props) => {
-    const contentList = [
-        {
-            title: '贵宾专属身份识别卡，账户安全加码',
-            image: require('@/assets/images/test/member-banner.png').default,
-        },
-        {
-            title: '贵宾专属身份识别卡，账户安全加码',
-            image: require('@/assets/images/test/member-banner.png').default,
-        },
-        {
-            title: '贵宾专属身份识别卡，账户安全加码',
-            image: require('@/assets/images/test/member-banner.png').default,
-        },
-        {
-            title: '贵宾专属身份识别卡，账户安全加码',
-            image: require('@/assets/images/test/member-banner.png').default,
-        },
-        {
-            title: '贵宾专属身份识别卡，账户安全加码',
-            image: require('@/assets/images/test/member-banner.png').default,
-        },
-    ];
+    const contentList = useSelector(selectMemberList);
+
     return (
         <div className="w-full p-[20px] bg-[#181818]">
             <div className="w-full pt-[10px]">
