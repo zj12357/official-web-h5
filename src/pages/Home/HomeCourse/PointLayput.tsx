@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import point01 from '@/assets/images/icon/point-01-icon.svg';
 import point02 from '@/assets/images/icon/point-02-icon.svg';
+import ImageLazy from '@/components/ImageLazy';
 
 type PointlayputProps = {
     currentIndex: number;
@@ -30,10 +31,13 @@ export const Pointlayput: FC<PointlayputProps> = ({
                     <span className="text-[#FFD78E] text-[12px] absolute top-[14px] left-[40px] z-[9]">
                         {currentTime}
                     </span>
-                    <img
+                    <ImageLazy
                         src={currentIcon}
-                        className="absolute top-[24px] left-[50px] z-[11]"
                         alt=""
+                        boxClassName="absolute top-[30px] left-[53px] z-[11]"
+                        imageClassName="w-[20px]"
+                        iconClasssName="w-[10px]"
+                        boxIconClassName="w-[20px] h-[20px]  rounded-[2px]"
                     />
                 </div>
                 <img
@@ -59,10 +63,14 @@ export const Pointlayput: FC<PointlayputProps> = ({
                     <span className="text-[#FFD78E] text-[12px] absolute top-[80px] left-[74px] z-[9]">
                         {currentTime}
                     </span>
-                    <img
+
+                    <ImageLazy
                         src={currentIcon}
-                        className="absolute top-[60px] left-[83px] z-[11]"
                         alt=""
+                        boxClassName="absolute top-[60px] left-[83px] z-[11]"
+                        imageClassName="w-[20px]"
+                        iconClasssName="w-[10px]"
+                        boxIconClassName="w-[20px]  h-[20px] rounded-[2px]"
                     />
                 </div>
                 <img
@@ -90,10 +98,14 @@ export const Pointlayput: FC<PointlayputProps> = ({
                     <span className="text-[#FFD78E] text-[12px] absolute top-[70px] left-[120px] z-[9]">
                         {currentTime}
                     </span>
-                    <img
+
+                    <ImageLazy
                         src={currentIcon}
-                        className="absolute top-[53px] left-[130px] z-[11]"
                         alt=""
+                        boxClassName="absolute top-[53px] left-[130px] z-[11]"
+                        imageClassName="w-[20px]"
+                        iconClasssName="w-[10px]"
+                        boxIconClassName="w-[20px]  h-[20px] rounded-[2px]"
                     />
                 </div>
                 <img
@@ -121,10 +133,14 @@ export const Pointlayput: FC<PointlayputProps> = ({
                     <span className="text-[#FFD78E] text-[12px] absolute top-[6px] left-[140px] z-[9]">
                         {currentTime}
                     </span>
-                    <img
+
+                    <ImageLazy
                         src={currentIcon}
-                        className="absolute top-[16px] left-[154px] z-[11]"
                         alt=""
+                        boxClassName="absolute top-[22px] left-[154px] z-[11]"
+                        imageClassName="w-[20px]"
+                        iconClasssName="w-[10px]"
+                        boxIconClassName="w-[20px]  h-[20px] rounded-[2px]"
                     />
                 </div>
                 <img
@@ -152,10 +168,14 @@ export const Pointlayput: FC<PointlayputProps> = ({
                     <span className="text-[#FFD78E] text-[12px] absolute top-[-9px] left-[180px] z-[9]">
                         {currentTime}
                     </span>
-                    <img
+
+                    <ImageLazy
                         src={currentIcon}
-                        className="absolute top-[0px] left-[190px] z-[11]"
                         alt=""
+                        boxClassName="absolute top-[8px] left-[190px] z-[11]"
+                        imageClassName="w-[20px]"
+                        iconClasssName="w-[10px]"
+                        boxIconClassName="w-[20px]  h-[20px] rounded-[2px]"
                     />
                 </div>
                 <img
@@ -183,10 +203,14 @@ export const Pointlayput: FC<PointlayputProps> = ({
                     <span className="text-[#FFD78E] text-[12px] absolute top-[0px] left-[217px] z-[9]">
                         {currentTime}
                     </span>
-                    <img
+
+                    <ImageLazy
                         src={currentIcon}
-                        className="absolute top-[14px] left-[230px] z-[11]"
                         alt=""
+                        boxClassName="absolute top-[18px] left-[230px] z-[11]"
+                        imageClassName="w-[20px]"
+                        iconClasssName="w-[10px]"
+                        boxIconClassName="w-[20px]  h-[20px] rounded-[2px]"
                     />
                 </div>
                 <img
@@ -215,10 +239,14 @@ export const Pointlayput: FC<PointlayputProps> = ({
                         {t('home-course-title-07-content1')} <br />
                         {t('home-course-title-07-content2')}
                     </p>
-                    <img
+
+                    <ImageLazy
                         src={currentIcon}
-                        className="absolute top-[6px] left-[276px] z-[11]"
                         alt=""
+                        boxClassName="absolute top-[6px] left-[276px] z-[11]"
+                        imageClassName="w-[20px]"
+                        iconClasssName="w-[10px]"
+                        boxIconClassName="w-[20px]  h-[20px] rounded-[2px]"
                     />
                 </div>
                 <img

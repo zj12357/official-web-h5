@@ -24,11 +24,11 @@ interface PlaceholderProps {
 }
 const Placeholder = ({
     iconClasssName = 'w-[80px]',
-    boxIconClassName = 'w-full h-full',
+    boxIconClassName = 'w-full h-full rounded-[8px]',
 }: PlaceholderProps) => (
     <div
         className={classnames(
-            'bg-[#423F3A] flex justify-center items-center rounded-[8px]',
+            'bg-[#423F3A] flex justify-center items-center',
             boxIconClassName,
         )}
     >
@@ -52,7 +52,12 @@ const ImageLazy: FC<ImagelazyProps> = ({
     return (
         <LazyLoad
             className={classnames(boxClassName)}
-            placeholder={<Placeholder iconClasssName={iconClasssName} />}
+            placeholder={
+                <Placeholder
+                    iconClasssName={iconClasssName}
+                    boxIconClassName={boxIconClassName}
+                />
+            }
         >
             {loadFail ? (
                 <Placeholder
