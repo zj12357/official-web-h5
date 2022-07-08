@@ -45,10 +45,13 @@ export const RespectedContent: FC<RespectedContentProps> = (props) => {
                             {item.games.map((game, gIndex) => (
                                 <Fragment key={gIndex}>
                                     <div className="flex flex-col justify-center items-center mb-[20px] w-[25%]">
-                                        <img
+                                        <ImageLazy
                                             src={game.gameIcon}
                                             alt=""
-                                            className="w-[40px] mb-[10px]"
+                                            boxClassName="mb-[10px]"
+                                            imageClassName="w-[40px]"
+                                            iconClasssName="w-[20px]"
+                                            boxIconClassName="w-[40px] h-[40px]"
                                         />
                                         <span className="text-[#BFA983] text-[12px]">
                                             {game.gameName}

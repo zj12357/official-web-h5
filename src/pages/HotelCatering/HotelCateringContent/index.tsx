@@ -96,10 +96,13 @@ export const HotelCateringContent: FC<HotelCateringContentProps> = (props) => {
                     {tabList.map((item, index) => (
                         <Fragment key={index}>
                             <div className="flex flex-col justify-center items-center w-[25%] mb-[20px]">
-                                <img
+                                <ImageLazy
                                     src={item.image}
                                     alt=""
-                                    className="h-[24px] mb-[10px]"
+                                    boxClassName="mb-[10px]"
+                                    imageClassName="h-[24px]"
+                                    iconClasssName="w-[20px]"
+                                    boxIconClassName="w-[40px] h-[40px]"
                                 />
 
                                 <span className="text-[#C0C0C0] text-[14px]">

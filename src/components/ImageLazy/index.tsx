@@ -14,11 +14,25 @@ interface ImagelazyProps extends HTMLAttributes<HTMLImageElement> {
     alt?: string;
     imageClassName?: string | undefined;
     boxClassName?: string | undefined;
+    iconClasssName?: string | undefined;
+    boxIconClassName?: string | undefined;
 }
 
-const Placeholder = () => (
-    <div className="bg-[#423F3A] w-full h-full flex justify-center items-center rounded-[8px]">
-        <img src={defaultImage} alt="" className="w-[80px]" />
+interface PlaceholderProps {
+    iconClasssName?: string | undefined;
+    boxIconClassName?: string | undefined;
+}
+const Placeholder = ({
+    iconClasssName = 'w-[80px]',
+    boxIconClassName = 'w-full h-full',
+}: PlaceholderProps) => (
+    <div
+        className={classnames(
+            'bg-[#423F3A] flex justify-center items-center rounded-[8px]',
+            boxIconClassName,
+        )}
+    >
+        <img src={defaultImage} alt="" className={iconClasssName} />
     </div>
 );
 
@@ -27,6 +41,8 @@ const ImageLazy: FC<ImagelazyProps> = ({
     alt,
     imageClassName,
     boxClassName,
+    iconClasssName,
+    boxIconClassName,
 }) => {
     const [imageUrl, setImageUrl] = useState(src ?? '');
     const [loadFail, setLoadFail] = useState(false);
@@ -36,10 +52,13 @@ const ImageLazy: FC<ImagelazyProps> = ({
     return (
         <LazyLoad
             className={classnames(boxClassName)}
-            placeholder={<Placeholder />}
+            placeholder={<Placeholder iconClasssName={iconClasssName} />}
         >
             {loadFail ? (
-                <Placeholder />
+                <Placeholder
+                    iconClasssName={iconClasssName}
+                    boxIconClassName={boxIconClassName}
+                />
             ) : (
                 <img
                     src={imageUrl}
