@@ -14,7 +14,7 @@ const initialState: RespectedState = {
     hallList: [],
 };
 
-export const respectedCourseList = createAsyncThunk(
+export const stroeHallList = createAsyncThunk(
     'respected/fetchHall',
     async () => {
         const response = await getHallList();
@@ -33,13 +33,13 @@ export const respectedSlice = createSlice({
     extraReducers: (builder) => {
         builder
             //fetchCourse
-            .addCase(respectedCourseList.pending, (state) => {
+            .addCase(stroeHallList.pending, (state) => {
                 state.hallList = [];
             })
-            .addCase(respectedCourseList.fulfilled, (state, action) => {
+            .addCase(stroeHallList.fulfilled, (state, action) => {
                 state.hallList = action.payload?.list;
             })
-            .addCase(respectedCourseList.rejected, (state, action) => {
+            .addCase(stroeHallList.rejected, (state, action) => {
                 state.hallList = [];
             });
     },

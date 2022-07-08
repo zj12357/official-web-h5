@@ -1,3 +1,5 @@
+import { key } from 'localforage';
+
 /*
  * @version:  ;
  * @description:  ;
@@ -24,7 +26,11 @@ export interface ResponseData<T = any> {
     msg: string;
 }
 
-interface CommonList<T = any> {
+export interface CommonList<T = any> {
     list: T[];
     total: number;
+}
+
+export interface LanguageItemType {
+    [key: string]: any;
 }

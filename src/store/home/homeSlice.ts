@@ -15,13 +15,16 @@ const initialState: HomeState = {
     promoList: [],
 };
 
-export const homeCourseList = createAsyncThunk('home/fetchCourse', async () => {
-    const response = await getCourseList();
-    console.log('home/fetchCourse', response.data);
-    return response.data;
-});
+export const storeCourseList = createAsyncThunk(
+    'home/fetchCourse',
+    async () => {
+        const response = await getCourseList();
+        console.log('home/fetchCourse', response.data);
+        return response.data;
+    },
+);
 
-export const homePromoList = createAsyncThunk('home/fetchPromo', async () => {
+export const storePromoList = createAsyncThunk('home/fetchPromo', async () => {
     const response = await getPromoList();
     console.log('home/fetchPromo', response.data);
     return response.data;
@@ -37,10 +40,10 @@ export const homeSlice = createSlice({
     extraReducers: (builder) => {
         builder
             //fetchCourse
-            .addCase(homeCourseList.pending, (state) => {
+            .addCase(storeCourseList.pending, (state) => {
                 state.courseList = [];
             })
-            .addCase(homeCourseList.fulfilled, (state, action) => {
+            .addCase(storeCourseList.fulfilled, (state, action) => {
                 state.courseList = (action.payload?.list.slice(0, 7) ?? []).map(
                     (item) => {
                         item.start_content =
@@ -49,21 +52,21 @@ export const homeSlice = createSlice({
                     },
                 );
             })
-            .addCase(homeCourseList.rejected, (state, action) => {
+            .addCase(storeCourseList.rejected, (state, action) => {
                 state.courseList = [];
             })
             //fetchPromo
-            .addCase(homePromoList.pending, (state) => {
+            .addCase(storePromoList.pending, (state) => {
                 state.promoList = [];
             })
-            .addCase(homePromoList.fulfilled, (state, action) => {
+            .addCase(storePromoList.fulfilled, (state, action) => {
                 state.promoList = (action.payload?.list ?? []).map((item) => {
                     item.cover_image_h5 =
                         item.cover_image_h5[getLanguage()] ?? '';
                     return { ...item };
                 });
             })
-            .addCase(homePromoList.rejected, (state, action) => {
+            .addCase(storePromoList.rejected, (state, action) => {
                 state.promoList = [];
             });
     },

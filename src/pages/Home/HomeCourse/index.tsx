@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import dayjs from 'dayjs';
 import Swiper from 'swiper';
 import { Pointlayput } from './PointLayput';
-import { homeCourseList, selectCourseList } from '@/store/home/homeSlice';
+import { storeCourseList, selectCourseList } from '@/store/home/homeSlice';
 
 export const HomeCourse = () => {
     const { t } = useTranslation();
@@ -64,7 +64,7 @@ export const HomeCourse = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(homeCourseList());
+        dispatch(storeCourseList());
     }, []);
     useEffect(() => {
         let cancel = false;

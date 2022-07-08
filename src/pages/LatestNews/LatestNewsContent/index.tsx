@@ -1,95 +1,12 @@
 import React, { FC, useEffect } from 'react';
 import Swiper from 'swiper';
+import { useSelector } from 'react-redux';
+import { selectNewsList } from '@/store/latestNews/latestNews';
 
 type LatestNewsContentProps = {};
 
 export const LatestNewsContent: FC<LatestNewsContentProps> = (props) => {
-    const contentList = [
-        {
-            title: 'OKBET发布会',
-            time: '2022/06/16',
-            content:
-                'OKBET发布会文本说明信息占位，信息OKBET发布会文本说明信息占位信息OKBET发布会文本说明信息占位信息OKBET发布会文本说明信息占位信息OKBET发布会文本说明信息占位信息OKBET发布会文本说明信息占位信息',
-            swiper: [
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-            ],
-        },
-        {
-            title: 'OKBET发布会',
-            time: '2022/06/16',
-            content:
-                'OKBET发布会文本说明信息占位，信息OKBET发布会文本说明信息占位信息OKBET发布会文本说明信息占位信息OKBET发布会文本说明信息占位信息OKBET发布会文本说明信息占位信息OKBET发布会文本说明信息占位信息',
-            swiper: [
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-            ],
-        },
-        {
-            title: 'OKBET发布会',
-            time: '2022/06/16',
-            content:
-                'OKBET发布会文本说明信息占位，信息OKBET发布会文本说明信息占位信息OKBET发布会文本说明信息占位信息OKBET发布会文本说明信息占位信息OKBET发布会文本说明信息占位信息OKBET发布会文本说明信息占位信息',
-            swiper: [
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-                {
-                    image: require('@/assets/images/test/latest-news-banner-01.png')
-                        .default,
-                },
-            ],
-        },
-    ];
+    const contentList = useSelector(selectNewsList);
 
     useEffect(() => {
         contentList.forEach((_, index) => {
@@ -112,7 +29,7 @@ export const LatestNewsContent: FC<LatestNewsContentProps> = (props) => {
     return (
         <div className="w-full p-[20px] bg-[#181818]">
             <div className="w-full pt-[10px]">
-                {contentList.map((item, index) => (
+                {contentList?.map((item, index) => (
                     <div
                         className="w-full py-[20px] not-last-child-border"
                         key={index}
@@ -133,14 +50,14 @@ export const LatestNewsContent: FC<LatestNewsContentProps> = (props) => {
                             id={'latest-news-dynamic' + index}
                         >
                             <div className="swiper-wrapper w-full">
-                                {item.swiper.map((item, sIndex) => (
+                                {item.imageList?.map((item, iIndex) => (
                                     <div
-                                        key={sIndex}
+                                        key={iIndex}
                                         className="swiper-slide !w-[320px] mb-[20px]"
                                     >
                                         <div className="w-[300px] h-[180px]">
                                             <img
-                                                src={item.image}
+                                                src={item.url}
                                                 alt=""
                                                 className="image-object-fit"
                                             />

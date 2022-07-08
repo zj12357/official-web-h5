@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { storeNewsList } from '@/store/latestNews/latestNews';
 import { TopBanner } from '@/components/TopBanner';
 import { LatestNewsContent } from './LatestNewsContent';
 
@@ -7,6 +9,12 @@ type LatestNewsProps = {};
 
 const LatestNews = () => {
     const { t } = useTranslation();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(storeNewsList());
+    }, []);
+
     return (
         <div>
             <TopBanner

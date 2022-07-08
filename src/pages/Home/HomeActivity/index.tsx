@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
-import { homePromoList, selectPromoList } from '@/store/home/homeSlice';
+import { storePromoList, selectPromoList } from '@/store/home/homeSlice';
 
 export const HomeActivity = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const activityList = useSelector(selectPromoList);
     useEffect(() => {
-        dispatch(homePromoList());
+        dispatch(storePromoList());
     }, []);
     return (
         <div className="w-full p-[20px] h-full mt-[110px]">
