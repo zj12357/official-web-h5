@@ -12,6 +12,7 @@ import respectedSlice from './respected/respectedSlice';
 import newsSlice from './latestNews/latestNewsSlice';
 import memberSlice from './member/memberSlice';
 import travelSlice from './travel/travelSlice';
+import shoppingSlice from './shopping/shoppingSlice';
 
 const rootReducer = combineReducers({
     home: homeSlice,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
     news: newsSlice,
     member: memberSlice,
     travel: travelSlice,
+    shopping: shoppingSlice,
 });
 
 export default rootReducer;

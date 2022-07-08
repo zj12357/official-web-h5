@@ -1,10 +1,14 @@
 import React, { FC, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectShoppingList } from '@/store/shopping/shoppingSlice';
 
 type ShoppingContentProps = {};
 
 export const ShoppingContent: FC<ShoppingContentProps> = (props) => {
     const history = useHistory();
+    const shoppingList = useSelector(selectShoppingList);
+
     const tabList = [
         {
             image: require('@/assets/images/test/shopping-title-icon.svg')
