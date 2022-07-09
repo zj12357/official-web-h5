@@ -1,17 +1,25 @@
 import { CommonList, LanguageItemType } from '@/types/api/common';
 
 export interface RecruitmentListItem {
-    brief: LanguageItemType;
-    content: LanguageItemType;
-    content_image_h5: string;
-    content_image_pc: string;
-    cover_image_h5: string;
-    cover_image_pc: string;
+    age: number;
+    benefits: LanguageItemType;
     created_at: number;
-    index: number;
-    news_id: string;
-    title: LanguageItemType;
+    job_dept: LanguageItemType;
+    job_description: LanguageItemType;
+    job_name: LanguageItemType;
+    job_requirements: LanguageItemType;
+    rd_language: string;
+    recruit_id: string;
+    salary_from: string;
+    salary_to: string;
+    sex: number;
     updated_at: number;
+    working_time: string;
 }
 
 export type RecruitmentListType = CommonList<RecruitmentListItem>;
+
+export interface RecruitmentListParams {
+    page?: number;
+    size?: number;
+}

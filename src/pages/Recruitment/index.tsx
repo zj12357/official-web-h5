@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { storeRecruitmentList } from '@/store/recruitment/recruitmentSlice';
@@ -10,10 +10,21 @@ type RecruitmentProps = {};
 const Recruitment: FC<RecruitmentProps> = (props) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
+    const [params, setParams] = useState({
+        page: 1,
+        size: 10,
+    });
+
+    const changePage = () => {
+        setParams((prev) => ({
+            ...prev,
+            page: (prev.page += 1),
+        }));
+    };
 
     useEffect(() => {
-        dispatch(storeRecruitmentList());
-    }, []);
+        dispatch(storeRecruitmentList(params));
+    }, [params]);
     return (
         <div>
             <TopBanner
@@ -23,7 +34,7 @@ const Recruitment: FC<RecruitmentProps> = (props) => {
                         .default
                 }
             ></TopBanner>
-            <RecruitmentContent></RecruitmentContent>
+            <RecruitmentContent changePage={changePage}></RecruitmentContent>
         </div>
     );
 };

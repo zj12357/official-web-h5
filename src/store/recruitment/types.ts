@@ -6,10 +6,13 @@
  */
 
 export interface StoreRecruitmentListItem {
-    title: string;
-    image: string;
+    name: string;
+    require: string[];
+    salary: string;
+    time: string;
 }
 
 export interface RecruitmentState {
     recruitmentList: StoreRecruitmentListItem[];
+    hasMore: boolean;
 }
