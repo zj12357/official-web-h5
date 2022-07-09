@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { stroeHallList } from '@/store/respected/respectedSlice';
@@ -10,9 +10,20 @@ type RespectedProps = {};
 const Respected: FC<RespectedProps> = (props) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
+    const [params, setParams] = useState({
+        page: 1,
+        size: 10,
+    });
+
+    const changePage = () => {
+        setParams((prev) => ({
+            ...prev,
+            page: (prev.page += 1),
+        }));
+    };
     useEffect(() => {
-        dispatch(stroeHallList());
-    }, []);
+        dispatch(stroeHallList(params));
+    }, [params]);
 
     return (
         <div>
@@ -23,7 +34,7 @@ const Respected: FC<RespectedProps> = (props) => {
                         .default
                 }
             ></TopBanner>
-            <RespectedContent></RespectedContent>
+            <RespectedContent changePage={changePage}></RespectedContent>
         </div>
     );
 };

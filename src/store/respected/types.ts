@@ -18,4 +18,5 @@ export interface StoreHallListItem {
 }
 export interface RespectedState {
     hallList: StoreHallListItem[];
+    hasMore: boolean;
 }
