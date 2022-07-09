@@ -4,12 +4,14 @@ import { selectMemberList, selectHasMore } from '@/store/member/memberSlice';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PageLoading from '@/components/Loading/PageLoading';
 import ImageLazy from '@/components/ImageLazy';
+import { useRemovetStyle } from '@/common/dom';
 
 type MemberContentProps = {
     changePage: () => void;
 };
 
 export const MemberContent: FC<MemberContentProps> = ({ changePage }) => {
+    useRemovetStyle('infinite-scroll-component', 'style');
     const contentList = useSelector(selectMemberList);
     const hasMore = useSelector(selectHasMore);
 

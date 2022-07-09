@@ -15,3 +15,8 @@ export interface NewsListItem {
 }
 
 export type NewsListType = CommonList<NewsListItem>;
+
+export interface NewsListParams {
+    page?: number;
+    size?: number;
+}

@@ -13,7 +13,7 @@ import { MemberListParams } from '@/types/api/member';
 
 const initialState: MemberState = {
     memberList: [],
-    hasMore: true,
+    hasMore: false,
 };
 
 export const storeMemberList = createAsyncThunk(
@@ -49,6 +49,9 @@ export const memberSlice = createSlice({
                         return newItem;
                     }),
                 );
+                if ((action.payload?.list ?? []).length === 0) {
+                    state.hasMore = false;
+                }
             })
             .addCase(storeMemberList.rejected, (state, action) => {
                 state.hasMore = false;

@@ -17,4 +17,5 @@ export interface StoreNewsListItem {
 
 export interface LatestNewsState {
     newsList: StoreNewsListItem[];
+    hasMore: boolean;
 }
