@@ -40,7 +40,7 @@ export const respectedSlice = createSlice({
                 state.hallList = (action.payload?.list ?? []).map((item) => {
                     const newItem = {
                         icon: item.icon ?? '',
-                        title: item.hall_name[getLanguage()] ?? '',
+                        title: item.hall_name?.[getLanguage()] ?? '',
                         coverImage: item.cover_images_h5 ?? '',
                         phone: item.tel ?? '',
                         address: item.address ?? '',

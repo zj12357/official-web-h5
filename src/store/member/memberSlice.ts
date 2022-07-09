@@ -39,7 +39,7 @@ export const memberSlice = createSlice({
             .addCase(storeMemberList.fulfilled, (state, action) => {
                 state.memberList = (action.payload?.list ?? []).map((item) => {
                     const newItem = {
-                        title: item.title[getLanguage()] ?? '',
+                        title: item.title?.[getLanguage()] ?? '',
                         image: item.cover_image_h5 ?? '',
                     };
 

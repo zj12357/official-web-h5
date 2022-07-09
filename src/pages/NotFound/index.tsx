@@ -20,9 +20,9 @@ const NotFound: FC<Props> = () => {
             <img
                 src={require('@/assets/images/icon/bg-logo-icon.svg').default}
                 alt=""
-                className="w-[164px]"
+                className="w-[80px]"
             />
-            <span className="text-[16px] text-[#FFD78E] mt-[20px]">
+            <span className="text-[14px] text-[#FFD78E] mt-[20px]">
                 {t('common-not-found')}
             </span>
         </div>

@@ -4,7 +4,6 @@
  * @autor: Full
  * @date: Do not edit
  */
-import { CourseListItem, PromoListItem } from '@/types/api/home';
 export interface StroeCourseListItem {
     time: string;
     titleList: string[];
@@ -16,19 +15,14 @@ export interface StroePromoListItem {
     coverImage: string;
 }
 
-export interface NewsInfoImageItem {
+export interface StoreNewsInfoListItem {
     url: string;
     time: string;
     content: string;
 }
 
-export interface StoreNewsInfo {
-    title: string;
-    imageList: NewsInfoImageItem[];
-}
-
 export interface HomeState {
     courseList: StroeCourseListItem[];
     promoList: StroePromoListItem[];
-    newsInfo: StoreNewsInfo;
+    newsInfo: StoreNewsInfoListItem[];
 }

@@ -34,7 +34,7 @@ export interface PromoListItem {
 }
 export type PromoListType = CommonList<PromoListItem>;
 
-export interface NewsInfoType {
+export interface NewsInfoItem {
     news_id: string;
     index: number;
     title: LanguageItemType;
@@ -47,3 +47,4 @@ export interface NewsInfoType {
     created_at: number;
     updated_at: number;
 }
+export type NewsInfoListType = CommonList<NewsInfoItem>;

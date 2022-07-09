@@ -40,7 +40,7 @@ export const shoppingSlice = createSlice({
                 state.shoppingList = (action.payload?.list ?? []).map(
                     (item) => {
                         const newItem = {
-                            title: item.name[getLanguage()] ?? '',
+                            title: item.name?.[getLanguage()] ?? '',
                             image: item.content_images ?? '',
                         };
 

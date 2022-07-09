@@ -7,13 +7,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../';
 import { getCourseList, getPromoList, getNewsInfo } from '@/api/home';
-import { HomeState, StoreNewsInfo } from './types';
+import { HomeState } from './types';
 import { getLanguage } from '@/common/localization';
 
 const initialState: HomeState = {
     courseList: [],
     promoList: [],
-    newsInfo: {} as StoreNewsInfo,
+    newsInfo: [],
 };
 
 export const storeCourseList = createAsyncThunk(
@@ -58,8 +58,9 @@ export const homeSlice = createSlice({
                         const newItem = {
                             time: item.start_time ?? '',
                             titleList:
-                                item.start_content[getLanguage()]?.split('|') ??
-                                [],
+                                item.start_content?.[getLanguage()]?.split(
+                                    '|',
+                                ) ?? [],
                             bgImage: item.start_image ?? '',
                             icon: item.star_icon ?? '',
                         };
@@ -77,7 +78,7 @@ export const homeSlice = createSlice({
             .addCase(storePromoList.fulfilled, (state, action) => {
                 state.promoList = (action.payload?.list ?? []).map((item) => {
                     const newItem = {
-                        coverImage: item.cover_image_h5[getLanguage()] ?? '',
+                        coverImage: item.cover_image_h5?.[getLanguage()] ?? '',
                     };
                     return newItem;
                 });
@@ -87,23 +88,20 @@ export const homeSlice = createSlice({
             })
             //fetchNeswInfo
             .addCase(storeNewsInfo.pending, (state) => {
-                state.newsInfo = {} as StoreNewsInfo;
+                state.newsInfo = [];
             })
             .addCase(storeNewsInfo.fulfilled, (state, action) => {
-                const newInfo = {
-                    title: action.payload.title[getLanguage()],
-                    imageList: [
-                        {
-                            url: '',
-                            time: '',
-                            content: '',
-                        },
-                    ],
-                };
-                state.newsInfo = newInfo ?? ({} as StoreNewsInfo);
+                state.newsInfo = (action.payload?.list ?? []).map((item) => {
+                    const newItem = {
+                        url: item.cover_image_h5 ?? '',
+                        time: '',
+                        content: item.content?.[getLanguage()] ?? '',
+                    };
+                    return newItem;
+                });
             })
             .addCase(storeNewsInfo.rejected, (state, action) => {
-                state.newsInfo = {} as StoreNewsInfo;
+                state.newsInfo = [];
             });
     },
 });
