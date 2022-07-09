@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import Swiper from 'swiper';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {
     selectNewsList,
@@ -8,6 +9,7 @@ import {
 } from '@/store/latestNews/latestNewsSlice';
 import PageLoading from '@/components/Loading/PageLoading';
 import ImageLazy from '@/components/ImageLazy';
+import { useRemovetStyle } from '@/common/dom';
 
 type LatestNewsContentProps = {
     changePage: () => void;
@@ -16,6 +18,8 @@ type LatestNewsContentProps = {
 export const LatestNewsContent: FC<LatestNewsContentProps> = ({
     changePage,
 }) => {
+    const { t } = useTranslation();
+    useRemovetStyle('infinite-scroll-component', 'style');
     const contentList = useSelector(selectNewsList);
     const hasMore = useSelector(selectHasMore);
 
@@ -46,6 +50,12 @@ export const LatestNewsContent: FC<LatestNewsContentProps> = ({
                     dataLength={contentList.length}
                     loader={<PageLoading></PageLoading>}
                     className="w-full pt-[10px]"
+                    scrollThreshold={0.58}
+                    endMessage={
+                        <div className="w-full  mt-[20px]   text-[#FFD78E] text-center text-[14px]">
+                            {t('common-no-more')}
+                        </div>
+                    }
                 >
                     {contentList?.map((item, index) => (
                         <div

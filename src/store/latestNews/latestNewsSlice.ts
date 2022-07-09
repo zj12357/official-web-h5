@@ -46,7 +46,7 @@ export const newsSlice = createSlice({
                             content: item.content?.[getLanguage()] ?? '',
                             time: '1657265114501' ?? '',
                             imageList: (
-                                item.content_image_h5.split('|') ?? []
+                                item.content_image_h5?.split('|') ?? []
                             )?.map((img) => {
                                 const newImg = {
                                     url: img,

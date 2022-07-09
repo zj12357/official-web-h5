@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { stroeHallList } from '@/store/respected/respectedSlice';
 import { TopBanner } from '@/components/TopBanner';
 import { RespectedContent } from './RespectedContent';
+import _ from 'lodash';
 
 type RespectedProps = {};
 
@@ -22,7 +23,7 @@ const Respected: FC<RespectedProps> = (props) => {
         }));
     };
     useEffect(() => {
-        dispatch(stroeHallList(params));
+        _.debounce(() => dispatch(stroeHallList(params)), 300)();
     }, [params]);
 
     return (

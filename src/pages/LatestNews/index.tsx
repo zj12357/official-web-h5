@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { storeNewsList } from '@/store/latestNews/latestNewsSlice';
 import { TopBanner } from '@/components/TopBanner';
 import { LatestNewsContent } from './LatestNewsContent';
+import _ from 'lodash';
 
 type LatestNewsProps = {};
 
@@ -23,7 +24,7 @@ const LatestNews = () => {
     };
 
     useEffect(() => {
-        dispatch(storeNewsList(params));
+        _.debounce(() => dispatch(storeNewsList(params)), 300)();
     }, [params]);
 
     return (

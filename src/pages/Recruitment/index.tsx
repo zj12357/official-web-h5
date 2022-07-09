@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { storeRecruitmentList } from '@/store/recruitment/recruitmentSlice';
 import { TopBanner } from '@/components/TopBanner';
 import { RecruitmentContent } from './RecruitmentContent';
+import _ from 'lodash';
 
 type RecruitmentProps = {};
 
@@ -23,7 +24,7 @@ const Recruitment: FC<RecruitmentProps> = (props) => {
     };
 
     useEffect(() => {
-        dispatch(storeRecruitmentList(params));
+        _.debounce(() => dispatch(storeRecruitmentList(params)), 300)();
     }, [params]);
     return (
         <div>

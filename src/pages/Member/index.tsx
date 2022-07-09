@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { storeMemberList } from '@/store/member/memberSlice';
 import { TopBanner } from '@/components/TopBanner';
 import { MemberContent } from './MemberContent';
+import _ from 'lodash';
 
 type MemberProps = {};
 
@@ -23,7 +24,7 @@ const Member: FC<MemberProps> = (props) => {
     };
 
     useEffect(() => {
-        dispatch(storeMemberList(params));
+        _.debounce(() => dispatch(storeMemberList(params)), 300)();
     }, [params]);
 
     return (

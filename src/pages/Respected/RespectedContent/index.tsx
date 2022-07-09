@@ -1,6 +1,7 @@
 import React, { FC, Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useTranslation } from 'react-i18next';
 import {
     selectHallList,
     selectHasMore,
@@ -14,6 +15,7 @@ type RespectedContentProps = {
 };
 
 export const RespectedContent: FC<RespectedContentProps> = ({ changePage }) => {
+    const { t } = useTranslation();
     useRemovetStyle('infinite-scroll-component', 'style');
     const contentList = useSelector(selectHallList);
     const hasMore = useSelector(selectHasMore);
@@ -27,6 +29,12 @@ export const RespectedContent: FC<RespectedContentProps> = ({ changePage }) => {
                     dataLength={contentList.length}
                     loader={<PageLoading></PageLoading>}
                     className="w-full pt-[10px]"
+                    scrollThreshold={0.58}
+                    endMessage={
+                        <div className="w-full  mt-[20px]   text-[#FFD78E] text-center text-[14px]">
+                            {t('common-no-more')}
+                        </div>
+                    }
                 >
                     {contentList.map((item, index) => (
                         <div

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { storeShoppingList } from '@/store/shopping/shoppingSlice';
 import { TopBanner } from '@/components/TopBanner';
 import { ShoppingContent } from './ShoppingContent';
+import _ from 'lodash';
 
 type ShoppingProps = {};
 
@@ -31,7 +32,7 @@ const Shopping: FC<ShoppingProps> = (props) => {
     };
 
     useEffect(() => {
-        dispatch(storeShoppingList(params));
+        _.debounce(() => dispatch(storeShoppingList(params)), 300)();
     }, [params]);
 
     return (

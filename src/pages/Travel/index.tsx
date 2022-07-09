@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { storeTraveList } from '@/store/travel/travelSlice';
 import { TopBanner } from '@/components/TopBanner';
 import { TravelContent } from './TravelContent';
-import { TravelListParams } from '@/types/api/travel';
+import _ from 'lodash';
 
 type TravelProps = {};
 
@@ -31,7 +31,7 @@ const Travel: FC<TravelProps> = (props) => {
         }));
     };
     useEffect(() => {
-        dispatch(storeTraveList(params));
+        _.debounce(() => dispatch(storeTraveList(params)), 300)();
     }, [params]);
 
     return (

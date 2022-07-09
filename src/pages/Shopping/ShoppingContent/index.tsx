@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useTranslation } from 'react-i18next';
 import {
     selectShoppingList,
     selectHasMore,
@@ -20,6 +21,7 @@ export const ShoppingContent: FC<ShoppingContentProps> = ({
     changeKind,
     changePage,
 }) => {
+    const { t } = useTranslation();
     useRemovetStyle('infinite-scroll-component', 'style');
     const history = useHistory();
     const contentList = useSelector(selectShoppingList);
@@ -110,6 +112,12 @@ export const ShoppingContent: FC<ShoppingContentProps> = ({
                         dataLength={contentList.length}
                         loader={<PageLoading></PageLoading>}
                         className="my-[20px] w-full flex justify-between flex-wrap"
+                        scrollThreshold={0.58}
+                        endMessage={
+                            <div className="w-full  mt-[20px]   text-[#FFD78E] text-center text-[14px]">
+                                {t('common-no-more')}
+                            </div>
+                        }
                     >
                         {contentList.map((item, index) => (
                             <div

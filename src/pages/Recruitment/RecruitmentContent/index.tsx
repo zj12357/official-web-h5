@@ -8,6 +8,7 @@ import {
 } from '@/store/recruitment/recruitmentSlice';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PageLoading from '@/components/Loading/PageLoading';
+import { useRemovetStyle } from '@/common/dom';
 
 type RecruitmentContentProps = {
     changePage: () => void;
@@ -17,6 +18,7 @@ export const RecruitmentContent: FC<RecruitmentContentProps> = ({
     changePage,
 }) => {
     const { t } = useTranslation();
+    useRemovetStyle('infinite-scroll-component', 'style');
     const history = useHistory();
     const hasMore = useSelector(selectHasMore);
 
@@ -59,17 +61,23 @@ export const RecruitmentContent: FC<RecruitmentContentProps> = ({
                     <h2 className="w-full pb-[20px] border-b border-solid border-[#404040] text-[#FFD78E] text-[24px] wow animate__animated animate__fadeInUp animate__fadeInUp animate__delay-300ms">
                         {t('recruitment-position-title')}
                     </h2>
-                    <div className="w-full wow animate__animated animate__fadeInUp animate__fadeInUp animate__delay-400ms">
+                    <div className="w-full">
                         <InfiniteScroll
                             next={changePage}
                             hasMore={hasMore}
                             dataLength={contentList.length}
                             loader={<PageLoading></PageLoading>}
                             className="w-full pt-[10px]"
+                            scrollThreshold={0.58}
+                            endMessage={
+                                <div className="w-full  mt-[20px]   text-[#FFD78E] text-center text-[14px]">
+                                    {t('common-no-more')}
+                                </div>
+                            }
                         >
                             {contentList.map((item, index) => (
                                 <div
-                                    className="not-last-child-border pt-[30px] pb-[20px]"
+                                    className="not-last-child-border pt-[30px] pb-[20px] wow animate__animated animate__fadeInUp animate__fadeInUp animate__delay-400ms"
                                     key={index}
                                     onClick={() => toDetail(+item.recruitId)}
                                 >

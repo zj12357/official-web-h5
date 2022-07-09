@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { selectMemberList, selectHasMore } from '@/store/member/memberSlice';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useTranslation } from 'react-i18next';
 import PageLoading from '@/components/Loading/PageLoading';
 import ImageLazy from '@/components/ImageLazy';
 import { useRemovetStyle } from '@/common/dom';
@@ -14,6 +15,7 @@ export const MemberContent: FC<MemberContentProps> = ({ changePage }) => {
     useRemovetStyle('infinite-scroll-component', 'style');
     const contentList = useSelector(selectMemberList);
     const hasMore = useSelector(selectHasMore);
+    const { t } = useTranslation();
 
     return (
         <div className="w-full p-[20px] bg-[#181818]">
@@ -24,6 +26,12 @@ export const MemberContent: FC<MemberContentProps> = ({ changePage }) => {
                     dataLength={contentList.length}
                     loader={<PageLoading></PageLoading>}
                     className="w-full pt-[10px]"
+                    scrollThreshold={0.58}
+                    endMessage={
+                        <div className="w-full  mt-[20px]   text-[#FFD78E] text-center text-[14px]">
+                            {t('common-no-more')}
+                        </div>
+                    }
                 >
                     {contentList.map((item, index) => (
                         <div

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useTranslation } from 'react-i18next';
 import { selectTravelList, selectHasMore } from '@/store/travel/travelSlice';
 import ImageLazy from '@/components/ImageLazy';
 import PageLoading from '@/components/Loading/PageLoading';
@@ -21,6 +22,7 @@ export const TravelContent: FC<TravelContentProps> = ({
     const contentList = useSelector(selectTravelList);
     const hasMore = useSelector(selectHasMore);
     const history = useHistory();
+    const { t } = useTranslation();
     const tabList = [
         {
             image: require('@/assets/images/test/travel-title-icon.svg')
@@ -93,6 +95,12 @@ export const TravelContent: FC<TravelContentProps> = ({
                         dataLength={contentList.length}
                         loader={<PageLoading></PageLoading>}
                         className="my-[20px] w-full flex justify-between flex-wrap"
+                        scrollThreshold={0.58}
+                        endMessage={
+                            <div className="w-full  mt-[20px]   text-[#FFD78E] text-center text-[14px]">
+                                {t('common-no-more')}
+                            </div>
+                        }
                     >
                         {contentList.map((item, index) => (
                             <div

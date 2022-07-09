@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { storeHotelCateringList } from '@/store/hotelCatering/hotelCateringSlice';
 import { TopBanner } from '@/components/TopBanner';
 import { HotelCateringContent } from './HotelCateringContent';
+import _ from 'lodash';
 
 type HotelCateringProps = {};
 
@@ -31,7 +32,7 @@ const HotelCatering: FC<HotelCateringProps> = (props) => {
     };
 
     useEffect(() => {
-        dispatch(storeHotelCateringList(params));
+        _.debounce(() => dispatch(storeHotelCateringList(params)), 300)();
     }, [params]);
 
     return (
