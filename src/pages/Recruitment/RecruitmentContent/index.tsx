@@ -71,7 +71,7 @@ export const RecruitmentContent: FC<RecruitmentContentProps> = ({
                                 <div
                                     className="not-last-child-border pt-[30px] pb-[20px]"
                                     key={index}
-                                    onClick={() => toDetail(1)}
+                                    onClick={() => toDetail(+item.recruitId)}
                                 >
                                     <div className="flex justify-between items-center mb-[5px]">
                                         <h5 className="text-[#FFD78E] text-[16px]">
