@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { storeMemberList } from '@/store/member/memberSlice';
@@ -10,10 +10,21 @@ type MemberProps = {};
 const Member: FC<MemberProps> = (props) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
+    const [params, setParams] = useState({
+        page: 1,
+        size: 10,
+    });
+
+    const changePage = () => {
+        setParams((prev) => ({
+            ...prev,
+            page: (prev.page += 1),
+        }));
+    };
 
     useEffect(() => {
-        dispatch(storeMemberList());
-    }, []);
+        dispatch(storeMemberList(params));
+    }, [params]);
 
     return (
         <div>
@@ -24,7 +35,7 @@ const Member: FC<MemberProps> = (props) => {
                         .default
                 }
             ></TopBanner>
-            <MemberContent></MemberContent>
+            <MemberContent changePage={changePage}></MemberContent>
         </div>
     );
 };

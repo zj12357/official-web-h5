@@ -12,4 +12,5 @@ export interface StoreMemberListItem {
 
 export interface MemberState {
     memberList: StoreMemberListItem[];
+    hasMore: boolean;
 }

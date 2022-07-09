@@ -15,3 +15,8 @@ export interface MemberListItem {
 }
 
 export type MemberListType = CommonList<MemberListItem>;
+
+export interface MemberListParams {
+    page?: number;
+    size?: number;
+}

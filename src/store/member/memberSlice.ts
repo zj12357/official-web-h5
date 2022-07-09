@@ -9,15 +9,17 @@ import { RootState } from '..';
 import { getCourtesyList } from '@/api/member';
 import { MemberState } from './types';
 import { getLanguage } from '@/common/localization';
+import { MemberListParams } from '@/types/api/member';
 
 const initialState: MemberState = {
     memberList: [],
+    hasMore: true,
 };
 
 export const storeMemberList = createAsyncThunk(
     'member/fetchCourtesy',
-    async () => {
-        const response = await getCourtesyList();
+    async (params: MemberListParams) => {
+        const response = await getCourtesyList(params);
         console.log('member/fetchCourtesy', response.data);
         return response.data;
     },
@@ -34,24 +36,27 @@ export const memberSlice = createSlice({
         builder
             //fetchCourse
             .addCase(storeMemberList.pending, (state) => {
-                state.memberList = [];
+                state.hasMore = true;
             })
             .addCase(storeMemberList.fulfilled, (state, action) => {
-                state.memberList = (action.payload?.list ?? []).map((item) => {
-                    const newItem = {
-                        title: item.title?.[getLanguage()] ?? '',
-                        image: item.cover_image_h5 ?? '',
-                    };
+                state.memberList = state.memberList.concat(
+                    (action.payload?.list ?? []).map((item) => {
+                        const newItem = {
+                            title: item.title?.[getLanguage()] ?? '',
+                            image: item.cover_image_h5 ?? '',
+                        };
 
-                    return newItem;
-                });
+                        return newItem;
+                    }),
+                );
             })
             .addCase(storeMemberList.rejected, (state, action) => {
-                state.memberList = [];
+                state.hasMore = false;
             });
     },
 });
 
 export const selectMemberList = (state: RootState) => state.member.memberList;
+export const selectHasMore = (state: RootState) => state.member.hasMore;
 
 export default memberSlice.reducer;
