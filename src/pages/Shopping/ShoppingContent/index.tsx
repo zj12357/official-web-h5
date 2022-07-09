@@ -1,6 +1,7 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC, Fragment, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import classnames from 'classnames';
 import { selectShoppingList } from '@/store/shopping/shoppingSlice';
 import ImageLazy from '@/components/ImageLazy';
 
@@ -19,24 +20,30 @@ export const ShoppingContent: FC<ShoppingContentProps> = (props) => {
         {
             image: require('@/assets/images/test/shopping-title-icon.svg')
                 .default,
-            name: '高尔夫',
+            name: '奢侈品',
         },
         {
             image: require('@/assets/images/test/shopping-title-icon.svg')
                 .default,
-            name: '高尔夫',
+            name: '会所',
         },
         {
             image: require('@/assets/images/test/shopping-title-icon.svg')
                 .default,
-            name: '高尔夫',
+            name: 'KTV',
         },
         {
             image: require('@/assets/images/test/shopping-title-icon.svg')
                 .default,
-            name: '高尔夫',
+            name: '射击',
+        },
+        {
+            image: require('@/assets/images/test/shopping-title-icon.svg')
+                .default,
+            name: 'SPA',
         },
     ];
+    const [currentIndex, setCurrentIndex] = useState(0);
     const contentList = [
         {
             image: require('@/assets/images/test/shopping-01.png').default,
@@ -82,13 +89,19 @@ export const ShoppingContent: FC<ShoppingContentProps> = (props) => {
     const toDetail = (id: number) => {
         history.push(`/shoppingDetail/${id}`);
     };
+    const handleCurrentIndex = (index: number) => {
+        setCurrentIndex(index);
+    };
     return (
         <div className="w-full p-[20px] bg-[#181818]">
             <div className="w-full pt-[10px]">
                 <div className="w-full flex justify-between flex-wrap wow animate__animated animate__fadeInUp animate__delay-200ms">
                     {tabList.map((item, index) => (
                         <Fragment key={index}>
-                            <div className="flex flex-col justify-center items-center w-[25%] mb-[20px]">
+                            <div
+                                className="flex flex-col justify-center items-center w-[25%] mb-[20px]"
+                                onClick={() => handleCurrentIndex(index)}
+                            >
                                 <ImageLazy
                                     src={item.image}
                                     alt=""
@@ -98,7 +111,15 @@ export const ShoppingContent: FC<ShoppingContentProps> = (props) => {
                                     boxIconClassName="w-[40px] h-[40px]"
                                 />
 
-                                <span className="text-[#C0C0C0] text-[14px]">
+                                <span
+                                    className={classnames(
+                                        'text-[#C0C0C0] text-[14px]',
+                                        {
+                                            'text-[#FFD78E]':
+                                                currentIndex === index,
+                                        },
+                                    )}
+                                >
                                     {item.name}
                                 </span>
                             </div>

@@ -9,15 +9,17 @@ import { RootState } from '..';
 import { getTravelList } from '@/api/travel';
 import { TravelState } from './types';
 import { getLanguage } from '@/common/localization';
+import { TravelListParams } from '@/types/api/travel';
 
 const initialState: TravelState = {
     travelList: [],
+    hasMore: true,
 };
 
 export const storeTraveList = createAsyncThunk(
     'travel/fetchTrave',
-    async () => {
-        const response = await getTravelList();
+    async (params: TravelListParams) => {
+        const response = await getTravelList(params);
         console.log('travel/fetchTrave', response.data);
         return response.data;
     },
@@ -34,24 +36,30 @@ export const travelSlice = createSlice({
         builder
             //fetchCourse
             .addCase(storeTraveList.pending, (state) => {
-                state.travelList = [];
+                state.hasMore = true;
             })
             .addCase(storeTraveList.fulfilled, (state, action) => {
-                state.travelList = (action.payload?.list ?? []).map((item) => {
-                    const newItem = {
-                        title: item.title?.[getLanguage()] ?? '',
-                        image: item.cover_image_h5 ?? '',
-                    };
+                state.travelList = state.travelList.concat(
+                    (action.payload?.list ?? []).map((item) => {
+                        const newItem = {
+                            title: item.travel_name?.[getLanguage()] ?? '',
+                            image: item.cover_image_h5 ?? '',
+                        };
 
-                    return newItem;
-                });
+                        return newItem;
+                    }),
+                );
+                if ((action.payload?.list ?? []).length === 0) {
+                    state.hasMore = false;
+                }
             })
             .addCase(storeTraveList.rejected, (state, action) => {
-                state.travelList = [];
+                state.hasMore = false;
             });
     },
 });
 
 export const selectTravelList = (state: RootState) => state.travel.travelList;
+export const selectHasMore = (state: RootState) => state.travel.hasMore;
 
 export default travelSlice.reducer;

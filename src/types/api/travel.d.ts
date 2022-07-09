@@ -1,17 +1,21 @@
 import { CommonList, LanguageItemType } from '@/types/api/common';
 
 export interface TravelListItem {
-    brief: LanguageItemType;
-    content: LanguageItemType;
-    content_image_h5: string;
-    content_image_pc: string;
+    content_images: string;
+    description: LanguageItemType;
+    kind: number;
+    open_time: string;
+    travel_address: string;
+    travel_name: LanguageItemType;
+    travel_service_id: string;
+    travel_tel: string;
     cover_image_h5: string;
-    cover_image_pc: string;
-    created_at: number;
-    index: number;
-    news_id: string;
-    title: LanguageItemType;
-    updated_at: number;
 }
 
 export type TravelListType = CommonList<TravelListItem>;
+
+export interface TravelListParams {
+    page?: number;
+    size?: number;
+    kind?: number;
+}

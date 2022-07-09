@@ -12,4 +12,5 @@ export interface StoreTravelListItem {
 
 export interface TravelState {
     travelList: StoreTravelListItem[];
+    hasMore: boolean;
 }
