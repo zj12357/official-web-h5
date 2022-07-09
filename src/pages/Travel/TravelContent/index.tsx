@@ -5,11 +5,11 @@ import classnames from 'classnames';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { selectTravelList, selectHasMore } from '@/store/travel/travelSlice';
 import ImageLazy from '@/components/ImageLazy';
-import { TravelListParams } from '@/types/api/travel';
 import PageLoading from '@/components/Loading/PageLoading';
+import { useRemovetStyle } from '@/common/dom';
 
 type TravelContentProps = {
-    changeKind: (params: TravelListParams) => void;
+    changeKind: (kind: number) => void;
     changePage: () => void;
 };
 
@@ -17,6 +17,7 @@ export const TravelContent: FC<TravelContentProps> = ({
     changeKind,
     changePage,
 }) => {
+    useRemovetStyle('infinite-scroll-component', 'style');
     const contentList = useSelector(selectTravelList);
     const hasMore = useSelector(selectHasMore);
     const history = useHistory();
@@ -45,9 +46,7 @@ export const TravelContent: FC<TravelContentProps> = ({
 
     const handleCurrentIndex = (index: number) => {
         setCurrentIndex(index);
-        changeKind({
-            kind: index + 1,
-        });
+        changeKind(index + 1);
     };
 
     return (

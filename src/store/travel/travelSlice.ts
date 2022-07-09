@@ -13,7 +13,7 @@ import { TravelListParams } from '@/types/api/travel';
 
 const initialState: TravelState = {
     travelList: [],
-    hasMore: true,
+    hasMore: false,
 };
 
 export const storeTraveList = createAsyncThunk(

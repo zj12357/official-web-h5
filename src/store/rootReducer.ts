@@ -11,6 +11,7 @@ import homeSlice from './home/homeSlice';
 import respectedSlice from './respected/respectedSlice';
 import newsSlice from './latestNews/latestNewsSlice';
 import memberSlice from './member/memberSlice';
+import hotelCateringSlice from './hotelCatering/hotelCateringSlice';
 import travelSlice from './travel/travelSlice';
 import shoppingSlice from './shopping/shoppingSlice';
 import recruitmentSlice from './recruitment/recruitmentSlice';
@@ -22,7 +23,9 @@ const rootReducer = combineReducers({
     news: newsSlice,
     member: memberSlice,
     travel: travelSlice,
+    hotelCatering: hotelCateringSlice,
     shopping: shoppingSlice,
+
     recruitment: recruitmentSlice,
 });
 

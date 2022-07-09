@@ -13,14 +13,14 @@ const Travel: FC<TravelProps> = (props) => {
     const dispatch = useDispatch();
     const [params, setParams] = useState({
         page: 1,
-        size: 1,
+        size: 10,
         kind: 1,
     });
 
-    const changeKind = (params: TravelListParams) => {
+    const changeKind = (kind: number) => {
         setParams((prev) => ({
             ...prev,
-            ...params,
+            kind,
         }));
     };
 

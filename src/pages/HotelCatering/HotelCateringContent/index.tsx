@@ -1,11 +1,26 @@
 import React, { FC, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useSelector } from 'react-redux';
 import ImageLazy from '@/components/ImageLazy';
+import {
+    selectHotelCateringList,
+    selectHasMore,
+} from '@/store/hotelCatering/hotelCateringSlice';
+import PageLoading from '@/components/Loading/PageLoading';
 
-type HotelCateringContentProps = {};
+type HotelCateringContentProps = {
+    changeKind: (kind: number) => void;
+    changePage: () => void;
+};
 
-export const HotelCateringContent: FC<HotelCateringContentProps> = (props) => {
+export const HotelCateringContent: FC<HotelCateringContentProps> = ({
+    changeKind,
+    changePage,
+}) => {
     const history = useHistory();
+    const contentList = useSelector(selectHotelCateringList);
+    const hasMore = useSelector(selectHasMore);
     const tabList = [
         {
             image: require('@/assets/images/test/hotel-catering-title-icon.svg')
@@ -31,58 +46,6 @@ export const HotelCateringContent: FC<HotelCateringContentProps> = (props) => {
             image: require('@/assets/images/test/hotel-catering-title-icon.svg')
                 .default,
             name: '新濠天地',
-        },
-    ];
-    const contentList = [
-        {
-            image: require('@/assets/images/test/hotel-catering-01.png')
-                .default,
-            name: 'NOBU 酒店',
-        },
-        {
-            image: require('@/assets/images/test/hotel-catering-01.png')
-                .default,
-            name: 'NOBU 酒店',
-        },
-        {
-            image: require('@/assets/images/test/hotel-catering-01.png')
-                .default,
-            name: 'NOBU 酒店',
-        },
-        {
-            image: require('@/assets/images/test/hotel-catering-01.png')
-                .default,
-            name: 'NOBU 酒店',
-        },
-        {
-            image: require('@/assets/images/test/hotel-catering-01.png')
-                .default,
-            name: 'NOBU 酒店',
-        },
-        {
-            image: require('@/assets/images/test/hotel-catering-01.png')
-                .default,
-            name: 'NOBU 酒店',
-        },
-        {
-            image: require('@/assets/images/test/hotel-catering-01.png')
-                .default,
-            name: 'NOBU 酒店',
-        },
-        {
-            image: require('@/assets/images/test/hotel-catering-01.png')
-                .default,
-            name: 'NOBU 酒店',
-        },
-        {
-            image: require('@/assets/images/test/hotel-catering-01.png')
-                .default,
-            name: 'NOBU 酒店',
-        },
-        {
-            image: require('@/assets/images/test/hotel-catering-01.png')
-                .default,
-            name: 'NOBU 酒店',
         },
     ];
 
@@ -115,26 +78,34 @@ export const HotelCateringContent: FC<HotelCateringContentProps> = (props) => {
                         <i key={i} className="w-[25%]"></i>
                     ))}
                 </div>
-                <div className="my-[20px] w-full flex justify-between flex-wrap">
-                    {contentList.map((item, index) => (
-                        <div
-                            key={index}
-                            className="mb-[30px] wow animate__animated animate__fadeInUp animate__delay-300ms"
-                            onClick={() => toDetail(1)}
-                        >
-                            <div className=" mb-[10px]">
-                                <ImageLazy
-                                    boxClassName="w-[184px] h-[180px]"
-                                    src={item.image}
-                                    alt=""
-                                    imageClassName="image-object-fit rounded-[8px]"
-                                />
+                <div>
+                    <InfiniteScroll
+                        next={changePage}
+                        hasMore={hasMore}
+                        dataLength={contentList.length}
+                        loader={<PageLoading></PageLoading>}
+                        className="my-[20px] w-full flex justify-between flex-wrap"
+                    >
+                        {contentList.map((item, index) => (
+                            <div
+                                key={index}
+                                className="mb-[30px] wow animate__animated animate__fadeInUp animate__delay-300ms"
+                                onClick={() => toDetail(1)}
+                            >
+                                <div className=" mb-[10px]">
+                                    <ImageLazy
+                                        boxClassName="w-[184px] h-[180px]"
+                                        src={item.image}
+                                        alt=""
+                                        imageClassName="image-object-fit rounded-[8px]"
+                                    />
+                                </div>
+                                <span className="text-[#FFD78E] text-[12px]">
+                                    {item.title}
+                                </span>
                             </div>
-                            <span className="text-[#FFD78E] text-[12px]">
-                                {item.name}
-                            </span>
-                        </div>
-                    ))}
+                        ))}
+                    </InfiniteScroll>
                 </div>
             </div>
         </div>

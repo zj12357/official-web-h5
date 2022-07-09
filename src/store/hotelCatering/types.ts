@@ -5,12 +5,12 @@
  * @date: Do not edit
  */
 
-export interface StoreShoppingListItem {
+export interface StoreHotelCateringListItem {
     title: string;
     image: string;
 }
 
-export interface ShoppingState {
-    shoppingList: StoreShoppingListItem[];
+export interface HotelCateringState {
+    hotelCateringList: StoreHotelCateringListItem[];
     hasMore: boolean;
 }

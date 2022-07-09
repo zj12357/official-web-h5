@@ -1,5 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { storeHotelCateringList } from '@/store/hotelCatering/hotelCateringSlice';
 import { TopBanner } from '@/components/TopBanner';
 import { HotelCateringContent } from './HotelCateringContent';
 
@@ -7,6 +9,31 @@ type HotelCateringProps = {};
 
 const HotelCatering: FC<HotelCateringProps> = (props) => {
     const { t } = useTranslation();
+    const dispatch = useDispatch();
+    const [params, setParams] = useState({
+        page: 1,
+        size: 10,
+        kind: 1,
+    });
+
+    const changeKind = (kind: number) => {
+        setParams((prev) => ({
+            ...prev,
+            kind,
+        }));
+    };
+
+    const changePage = () => {
+        setParams((prev) => ({
+            ...prev,
+            page: (prev.page += 1),
+        }));
+    };
+
+    useEffect(() => {
+        dispatch(storeHotelCateringList(params));
+    }, [params]);
+
     return (
         <div>
             <TopBanner
@@ -16,7 +43,10 @@ const HotelCatering: FC<HotelCateringProps> = (props) => {
                         .default
                 }
             ></TopBanner>
-            <HotelCateringContent></HotelCateringContent>
+            <HotelCateringContent
+                changeKind={changeKind}
+                changePage={changePage}
+            ></HotelCateringContent>
         </div>
     );
 };

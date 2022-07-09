@@ -9,15 +9,17 @@ import { RootState } from '..';
 import { getShoppingList } from '@/api/shopping';
 import { ShoppingState } from './types';
 import { getLanguage } from '@/common/localization';
+import { ShoppingListParams } from '@/types/api/shopping';
 
 const initialState: ShoppingState = {
     shoppingList: [],
+    hasMore: false,
 };
 
 export const storeShoppingList = createAsyncThunk(
     'shopping/fetchShopping',
-    async () => {
-        const response = await getShoppingList();
+    async (params: ShoppingListParams) => {
+        const response = await getShoppingList(params);
         console.log('shopping/fetchShopping', response.data);
         return response.data;
     },
@@ -34,27 +36,31 @@ export const shoppingSlice = createSlice({
         builder
             //fetchCourse
             .addCase(storeShoppingList.pending, (state) => {
-                state.shoppingList = [];
+                state.hasMore = true;
             })
             .addCase(storeShoppingList.fulfilled, (state, action) => {
-                state.shoppingList = (action.payload?.list ?? []).map(
-                    (item) => {
+                state.shoppingList = state.shoppingList.concat(
+                    (action.payload?.list ?? []).map((item) => {
                         const newItem = {
                             title: item.name?.[getLanguage()] ?? '',
-                            image: item.content_images ?? '',
+                            image: item.cover_image_h5 ?? '',
                         };
 
                         return newItem;
-                    },
+                    }),
                 );
+                if ((action.payload?.list ?? []).length === 0) {
+                    state.hasMore = false;
+                }
             })
             .addCase(storeShoppingList.rejected, (state, action) => {
-                state.shoppingList = [];
+                state.hasMore = false;
             });
     },
 });
 
 export const selectShoppingList = (state: RootState) =>
     state.shopping.shoppingList;
+export const selectHasMore = (state: RootState) => state.shopping.hasMore;
 
 export default shoppingSlice.reducer;

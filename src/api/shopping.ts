@@ -1,6 +1,6 @@
 import { post } from '@/utils/request';
 import { ResponseData } from '@/types/api/common';
-import { ShoppingListType } from '@/types/api/shopping';
+import { ShoppingListType, ShoppingListParams } from '@/types/api/shopping';
 
-export const getShoppingList = () =>
-    post<ResponseData<ShoppingListType>>('/h5/shopping/list');
+export const getShoppingList = (params: ShoppingListParams) =>
+    post<ResponseData<ShoppingListType>>('/h5/shopping/list', params);

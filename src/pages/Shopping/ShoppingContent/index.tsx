@@ -2,14 +2,28 @@ import React, { FC, Fragment, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
-import { selectShoppingList } from '@/store/shopping/shoppingSlice';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import {
+    selectShoppingList,
+    selectHasMore,
+} from '@/store/shopping/shoppingSlice';
 import ImageLazy from '@/components/ImageLazy';
+import PageLoading from '@/components/Loading/PageLoading';
+import { useRemovetStyle } from '@/common/dom';
 
-type ShoppingContentProps = {};
+type ShoppingContentProps = {
+    changeKind: (kind: number) => void;
+    changePage: () => void;
+};
 
-export const ShoppingContent: FC<ShoppingContentProps> = (props) => {
+export const ShoppingContent: FC<ShoppingContentProps> = ({
+    changeKind,
+    changePage,
+}) => {
+    useRemovetStyle('infinite-scroll-component', 'style');
     const history = useHistory();
-    const shoppingList = useSelector(selectShoppingList);
+    const contentList = useSelector(selectShoppingList);
+    const hasMore = useSelector(selectHasMore);
 
     const tabList = [
         {
@@ -44,53 +58,13 @@ export const ShoppingContent: FC<ShoppingContentProps> = (props) => {
         },
     ];
     const [currentIndex, setCurrentIndex] = useState(0);
-    const contentList = [
-        {
-            image: require('@/assets/images/test/shopping-01.png').default,
-            name: '黎刹公园',
-        },
-        {
-            image: require('@/assets/images/test/shopping-01.png').default,
-            name: '黎刹公园',
-        },
-        {
-            image: require('@/assets/images/test/shopping-01.png').default,
-            name: '黎刹公园',
-        },
-        {
-            image: require('@/assets/images/test/shopping-01.png').default,
-            name: '黎刹公园',
-        },
-        {
-            image: require('@/assets/images/test/shopping-01.png').default,
-            name: '黎刹公园',
-        },
-        {
-            image: require('@/assets/images/test/shopping-01.png').default,
-            name: '黎刹公园',
-        },
-        {
-            image: require('@/assets/images/test/shopping-01.png').default,
-            name: '黎刹公园',
-        },
-        {
-            image: require('@/assets/images/test/shopping-01.png').default,
-            name: '黎刹公园',
-        },
-        {
-            image: require('@/assets/images/test/shopping-01.png').default,
-            name: '黎刹公园',
-        },
-        {
-            image: require('@/assets/images/test/shopping-01.png').default,
-            name: '黎刹公园',
-        },
-    ];
+
     const toDetail = (id: number) => {
         history.push(`/shoppingDetail/${id}`);
     };
     const handleCurrentIndex = (index: number) => {
         setCurrentIndex(index);
+        changeKind(index + 1);
     };
     return (
         <div className="w-full p-[20px] bg-[#181818]">
@@ -129,26 +103,34 @@ export const ShoppingContent: FC<ShoppingContentProps> = (props) => {
                         <i key={i} className="w-[25%]"></i>
                     ))}
                 </div>
-                <div className="my-[20px] w-full flex justify-between flex-wrap">
-                    {contentList.map((item, index) => (
-                        <div
-                            key={index}
-                            className="mb-[30px] wow animate__animated animate__fadeInUp animate__delay-300ms"
-                            onClick={() => toDetail(1)}
-                        >
-                            <div className="mb-[10px]">
-                                <ImageLazy
-                                    boxClassName="w-[184px] h-[180px]"
-                                    src={item.image}
-                                    alt=""
-                                    imageClassName="image-object-fit rounded-[8px]"
-                                />
+                <div>
+                    <InfiniteScroll
+                        next={changePage}
+                        hasMore={hasMore}
+                        dataLength={contentList.length}
+                        loader={<PageLoading></PageLoading>}
+                        className="my-[20px] w-full flex justify-between flex-wrap"
+                    >
+                        {contentList.map((item, index) => (
+                            <div
+                                key={index}
+                                className="mb-[30px] wow animate__animated animate__fadeInUp animate__delay-300ms"
+                                onClick={() => toDetail(1)}
+                            >
+                                <div className="mb-[10px]">
+                                    <ImageLazy
+                                        boxClassName="w-[184px] h-[180px]"
+                                        src={item.image}
+                                        alt=""
+                                        imageClassName="image-object-fit rounded-[8px]"
+                                    />
+                                </div>
+                                <span className="text-[#FFD78E] text-[12px]">
+                                    {item.title}
+                                </span>
                             </div>
-                            <span className="text-[#FFD78E] text-[12px]">
-                                {item.name}
-                            </span>
-                        </div>
-                    ))}
+                        ))}
+                    </InfiniteScroll>
                 </div>
             </div>
         </div>
