@@ -81,12 +81,15 @@ export const homeSlice = createSlice({
                 state.promoHasmore = true;
             })
             .addCase(storePromoList.fulfilled, (state, action) => {
-                state.promoList = (action.payload?.list ?? []).map((item) => {
-                    const newItem = {
-                        coverImage: item.cover_image_h5?.[getLanguage()] ?? '',
-                    };
-                    return newItem;
-                });
+                state.promoList = state.promoList.concat(
+                    (action.payload?.list ?? []).map((item) => {
+                        const newItem = {
+                            coverImage:
+                                item.cover_image_h5?.[getLanguage()] ?? '',
+                        };
+                        return newItem;
+                    }),
+                );
                 if ((action.payload?.list ?? []).length === 0) {
                     state.promoHasmore = false;
                 }
