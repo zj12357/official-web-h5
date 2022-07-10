@@ -35,16 +35,17 @@ export interface PromoListItem {
 export type PromoListType = CommonList<PromoListItem>;
 
 export interface NewsInfoItem {
-    news_id: string;
-    index: number;
-    title: LanguageItemType;
     brief: LanguageItemType;
     content: LanguageItemType;
-    cover_image_pc: string;
-    content_image_pc: string;
+    content_images_h5: string;
+    content_images_pc: string;
     cover_image_h5: string;
-    content_image_h5: string;
+    cover_image_pc: string;
     created_at: number;
+    index: number;
+    news_at: number;
+    news_id: string;
+    title: LanguageItemType;
     updated_at: number;
 }
 export type NewsInfoListType = CommonList<NewsInfoItem>;

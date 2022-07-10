@@ -63,7 +63,7 @@ export const HomeDynamic = () => {
                             <p className="pt-[10px] text-[#BFA983] text-[14px]">
                                 {dayjs(item.time).format('YYYY/MM/DD')}
                             </p>
-                            <p className="pb-[20px] text-[#BFA983] text-[14px]">
+                            <p className="pb-[20px] text-[#BFA983] text-[14px] w-[220px] text-ellipsis">
                                 {item.content}
                             </p>
                         </div>

@@ -61,7 +61,7 @@ export const homeSlice = createSlice({
                 state.courseList = (action.payload?.list.slice(0, 7) ?? []).map(
                     (item) => {
                         const newItem = {
-                            time: item.start_time ?? '',
+                            time: String(+item?.start_time * 1000) ?? '',
                             titleList:
                                 item.start_content?.[getLanguage()]?.split(
                                     '|',
@@ -103,7 +103,7 @@ export const homeSlice = createSlice({
                     .map((item) => {
                         const newItem = {
                             url: item.cover_image_h5 ?? '',
-                            time: '',
+                            time: String(+item?.news_at * 1000),
                             content: item.content?.[getLanguage()] ?? '',
                         };
                         return newItem;

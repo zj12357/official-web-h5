@@ -44,9 +44,9 @@ export const newsSlice = createSlice({
                         const newItem = {
                             title: item.title?.[getLanguage()] ?? '',
                             content: item.content?.[getLanguage()] ?? '',
-                            time: '1657265114501' ?? '',
+                            time: String(+item?.news_at * 1000),
                             imageList: (
-                                item.content_image_h5?.split('|') ?? []
+                                item.content_images_h5?.split('|') ?? []
                             )?.map((img) => {
                                 const newImg = {
                                     url: img,
