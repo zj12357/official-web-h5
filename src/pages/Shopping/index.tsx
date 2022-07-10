@@ -24,10 +24,10 @@ const Shopping: FC<ShoppingProps> = (props) => {
         }));
     };
 
-    const changePage = () => {
+    const changePage = (page?: number) => {
         setParams((prev) => ({
             ...prev,
-            page: (prev.page += 1),
+            page: page ?? (prev.page += 1),
         }));
     };
 

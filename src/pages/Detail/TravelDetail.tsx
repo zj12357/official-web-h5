@@ -24,42 +24,46 @@ const TravelDetail: FC<TravelDetailProps> = (props) => {
     return (
         <div className="w-full p-[20px] bg-[#181818]">
             <NavBar title={t('detail-title-travel')}></NavBar>
-            <IntroductionText
-                title={detailContent.placeName}
-                content2={[
-                    {
-                        contentItem: detailContent.placeDescription,
-                    },
-                ]}
-                content3={[
-                    {
-                        contentItem: `${t('detail-text-open-time')}:${
-                            detailContent.openTime
-                        }${t('detail-text-hours')}`,
-                    },
+            {Object.keys(detailContent).length > 0 && (
+                <>
+                    <IntroductionText
+                        title={detailContent.placeName}
+                        content2={[
+                            {
+                                contentItem: detailContent.placeDescription,
+                            },
+                        ]}
+                        content3={[
+                            {
+                                contentItem: `${t('detail-text-open-time')}:${
+                                    detailContent.openTime
+                                }${t('detail-text-hours')}`,
+                            },
 
-                    {
-                        contentItem: `${t('detail-text-address')}:${
-                            detailContent.address
-                        }`,
-                    },
-                ]}
-            ></IntroductionText>
+                            {
+                                contentItem: `${t('detail-text-address')}:${
+                                    detailContent.address
+                                }`,
+                            },
+                        ]}
+                    ></IntroductionText>
 
-            <IntroductionImage
-                imageList={detailContent.placeImageList}
-                swiperId={10000}
-            ></IntroductionImage>
-            <h2 className="text-[#FFD78E] text-[20px] mt-[30px]">
-                {t('detail-text-yacht-directory')}
-            </h2>
-            {detailContent.projectImageList?.map((_, index) => (
-                <IntroductionImage
-                    swiperId={index + 1}
-                    key={index}
-                    imageList={detailContent.projectImageList}
-                ></IntroductionImage>
-            ))}
+                    <IntroductionImage
+                        imageList={detailContent.placeImageList}
+                        swiperId={new Date().getTime()}
+                    ></IntroductionImage>
+                    <h2 className="text-[#FFD78E] text-[20px] mt-[30px]">
+                        {t('detail-text-yacht-directory')}
+                    </h2>
+                    {detailContent.projectImageList?.map((item, index) => (
+                        <IntroductionImage
+                            swiperId={index + 1}
+                            key={index}
+                            imageList={item.list}
+                        ></IntroductionImage>
+                    ))}
+                </>
+            )}
         </div>
     );
 };

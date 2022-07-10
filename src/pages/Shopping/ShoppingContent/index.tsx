@@ -1,12 +1,13 @@
 import React, { FC, Fragment, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import classnames from 'classnames';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useTranslation } from 'react-i18next';
 import {
     selectShoppingList,
     selectHasMore,
+    clearTravelList,
 } from '@/store/shopping/shoppingSlice';
 import ImageLazy from '@/components/ImageLazy';
 import PageLoading from '@/components/Loading/PageLoading';
@@ -14,13 +15,14 @@ import { useRemovetStyle } from '@/common/dom';
 
 type ShoppingContentProps = {
     changeKind: (kind: number) => void;
-    changePage: () => void;
+    changePage: (page?: number) => void;
 };
 
 export const ShoppingContent: FC<ShoppingContentProps> = ({
     changeKind,
     changePage,
 }) => {
+    const dispatch = useDispatch();
     const { t } = useTranslation();
     useRemovetStyle('infinite-scroll-component', 'style');
     const history = useHistory();
@@ -61,12 +63,17 @@ export const ShoppingContent: FC<ShoppingContentProps> = ({
     ];
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const toDetail = (id: number) => {
+    const toDetail = (id: string) => {
         history.push(`/shoppingDetail/${id}`);
+    };
+    const clearList = () => {
+        dispatch(clearTravelList());
     };
     const handleCurrentIndex = (index: number) => {
         setCurrentIndex(index);
         changeKind(index + 1);
+        changePage(1);
+        clearList();
     };
     return (
         <div className="w-full p-[20px] bg-[#181818]">
@@ -123,7 +130,7 @@ export const ShoppingContent: FC<ShoppingContentProps> = ({
                             <div
                                 key={index}
                                 className="mb-[30px] wow animate__animated animate__fadeInUp animate__delay-300ms"
-                                onClick={() => toDetail(1)}
+                                onClick={() => toDetail(item.shoppingId)}
                             >
                                 <div className="mb-[10px]">
                                     <ImageLazy

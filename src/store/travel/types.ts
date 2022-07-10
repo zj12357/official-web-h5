@@ -15,8 +15,13 @@ export interface placeImageItem {
     url: string;
 }
 export interface projectImageItem {
+    list: ImageItem[];
+}
+
+interface ImageItem {
     url: string;
 }
+
 export interface StoreTravelDetail {
     placeName: string;
     placeDescription: string;

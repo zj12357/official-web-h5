@@ -90,14 +90,20 @@ export const travelSlice = createSlice({
                             };
                             return newItem;
                         }),
-                    projectImageList: (
-                        action.payload?.travel_project_list ?? []
-                    ).map((item) => {
-                        const newItem = {
-                            url: item.content_images,
-                        };
-                        return newItem;
-                    }),
+                    projectImageList:
+                        action.payload?.travel_project_list?.map((item) => {
+                            const newItem = {
+                                list: (item?.content_images ?? '')
+                                    .split('|')
+                                    ?.map((img) => {
+                                        const newImg = {
+                                            url: img,
+                                        };
+                                        return newImg;
+                                    }),
+                            };
+                            return newItem;
+                        }) ?? [],
                 };
             })
             .addCase(storeTraveDetail.rejected, (state, action) => {});

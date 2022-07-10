@@ -24,3 +24,27 @@ export interface ShoppingListParams {
     size?: number;
     kind?: number;
 }
+
+export interface ShoppingProjectItem {
+    content_images: string;
+    name: LanguageItemType;
+    shopping_id: string;
+}
+
+export interface ShoppingDetailType {
+    address: string;
+    content_images: string;
+    cover_image: string;
+    created_at: number;
+    description: LanguageItemType;
+    index: number;
+    kind: number;
+    name: LanguageItemType;
+    open_time: string;
+    parent_index: number;
+    parent_shopping_name: string;
+    shopping_id: string;
+    shopping_project_list: ShoppingProjectItem[];
+    tel: string;
+    updated_at: number;
+}
