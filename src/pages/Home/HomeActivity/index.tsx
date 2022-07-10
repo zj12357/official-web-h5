@@ -9,8 +9,10 @@ import {
 } from '@/store/home/homeSlice';
 import ImageLazy from '@/components/ImageLazy';
 import PageLoading from '@/components/Loading/PageLoading';
+import { useRemovetStyle } from '@/common/dom';
 
 export const HomeActivity = () => {
+    useRemovetStyle('infinite-scroll-component', 'style');
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const activityList = useSelector(selectPromoList);
