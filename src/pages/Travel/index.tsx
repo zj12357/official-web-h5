@@ -24,12 +24,13 @@ const Travel: FC<TravelProps> = (props) => {
         }));
     };
 
-    const changePage = () => {
+    const changePage = (page?: number) => {
         setParams((prev) => ({
             ...prev,
-            page: (prev.page += 1),
+            page: page ?? (prev.page += 1),
         }));
     };
+
     useEffect(() => {
         _.debounce(() => dispatch(storeTraveList(params)), 300)();
     }, [params]);

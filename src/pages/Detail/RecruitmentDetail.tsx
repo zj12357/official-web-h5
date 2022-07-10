@@ -16,7 +16,7 @@ const Recruitmentdetail: FC<RecruitmentdetailProps> = (props) => {
     const detailContent = useSelector(selectRecruitmentDetail);
     const { id } = useParams<{ id: string }>();
     useEffect(() => {
-        dispatch(storeRecruitmenDetail(+id));
+        dispatch(storeRecruitmenDetail(id));
     }, []);
 
     return (

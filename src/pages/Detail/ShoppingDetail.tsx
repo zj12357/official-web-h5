@@ -42,6 +42,7 @@ const ShoppingDetail: FC<ShoppingDetailProps> = (props) => {
                 ]}
             ></IntroductionText>
             <IntroductionImage
+                swiperId={1}
                 imageList={[
                     {
                         url: require('@/assets/images/test/detail-01.png')

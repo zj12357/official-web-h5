@@ -1,17 +1,21 @@
 import React, { FC, Fragment, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import classnames from 'classnames';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useTranslation } from 'react-i18next';
-import { selectTravelList, selectHasMore } from '@/store/travel/travelSlice';
+import {
+    selectTravelList,
+    selectHasMore,
+    clearTravelList,
+} from '@/store/travel/travelSlice';
 import ImageLazy from '@/components/ImageLazy';
 import PageLoading from '@/components/Loading/PageLoading';
 import { useRemovetStyle } from '@/common/dom';
 
 type TravelContentProps = {
     changeKind: (kind: number) => void;
-    changePage: () => void;
+    changePage: (page?: number) => void;
 };
 
 export const TravelContent: FC<TravelContentProps> = ({
@@ -22,6 +26,7 @@ export const TravelContent: FC<TravelContentProps> = ({
     const contentList = useSelector(selectTravelList);
     const hasMore = useSelector(selectHasMore);
     const history = useHistory();
+    const dispatch = useDispatch();
     const { t } = useTranslation();
     const tabList = [
         {
@@ -42,13 +47,17 @@ export const TravelContent: FC<TravelContentProps> = ({
     ];
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const toDetail = (id: number) => {
+    const toDetail = (id: string) => {
         history.push(`/travelDetail/${id}`);
     };
-
+    const clearList = () => {
+        dispatch(clearTravelList());
+    };
     const handleCurrentIndex = (index: number) => {
         setCurrentIndex(index);
         changeKind(index + 1);
+        changePage(1);
+        clearList();
     };
 
     return (
@@ -106,7 +115,7 @@ export const TravelContent: FC<TravelContentProps> = ({
                             <div
                                 key={index}
                                 className="mb-[30px] wow animate__animated animate__fadeInUp animate__delay-300ms"
-                                onClick={() => toDetail(1)}
+                                onClick={() => toDetail(item.travelId)}
                             >
                                 <div className="mb-[10px]">
                                     <ImageLazy

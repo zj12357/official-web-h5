@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import Swiper from 'swiper';
 import classnames from 'classnames';
+import ImageLazy from '@/components/ImageLazy';
 
 interface contentImageType {
     url: string;
@@ -8,12 +9,16 @@ interface contentImageType {
     content?: string;
 }
 type IntroductionImageProps = {
+    swiperId: number;
     imageList: contentImageType[];
 };
 
-const IntroductionImage: FC<IntroductionImageProps> = ({ imageList }) => {
+const IntroductionImage: FC<IntroductionImageProps> = ({
+    imageList,
+    swiperId,
+}) => {
     useEffect(() => {
-        const dynamic = new Swiper('#detail-swiper', {
+        const dynamic = new Swiper(`#detail-swiper-${swiperId}`, {
             mousewheel: true,
             observer: true,
             observeParents: true,
@@ -30,19 +35,19 @@ const IntroductionImage: FC<IntroductionImageProps> = ({ imageList }) => {
     return (
         <div className="w-full not-last-child-border py-[20px]">
             <div
-                className="swiper-container mt-[30px] wow animate__animated animate__fadeInUp animate__delay-200ms"
-                id="detail-swiper"
+                className="swiper-container  wow animate__animated animate__fadeInUp animate__delay-200ms"
+                id={`detail-swiper-${swiperId}`}
             >
                 <div className="swiper-wrapper w-full pb-[20px]">
-                    {imageList.map((item, index) => (
+                    {imageList?.map((item, index) => (
                         <div key={index} className="swiper-slide !w-[320px]">
-                            <div className="w-[300px] h-[180px]">
-                                <img
-                                    src={item.url}
-                                    alt=""
-                                    className="image-object-fit rounded-[8px]"
-                                />
-                            </div>
+                            <ImageLazy
+                                src={item.url}
+                                alt=""
+                                boxClassName="w-[300px] h-[180px]"
+                                imageClassName="image-object-fit rounded-[8px]"
+                            />
+
                             {item.title && (
                                 <p className="my-[10px] text-[#FFD78E] text-[12px]">
                                     {item.title}

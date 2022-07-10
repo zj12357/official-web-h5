@@ -6,11 +6,28 @@
  */
 
 export interface StoreTravelListItem {
+    travelId: string;
     title: string;
     image: string;
+}
+
+export interface placeImageItem {
+    url: string;
+}
+export interface projectImageItem {
+    url: string;
+}
+export interface StoreTravelDetail {
+    placeName: string;
+    placeDescription: string;
+    openTime: string;
+    address: string;
+    placeImageList: placeImageItem[];
+    projectImageList: projectImageItem[];
 }
 
 export interface TravelState {
     travelList: StoreTravelListItem[];
     hasMore: boolean;
+    travelDetal: StoreTravelDetail;
 }

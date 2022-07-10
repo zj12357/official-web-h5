@@ -9,5 +9,5 @@ import {
 export const getrRecruitList = (params: RecruitmentListParams) =>
     post<ResponseData<RecruitmentListType>>('/h5/recruit/list', params);
 
-export const getrRecruitDetail = (id: number) =>
+export const getrRecruitDetail = (id: string) =>
     post<ResponseData<RecruitmentDetailType>>('/h5/recruit/detail', { id });

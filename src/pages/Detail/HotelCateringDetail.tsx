@@ -54,6 +54,7 @@ const HotelCateringDetail: FC<HotelCateringDetailProps> = (props) => {
                 ]}
             ></IntroductionSingleImageText>
             <IntroductionImage
+                swiperId={1}
                 imageList={[
                     {
                         url: require('@/assets/images/test/detail-01.png')
