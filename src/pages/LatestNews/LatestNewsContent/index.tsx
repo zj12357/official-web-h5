@@ -3,6 +3,7 @@ import Swiper from 'swiper';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import dayjs from 'dayjs';
 import {
     selectNewsList,
     selectHasMore,
@@ -67,7 +68,7 @@ export const LatestNewsContent: FC<LatestNewsContentProps> = ({
                                     {item.title}
                                 </div>
                                 <div className="text-[14px] text-[#FFD78E]">
-                                    {item.time}
+                                    {dayjs(item.time).format('YYYY/MM/DD')}
                                 </div>
                             </div>
                             <p className="text-[12px]  text-[#BFA983] wow animate__animated animate__fadeInUp animate__delay-300ms">
