@@ -30,7 +30,9 @@ const Recruitmentdetail: FC<RecruitmentdetailProps> = (props) => {
                 </div>
                 <div className="w-full pt-[30px]">
                     <div className="w-full mb-[30px]">
-                        <h3 className="text-[#FFD78E] text-[16px]">薪资福利</h3>
+                        <h3 className="text-[#FFD78E] text-[16px]">
+                            {t('detail-text-salary')}
+                        </h3>
                         <ul className="mt-[10px]">
                             {detailContent.jobSalaryContent?.map(
                                 (item, index) => (
@@ -47,7 +49,9 @@ const Recruitmentdetail: FC<RecruitmentdetailProps> = (props) => {
                         </ul>
                     </div>
                     <div className="w-full mb-[30px]">
-                        <h3 className="text-[#FFD78E] text-[16px]">职位描述</h3>
+                        <h3 className="text-[#FFD78E] text-[16px]">
+                            {t('detail-text-job-description')}
+                        </h3>
                         <ul className="mt-[10px]">
                             {detailContent.jobDescriptionContent?.map(
                                 (item, index) => (
@@ -64,7 +68,9 @@ const Recruitmentdetail: FC<RecruitmentdetailProps> = (props) => {
                         </ul>
                     </div>
                     <div className="w-full mb-[30px]">
-                        <h3 className="text-[#FFD78E] text-[16px]">任职要求</h3>
+                        <h3 className="text-[#FFD78E] text-[16px]">
+                            {t('detail-text-job-requirements')}
+                        </h3>
                         <ul className="mt-[10px]">
                             {detailContent.jobRequirementsContent?.map(
                                 (item, index) => (

@@ -7,7 +7,7 @@ interface contentItemType {
 type IntroductionTextProps = {
     title: string;
     stars?: number;
-    content1?: contentItemType[];
+    content1?: string[];
     content2?: contentItemType[];
     content3?: contentItemType[];
 };
@@ -26,14 +26,14 @@ const IntroductionText: FC<IntroductionTextProps> = ({
                 {stars && <Stars count={3}></Stars>}
             </div>
             {content1 && (
-                <div className="mt-[20px]">
+                <div className="mt-[20px] flex justify-start items-center flex-wrap">
                     {content1?.map((text, index) => (
-                        <p
+                        <span
                             key={index}
-                            className="text-[#BFA983] text-[12px] wow animate__animated animate__fadeInUp animate__delay-300ms"
+                            className="text-[#BFA983] text-[12px] mr-[8px]  wow animate__animated animate__fadeInUp animate__delay-300ms"
                         >
-                            {text.contentItem}
-                        </p>
+                            {text}
+                        </span>
                     ))}
                 </div>
             )}

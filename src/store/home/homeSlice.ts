@@ -7,6 +7,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../';
 import { getCourseList, getPromoList, getNewsInfo } from '@/api/home';
+import { NewsParams } from '@/types/api/home';
 import { HomeState } from './types';
 import { getLanguage } from '@/common/localization';
 
@@ -14,6 +15,7 @@ const initialState: HomeState = {
     courseList: [],
     promoList: [],
     newsInfo: [],
+    promoHasmore: false,
 };
 
 export const storeCourseList = createAsyncThunk(
@@ -25,11 +27,14 @@ export const storeCourseList = createAsyncThunk(
     },
 );
 
-export const storePromoList = createAsyncThunk('home/fetchPromo', async () => {
-    const response = await getPromoList();
-    console.log('home/fetchPromo', response.data);
-    return response.data;
-});
+export const storePromoList = createAsyncThunk(
+    'home/fetchPromo',
+    async (params: NewsParams) => {
+        const response = await getPromoList(params);
+        console.log('home/fetchPromo', response.data);
+        return response.data;
+    },
+);
 export const storeNewsInfo = createAsyncThunk(
     'home/fetchNeswInfo',
     async () => {
@@ -73,7 +78,7 @@ export const homeSlice = createSlice({
             })
             //fetchPromo
             .addCase(storePromoList.pending, (state) => {
-                state.promoList = [];
+                state.promoHasmore = true;
             })
             .addCase(storePromoList.fulfilled, (state, action) => {
                 state.promoList = (action.payload?.list ?? []).map((item) => {
@@ -82,23 +87,28 @@ export const homeSlice = createSlice({
                     };
                     return newItem;
                 });
+                if ((action.payload?.list ?? []).length === 0) {
+                    state.promoHasmore = false;
+                }
             })
             .addCase(storePromoList.rejected, (state, action) => {
-                state.promoList = [];
+                state.promoHasmore = false;
             })
             //fetchNeswInfo
             .addCase(storeNewsInfo.pending, (state) => {
                 state.newsInfo = [];
             })
             .addCase(storeNewsInfo.fulfilled, (state, action) => {
-                state.newsInfo = (action.payload?.list ?? []).map((item) => {
-                    const newItem = {
-                        url: item.cover_image_h5 ?? '',
-                        time: '',
-                        content: item.content?.[getLanguage()] ?? '',
-                    };
-                    return newItem;
-                });
+                state.newsInfo = (action.payload?.list ?? [])
+                    .map((item) => {
+                        const newItem = {
+                            url: item.cover_image_h5 ?? '',
+                            time: '',
+                            content: item.content?.[getLanguage()] ?? '',
+                        };
+                        return newItem;
+                    })
+                    .slice(0, 5);
             })
             .addCase(storeNewsInfo.rejected, (state, action) => {
                 state.newsInfo = [];
@@ -109,5 +119,6 @@ export const homeSlice = createSlice({
 export const selectCourseList = (state: RootState) => state.home.courseList;
 export const selectPromoList = (state: RootState) => state.home.promoList;
 export const selectNewsInfo = (state: RootState) => state.home.newsInfo;
+export const selectPromoHasmore = (state: RootState) => state.home.promoHasmore;
 
 export default homeSlice.reducer;

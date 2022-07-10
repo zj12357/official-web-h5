@@ -25,4 +25,5 @@ export interface HomeState {
     courseList: StroeCourseListItem[];
     promoList: StroePromoListItem[];
     newsInfo: StoreNewsInfoListItem[];
+    promoHasmore: boolean;
 }

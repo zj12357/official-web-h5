@@ -122,7 +122,7 @@ const routes: MixRouteConfig[] = [
         showFooter: true,
     },
     {
-        path: '/hotelCateringDetail/:id',
+        path: '/hotelCateringDetail/:id/:category',
         exact: true,
         component: HotelCateringDetail,
         title: mateInfo.common.title,

@@ -1,5 +1,13 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import {
+    storeHotelDetail,
+    storeCateringDetail,
+    selectHotelDetail,
+    selectCateringDetail,
+} from '@/store/hotelCatering/hotelCateringSlice';
 import NavBar from '@/components/NavBar';
 import IntroductionText from './Common/IntroductionText';
 import IntroductionImage from './Common/IntroductionImage';
@@ -8,77 +16,118 @@ import IntroductionSingleImageText from './Common/IntroductionSingleImageText';
 type HotelCateringDetailProps = {};
 
 const HotelCateringDetail: FC<HotelCateringDetailProps> = (props) => {
+    const dispatch = useDispatch();
+    const { id, category } = useParams<{ id: string; category: string }>();
+    const hotelContent = useSelector(selectHotelDetail);
+    const cateringContent = useSelector(selectCateringDetail);
+    const getHotelDetail = () => {
+        dispatch(storeHotelDetail(id));
+    };
+    const getCateringDetail = () => {
+        dispatch(storeCateringDetail(id));
+    };
+
     const { t } = useTranslation();
+    useEffect(() => {
+        if (category === '1') {
+            getHotelDetail();
+        } else if (category === '2') {
+            getCateringDetail();
+        }
+    }, []);
     return (
         <div className="w-full p-[20px] bg-[#181818]">
             <NavBar title={t('detail-title-hotel-catering')}></NavBar>
-            <IntroductionText
-                title="NOBU酒店"
-                stars={3}
-                content1={[
-                    {
-                        contentItem: '中餐·川菜',
-                    },
-                ]}
-                content2={[
-                    {
-                        contentItem:
-                            '由屡获殊荣的厨师Raymond Young 经营 五行遵循北京风格，在传统的北京烤炉中烤制， 并使用星苹果木来帮助突出其风味和香气。出锅前风干，外皮酥脆，肉质更嫩。 OKBET邀您来WU XING品尝正宗北京宫廷菜的美味。',
-                    },
-                ]}
-                content3={[
-                    {
-                        contentItem:
-                            '营业时间：11:30AM-2:30PM / 5:30PM-10:30PM',
-                    },
-                    {
-                        contentItem: ' 贵宾热线：+63 909 243 0988 ',
-                    },
-                    {
-                        contentItem: '详细地址：克拉克万豪酒店大堂层',
-                    },
-                    {
-                        contentItem: '是否在场馆：是',
-                    },
-                ]}
-            ></IntroductionText>
-            <IntroductionSingleImageText
-                imageTextLsit={[
-                    {
-                        image: require('@/assets/images/test/detail-01.png')
-                            .default,
-                        title: '豪华房 37平米',
-                        description:
-                            'Nobu 豪华客房享有壮丽的景色，融合了优雅、现代的日式内饰的豪华氛围。它提供了一个安静的休憩之所，舒适和放松是最优先考虑的。',
-                    },
-                ]}
-            ></IntroductionSingleImageText>
-            <IntroductionImage
-                swiperId={1}
-                imageList={[
-                    {
-                        url: require('@/assets/images/test/detail-01.png')
-                            .default,
-                        title: '豪华房 37平米',
-                        content:
-                            'Nobu 豪华客房享有壮丽的景色，融合了优雅、现代的日式内饰的豪华氛围。它提供了一个安静的休憩之所，舒适和放松是最优先考虑的。',
-                    },
-                    {
-                        url: require('@/assets/images/test/detail-01.png')
-                            .default,
-                        title: '豪华房 37平米',
-                        content:
-                            'Nobu 豪华客房享有壮丽的景色，融合了优雅、现代的日式内饰的豪华氛围。它提供了一个安静的休憩之所，舒适和放松是最优先考虑的。',
-                    },
-                    {
-                        url: require('@/assets/images/test/detail-01.png')
-                            .default,
-                        title: '豪华房 37平米',
-                        content:
-                            'Nobu 豪华客房享有壮丽的景色，融合了优雅、现代的日式内饰的豪华氛围。它提供了一个安静的休憩之所，舒适和放松是最优先考虑的。',
-                    },
-                ]}
-            ></IntroductionImage>
+            {category === '1' && Object.keys(hotelContent).length > 0 && (
+                <>
+                    <IntroductionText
+                        title={hotelContent.hotelName}
+                        stars={hotelContent.stars}
+                        content2={[
+                            {
+                                contentItem: hotelContent.hotelDescription,
+                            },
+                        ]}
+                        content3={[
+                            {
+                                contentItem: `${t(
+                                    'detail-text-vip-hot-line',
+                                )}: ${hotelContent.phone}`,
+                            },
+                            {
+                                contentItem: `${t('detail-text-address')}: ${
+                                    hotelContent.address
+                                }`,
+                            },
+
+                            {
+                                contentItem: `${t(
+                                    'detail-text-is-in-venue',
+                                )}: ${
+                                    hotelContent.inSide
+                                        ? t('detail-text-yes')
+                                        : t('detail-text-no')
+                                }`,
+                            },
+                        ]}
+                    ></IntroductionText>
+                    <IntroductionSingleImageText
+                        imageTextLsit={hotelContent.hotelImageList}
+                    ></IntroductionSingleImageText>
+                </>
+            )}
+            {category === '2' && Object.keys(cateringContent).length > 0 && (
+                <>
+                    <IntroductionText
+                        title={cateringContent.cateringName}
+                        stars={cateringContent.stars}
+                        content1={cateringContent.foodTypeList}
+                        content2={[
+                            {
+                                contentItem:
+                                    cateringContent.cateringDescription,
+                            },
+                        ]}
+                        content3={[
+                            {
+                                contentItem: `${t('detail-text-open-time')}: ${
+                                    cateringContent.openTime
+                                }`,
+                            },
+                            {
+                                contentItem: `${t(
+                                    'detail-text-vip-hot-line',
+                                )}: ${cateringContent.phone}`,
+                            },
+                            {
+                                contentItem: `${t('detail-text-address')}: ${
+                                    cateringContent.address
+                                }`,
+                            },
+
+                            {
+                                contentItem: `${t(
+                                    'detail-text-is-in-venue',
+                                )}: ${
+                                    cateringContent.inSide
+                                        ? t('detail-text-yes')
+                                        : t('detail-text-no')
+                                }`,
+                            },
+                        ]}
+                    ></IntroductionText>
+                    <h2 className="text-[#FFD78E] text-[20px] mt-[30px]">
+                        {t('detail-text-open-dish')}
+                    </h2>
+                    {cateringContent.cateringImageList?.map((item, index) => (
+                        <IntroductionImage
+                            imageList={item.list}
+                            swiperId={index + 1}
+                            key={index}
+                        ></IntroductionImage>
+                    ))}
+                </>
+            )}
         </div>
     );
 };

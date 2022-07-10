@@ -48,3 +48,8 @@ export interface NewsInfoItem {
     updated_at: number;
 }
 export type NewsInfoListType = CommonList<NewsInfoItem>;
+
+export interface NewsParams {
+    page?: number;
+    szie?: number;
+}

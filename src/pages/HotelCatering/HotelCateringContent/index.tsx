@@ -1,19 +1,22 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC, Fragment, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import classnames from 'classnames';
 import ImageLazy from '@/components/ImageLazy';
 import {
     selectHotelCateringList,
     selectHasMore,
+    selectForHotelList,
+    clearHotelCateringlList,
 } from '@/store/hotelCatering/hotelCateringSlice';
 import PageLoading from '@/components/Loading/PageLoading';
 import { useRemovetStyle } from '@/common/dom';
 
 type HotelCateringContentProps = {
-    changeKind: (kind: number) => void;
-    changePage: () => void;
+    changeKind: (id: number) => void;
+    changePage: (page?: number) => void;
 };
 
 export const HotelCateringContent: FC<HotelCateringContentProps> = ({
@@ -21,64 +24,70 @@ export const HotelCateringContent: FC<HotelCateringContentProps> = ({
     changePage,
 }) => {
     const { t } = useTranslation();
+    const dispatch = useDispatch();
     useRemovetStyle('infinite-scroll-component', 'style');
     const history = useHistory();
     const contentList = useSelector(selectHotelCateringList);
     const hasMore = useSelector(selectHasMore);
-    const tabList = [
-        {
-            image: require('@/assets/images/test/hotel-catering-title-icon.svg')
-                .default,
-            name: '新濠天地',
-        },
-        {
-            image: require('@/assets/images/test/hotel-catering-title-icon.svg')
-                .default,
-            name: '新濠天地',
-        },
-        {
-            image: require('@/assets/images/test/hotel-catering-title-icon.svg')
-                .default,
-            name: '新濠天地',
-        },
-        {
-            image: require('@/assets/images/test/hotel-catering-title-icon.svg')
-                .default,
-            name: '新濠天地',
-        },
-        {
-            image: require('@/assets/images/test/hotel-catering-title-icon.svg')
-                .default,
-            name: '新濠天地',
-        },
-    ];
+    const tabList = useSelector(selectForHotelList);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-    const toDetail = (id: number) => {
-        history.push(`/hotelCateringDetail/${id}`);
+    const toDetail = (id: string, category: string) => {
+        history.push(`/hotelCateringDetail/${id}/${category}`);
+    };
+    const clearList = () => {
+        dispatch(clearHotelCateringlList());
+    };
+
+    const handleCurrentIndex = (index: number, id: number) => {
+        setCurrentIndex(index);
+        changeKind(id);
+        changePage(1);
+        clearList();
     };
     return (
         <div className="w-full p-[20px] bg-[#181818]">
             <div className="w-full pt-[10px]">
                 <div className="w-full flex justify-between flex-wrap wow animate__animated animate__fadeInUp animate__delay-200ms">
-                    {tabList.map((item, index) => (
+                    {tabList?.map((item, index) => (
                         <Fragment key={index}>
-                            <div className="flex flex-col justify-center items-center w-[25%] mb-[20px]">
+                            <div
+                                className="flex flex-col justify-center items-center w-[25%] mb-[20px]"
+                                onClick={() =>
+                                    handleCurrentIndex(index, +item.id)
+                                }
+                            >
                                 <ImageLazy
-                                    src={item.image}
+                                    src={item.icon}
                                     alt=""
                                     boxClassName="mb-[10px]"
-                                    imageClassName="h-[24px]"
-                                    iconClasssName="w-[20px]"
-                                    boxIconClassName="w-[40px] h-[40px]"
+                                    imageClassName={classnames('h-[24px]', {
+                                        'filter grayscale':
+                                            currentIndex !== index,
+                                    })}
+                                    iconClasssName="w-[12px]"
+                                    boxIconClassName="w-[24px] h-[24px]"
                                 />
 
-                                <span className="text-[#C0C0C0] text-[14px]">
+                                <span
+                                    className={classnames(
+                                        ' text-[#FFD78E] text-[14px]',
+                                        {
+                                            '!text-[#C0C0C0]':
+                                                currentIndex !== index,
+                                        },
+                                    )}
+                                >
                                     {item.name}
                                 </span>
                             </div>
                         </Fragment>
                     ))}
-                    {Array.from(Array(tabList.length - 1).keys()).map((i) => (
+                    {Array.from(
+                        Array(
+                            tabList.length - 1 < 0 ? 0 : tabList.length - 1,
+                        ).keys(),
+                    ).map((i) => (
                         <i key={i} className="w-[25%]"></i>
                     ))}
                 </div>
@@ -100,7 +109,7 @@ export const HotelCateringContent: FC<HotelCateringContentProps> = ({
                             <div
                                 key={index}
                                 className="mb-[30px] wow animate__animated animate__fadeInUp animate__delay-300ms"
-                                onClick={() => toDetail(1)}
+                                onClick={() => toDetail(item.id, item.category)}
                             >
                                 <div className=" mb-[10px]">
                                     <ImageLazy

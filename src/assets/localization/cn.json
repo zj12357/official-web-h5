@@ -71,9 +71,18 @@
     "detail-title-shopping": "娱乐购物",
     "detail-title-recruitment": "人才招聘",
 
+    "detail-text-open-dish": "菜肴",
     "detail-text-open-time": "营业时间",
+    "detail-text-vip-hot-line": "贵宾热线",
     "detail-text-hours": "小时",
     "detail-text-address": "详细地址",
     "detail-text-yacht-directory": "游艇目录",
-    "detail-text-service-items": "服务项目"
+    "detail-text-service-items": "服务项目",
+    "detail-text-salary": "薪资福利",
+    "detail-text-job-description": "职位描述",
+    "detail-text-job-requirements": "任职要求",
+    "detail-text-is-in-venue": "是否在场馆",
+    "detail-text-yes": "是",
+    "detail-text-no": "没有",
+    "detail-text-square": "平方"
 }
