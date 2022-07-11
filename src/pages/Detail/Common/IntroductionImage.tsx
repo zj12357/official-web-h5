@@ -18,20 +18,22 @@ const IntroductionImage: FC<IntroductionImageProps> = ({
     swiperId,
 }) => {
     useEffect(() => {
-        const dynamic = new Swiper(`#detail-swiper-${swiperId}`, {
-            mousewheel: true,
-            observer: true,
-            observeParents: true,
-            speed: 800,
-            slidesPerView: 'auto',
-            freeMode: true,
-            scrollbar: {
-                el: '.swiper-scrollbar',
-            },
-        });
-        dynamic.scrollbar.$dragEl.css('background', '#BFA983');
-        dynamic.scrollbar.$el.css('height', '3px');
-    }, []);
+        if (swiperId > 0) {
+            const dynamic = new Swiper(`#detail-swiper-${swiperId}`, {
+                mousewheel: true,
+                observer: true,
+                observeParents: true,
+                speed: 800,
+                slidesPerView: 'auto',
+                freeMode: true,
+                scrollbar: {
+                    el: '.swiper-scrollbar',
+                },
+            });
+            dynamic.scrollbar.$dragEl.css('background', '#BFA983');
+            dynamic.scrollbar.$el.css('height', '3px');
+        }
+    }, [swiperId]);
     return (
         <div className="w-full not-last-child-border py-[20px]">
             <div

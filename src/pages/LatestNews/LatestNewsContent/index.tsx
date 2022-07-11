@@ -25,22 +25,24 @@ export const LatestNewsContent: FC<LatestNewsContentProps> = ({
     const hasMore = useSelector(selectHasMore);
 
     useEffect(() => {
-        contentList.forEach((_, index) => {
-            const dynamic = new Swiper(`#latest-news-dynamic${index}`, {
-                mousewheel: true,
-                observer: true,
-                observeParents: true,
-                speed: 800,
-                slidesPerView: 'auto',
-                freeMode: true,
-                scrollbar: {
-                    el: '.swiper-scrollbar',
-                },
+        if (contentList.length > 0) {
+            contentList.forEach((_, index) => {
+                const dynamic = new Swiper(`#latest-news-dynamic${index}`, {
+                    mousewheel: true,
+                    observer: true,
+                    observeParents: true,
+                    speed: 800,
+                    slidesPerView: 'auto',
+                    freeMode: true,
+                    scrollbar: {
+                        el: '.swiper-scrollbar',
+                    },
+                });
+                dynamic.scrollbar.$dragEl.css('background', '#BFA983');
+                dynamic.scrollbar.$el.css('height', '3px');
             });
-            dynamic.scrollbar.$dragEl.css('background', '#BFA983');
-            dynamic.scrollbar.$el.css('height', '3px');
-        });
-    }, []);
+        }
+    }, [contentList]);
 
     return (
         <div className="w-full p-[20px] bg-[#181818]">

@@ -50,7 +50,7 @@ const TravelDetail: FC<TravelDetailProps> = (props) => {
 
                     <IntroductionImage
                         imageList={detailContent.placeImageList}
-                        swiperId={new Date().getTime()}
+                        swiperId={detailContent.projectImageList.length + 2}
                     ></IntroductionImage>
                     <h2 className="text-[#FFD78E] text-[20px] mt-[30px]">
                         {t('detail-text-yacht-directory')}
