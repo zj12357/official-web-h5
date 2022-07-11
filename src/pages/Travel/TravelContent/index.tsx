@@ -30,19 +30,25 @@ export const TravelContent: FC<TravelContentProps> = ({
     const { t } = useTranslation();
     const tabList = [
         {
-            image: require('@/assets/images/test/travel-title-icon.svg')
-                .default,
-            name: '旅游景点',
+            icon: require('@/assets/images/icon/travel-01-icon.svg').default,
+            activeIcon:
+                require('@/assets/images/icon/travel-active-01-icon.svg')
+                    .default,
+            name: t('nav-title-tourist-attraction'),
         },
         {
-            image: require('@/assets/images/test/travel-title-icon.svg')
-                .default,
-            name: '票务出行',
+            icon: require('@/assets/images/icon/travel-02-icon.svg').default,
+            activeIcon:
+                require('@/assets/images/icon/travel-active-02-icon.svg')
+                    .default,
+            name: t('nav-title-ticket'),
         },
         {
-            image: require('@/assets/images/test/travel-title-icon.svg')
-                .default,
-            name: '签证安保',
+            icon: require('@/assets/images/icon/travel-03-icon.svg').default,
+            activeIcon:
+                require('@/assets/images/icon/travel-active-03-icon.svg')
+                    .default,
+            name: t('nav-title-visa-security'),
         },
     ];
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -70,14 +76,27 @@ export const TravelContent: FC<TravelContentProps> = ({
                                 className="flex flex-col justify-center items-center w-[25%] mb-[20px]"
                                 onClick={() => handleCurrentIndex(index)}
                             >
-                                <ImageLazy
-                                    src={item.image}
-                                    alt=""
-                                    boxClassName="mb-[10px]"
-                                    imageClassName="h-[24px]"
-                                    iconClasssName="w-[20px]"
-                                    boxIconClassName="w-[40px] h-[40px]"
-                                />
+                                <div
+                                    className={classnames(
+                                        ' border-[1px] border-[#C0C0C0] border-solid rounded-full w-[40px] h-[40px] flex justify-center items-center mb-[10px]',
+                                        {
+                                            '!border-[#FFD78E]':
+                                                currentIndex === index,
+                                        },
+                                    )}
+                                >
+                                    <ImageLazy
+                                        src={
+                                            currentIndex === index
+                                                ? item.activeIcon
+                                                : item.icon
+                                        }
+                                        alt=""
+                                        imageClassName="w-[22px]"
+                                        iconClasssName="w-[20px]"
+                                        boxIconClassName="w-[40px] h-[40px]"
+                                    />
+                                </div>
 
                                 <span
                                     className={classnames(

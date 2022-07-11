@@ -31,34 +31,46 @@ export const ShoppingContent: FC<ShoppingContentProps> = ({
 
     const tabList = [
         {
-            image: require('@/assets/images/test/shopping-title-icon.svg')
-                .default,
-            name: '高尔夫',
+            icon: require('@/assets/images/icon/shopping-01-icon.svg').default,
+            activeIcon:
+                require('@/assets/images/icon/shopping-active-01-icon.svg')
+                    .default,
+            name: t('nav-title-golf'),
         },
         {
-            image: require('@/assets/images/test/shopping-title-icon.svg')
-                .default,
-            name: '奢侈品',
+            icon: require('@/assets/images/icon/shopping-02-icon.svg').default,
+            activeIcon:
+                require('@/assets/images/icon/shopping-active-02-icon.svg')
+                    .default,
+            name: t('nav-title-luxury'),
         },
         {
-            image: require('@/assets/images/test/shopping-title-icon.svg')
-                .default,
-            name: '会所',
+            icon: require('@/assets/images/icon/shopping-03-icon.svg').default,
+            activeIcon:
+                require('@/assets/images/icon/shopping-active-03-icon.svg')
+                    .default,
+            name: t('nav-title-club'),
         },
         {
-            image: require('@/assets/images/test/shopping-title-icon.svg')
-                .default,
-            name: 'KTV',
+            icon: require('@/assets/images/icon/shopping-04-icon.svg').default,
+            activeIcon:
+                require('@/assets/images/icon/shopping-active-04-icon.svg')
+                    .default,
+            name: t('nav-title-ktv'),
         },
         {
-            image: require('@/assets/images/test/shopping-title-icon.svg')
-                .default,
-            name: '射击',
+            icon: require('@/assets/images/icon/shopping-05-icon.svg').default,
+            activeIcon:
+                require('@/assets/images/icon/shopping-active-05-icon.svg')
+                    .default,
+            name: t('nav-title-shooting'),
         },
         {
-            image: require('@/assets/images/test/shopping-title-icon.svg')
-                .default,
-            name: 'SPA',
+            icon: require('@/assets/images/icon/shopping-06-icon.svg').default,
+            activeIcon:
+                require('@/assets/images/icon/shopping-active-06-icon.svg')
+                    .default,
+            name: t('nav-title-spa'),
         },
     ];
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -81,31 +93,46 @@ export const ShoppingContent: FC<ShoppingContentProps> = ({
                 <div className="w-full flex justify-between flex-wrap wow animate__animated animate__fadeInUp animate__delay-200ms">
                     {tabList.map((item, index) => (
                         <Fragment key={index}>
-                            <div
-                                className="flex flex-col justify-center items-center w-[25%] mb-[20px]"
-                                onClick={() => handleCurrentIndex(index)}
-                            >
-                                <ImageLazy
-                                    src={item.image}
-                                    alt=""
-                                    boxClassName="mb-[10px]"
-                                    imageClassName="h-[24px]"
-                                    iconClasssName="w-[20px]"
-                                    boxIconClassName="w-[40px] h-[40px]"
-                                />
-
-                                <span
-                                    className={classnames(
-                                        'text-[#C0C0C0] text-[14px]',
-                                        {
-                                            'text-[#FFD78E]':
-                                                currentIndex === index,
-                                        },
-                                    )}
+                            <Fragment key={index}>
+                                <div
+                                    className="flex flex-col justify-center items-center w-[25%] mb-[20px]"
+                                    onClick={() => handleCurrentIndex(index)}
                                 >
-                                    {item.name}
-                                </span>
-                            </div>
+                                    <div
+                                        className={classnames(
+                                            ' border-[1px] border-[#C0C0C0] border-solid rounded-full w-[40px] h-[40px] flex justify-center items-center mb-[10px]',
+                                            {
+                                                '!border-[#FFD78E]':
+                                                    currentIndex === index,
+                                            },
+                                        )}
+                                    >
+                                        <ImageLazy
+                                            src={
+                                                currentIndex === index
+                                                    ? item.activeIcon
+                                                    : item.icon
+                                            }
+                                            alt=""
+                                            imageClassName="w-[22px]"
+                                            iconClasssName="w-[20px]"
+                                            boxIconClassName="w-[40px] h-[40px]"
+                                        />
+                                    </div>
+
+                                    <span
+                                        className={classnames(
+                                            'text-[#C0C0C0] text-[14px]',
+                                            {
+                                                'text-[#FFD78E]':
+                                                    currentIndex === index,
+                                            },
+                                        )}
+                                    >
+                                        {item.name}
+                                    </span>
+                                </div>
+                            </Fragment>
                         </Fragment>
                     ))}
                     {Array.from(Array(tabList.length - 1).keys()).map((i) => (

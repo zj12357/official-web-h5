@@ -84,5 +84,15 @@
     "detail-text-is-in-venue": "是否在场馆",
     "detail-text-yes": "是",
     "detail-text-no": "没有",
-    "detail-text-square": "平方"
+    "detail-text-square": "平方",
+
+    "nav-title-tourist-attraction": "旅游景点",
+    "nav-title-ticket": "票务出行",
+    "nav-title-visa-security": "签证安保",
+    "nav-title-golf": "高尔夫",
+    "nav-title-luxury": "奢侈品",
+    "nav-title-club": "会所",
+    "nav-title-ktv": "KTV",
+    "nav-title-shooting": "射击",
+    "nav-title-spa": "SPA"
 }
