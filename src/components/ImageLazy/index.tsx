@@ -45,7 +45,7 @@ const ImageLazy: FC<ImagelazyProps> = ({
     iconClasssName,
     boxIconClassName,
 }) => {
-    const [loadFail, setLoadFail] = useState(false);
+    const [loadFail, setLoadFail] = useState(true);
 
     const imagePromise = () => {
         loadImage(src)
