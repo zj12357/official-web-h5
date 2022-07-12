@@ -7,6 +7,7 @@
 import React, { FC, memo, HTMLAttributes, useState, useEffect } from 'react';
 import LazyLoad from 'react-lazyload';
 import classnames from 'classnames';
+import loadImage from '@/utils/loadImage';
 import defaultImage from '@/assets/images/icon/bg-logo-icon.svg';
 
 interface ImagelazyProps extends HTMLAttributes<HTMLImageElement> {
@@ -44,37 +45,49 @@ const ImageLazy: FC<ImagelazyProps> = ({
     iconClasssName,
     boxIconClassName,
 }) => {
-    const [imageUrl, setImageUrl] = useState(src ?? '');
     const [loadFail, setLoadFail] = useState(false);
+
+    const imagePromise = () => {
+        loadImage(src)
+            .then(() => {
+                setLoadFail(false);
+            })
+            .catch(() => {
+                setLoadFail(true);
+            });
+    };
+
     useEffect(() => {
-        setImageUrl(src);
+        if (src) {
+            imagePromise();
+        } else {
+            setLoadFail(true);
+        }
     }, [src]);
+
     return (
-        <LazyLoad
-            className={classnames(boxClassName)}
-            placeholder={
-                <Placeholder
-                    iconClasssName={iconClasssName}
-                    boxIconClassName={boxIconClassName}
-                />
-            }
-        >
+        <>
             {loadFail ? (
-                <Placeholder
-                    iconClasssName={iconClasssName}
-                    boxIconClassName={boxIconClassName}
-                />
+                <div className={classnames(boxClassName)}>
+                    <Placeholder
+                        iconClasssName={iconClasssName}
+                        boxIconClassName={boxIconClassName}
+                    />
+                </div>
             ) : (
-                <img
-                    src={imageUrl}
-                    alt={alt}
-                    onError={() => {
-                        setLoadFail(true);
-                    }}
-                    className={imageClassName}
-                />
+                <LazyLoad
+                    className={classnames(boxClassName)}
+                    placeholder={
+                        <Placeholder
+                            iconClasssName={iconClasssName}
+                            boxIconClassName={boxIconClassName}
+                        />
+                    }
+                >
+                    <img src={src} alt={alt} className={imageClassName} />
+                </LazyLoad>
             )}
-        </LazyLoad>
+        </>
     );
 };
 

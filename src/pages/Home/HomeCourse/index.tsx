@@ -23,6 +23,8 @@ export const HomeCourse = () => {
             // @ts-ignore
             courseSwiper.slideTo(index, 1000, false);
             setCurrentIndex(index);
+            setDefaultTime(courseList[index]?.time);
+            setDefaultIcon(courseList[index]?.icon);
         }
     };
 
@@ -86,6 +88,7 @@ export const HomeCourse = () => {
 
     useEffect(() => {
         setDefaultTime(courseList[currentIndex]?.time);
+        setDefaultIcon(courseList[currentIndex]?.icon);
     }, [currentIndex]);
 
     return (
