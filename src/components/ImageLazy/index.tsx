@@ -67,26 +67,26 @@ const ImageLazy: FC<ImagelazyProps> = ({
 
     return (
         <>
-            {loadFail ? (
-                <div className={classnames(boxClassName)}>
+            <LazyLoad
+                className={classnames(boxClassName)}
+                placeholder={
                     <Placeholder
                         iconClasssName={iconClasssName}
                         boxIconClassName={boxIconClassName}
                     />
-                </div>
-            ) : (
-                <LazyLoad
-                    className={classnames(boxClassName)}
-                    placeholder={
+                }
+            >
+                {loadFail ? (
+                    <div className={classnames(boxClassName)}>
                         <Placeholder
                             iconClasssName={iconClasssName}
                             boxIconClassName={boxIconClassName}
                         />
-                    }
-                >
+                    </div>
+                ) : (
                     <img src={src} alt={alt} className={imageClassName} />
-                </LazyLoad>
-            )}
+                )}
+            </LazyLoad>
         </>
     );
 };
