@@ -12,9 +12,9 @@ import 'swiper/css/swiper.min.css';
 import '@/common/timeLocale';
 
 ReactDOM.render(
-    // <React.StrictMode> //react中使用antd警告,是因为 react中的严格模式
-    <App />,
-    // </React.StrictMode>,
+    <React.StrictMode>
+        <App />,
+    </React.StrictMode>,
     document.getElementById('root'),
 );
 
